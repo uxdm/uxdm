@@ -6,6 +6,7 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': 0,
     'import/default': 0,
+    'import/no-unresolved': 0,
     'import/no-named-as-default-member': 0,
     'import/named': 0,
     'no-param-reassign': 0,

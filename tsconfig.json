@@ -1,36 +1,26 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
-    "target": "ES2015",
-    "lib": ["esnext", "dom"],
-    "sourceMap": true,
+    "noEmit": true,
     "baseUrl": ".",
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
-    "strict": true,
+    "module": "CommonJS",
+    "noEmitOnError": false,
     "declaration": true,
-    "skipLibCheck": true
+    "paths": {
+      "@uxdm/schema": ["./packages/schema/src"]
+    }
   },
-  "include": ["**/src/", "**/docs/", "**/tests/"],
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "tslint:latest",
-    "tslint-config-prettier",
-    "example",
-    "docs"
-  ]
+  "exclude": ["config", "config"],
+  "typedocOptions": {
+    "inputFiles": ["packages/schema/src", "packages/uxdm/src"],
+    "mode": "modules",
+    "out": "docs/api ",
+    "exclude": ["**/*+(index|.spec|.e2e).ts"],
+    "plugin": ["typedoc-plugin-markdown"],
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "categorizeByGroup": false,
+    "hideProjectName": true,
+    "hideBreadcrumbs": true
+  }
 }

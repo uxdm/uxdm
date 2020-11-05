@@ -1,0 +1,32 @@
+{
+  "name": "@uxdm/schema",
+  "version": "0.0.0",
+  "description": "Define Schema Of uxdm",
+  "keywords": [
+    "uxdm"
+  ],
+  "author": "arvinxx <arvinx@foxmail.com>",
+  "homepage": "https://github.com/uxdm/uxdm/tree/master/packages/schema#readme",
+  "license": "MIT",
+  "main": "lib/index",
+  "module": "es/index",
+  "types": "lib/index",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": " https://registry.npmjs.org/"
+  },
+  "repository": "git+https://github.com/uxdm/uxdm.git",
+  "scripts": {
+    "build": "yarn n scripts/compiler.ts",
+    "n": "ts-node"
+  },
+  "bugs": {
+    "url": "https://github.com/uxdm/uxdm/issues"
+  },
+  "devDependencies": {
+    "ts-node": "^9.0.0",
+    "typescript-json-schema": "^0.43.0"
+  }
+}
