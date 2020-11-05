@@ -1,1 +1,1 @@
-export { default as Bounding } from './Bounding';
+export { Bounding } from './Bounding';

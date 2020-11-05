@@ -5,12 +5,10 @@ import { AbstractRect } from '../abstract';
 
 /**
  * 定界框
- *
  * @description 定界框是一种围绕在图像、形状或文本周围的矩形边框.
  * @description 用于描述对象在空间坐标中的实际位置、变换、旋转和缩放的情况
- *
  */
-class Bounding extends AbstractRect {
+export class Bounding extends AbstractRect {
   constructor(params: BoundingParam) {
     super(params);
     if (params.rotation) {
@@ -121,5 +119,3 @@ class Bounding extends AbstractRect {
     y: this.y,
   });
 }
-
-export default Bounding;

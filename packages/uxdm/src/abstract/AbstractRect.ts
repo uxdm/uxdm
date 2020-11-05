@@ -1,4 +1,4 @@
-import { RectInitParam } from '@uxdm/schema';
+import { AbstractRectType, RectInitParam } from '@uxdm/schema';
 
 /**
  * 抽象矩形
@@ -6,7 +6,7 @@ import { RectInitParam } from '@uxdm/schema';
  * 可以用在定界框 矩形图形 布局 等实体中
  * Defines an abstract rectangle of object
  */
-abstract class AbstractRect {
+abstract class AbstractRect implements AbstractRectType {
   protected constructor(params: RectInitParam) {
     if (params) {
       const { height = 0, width = 0, x = 0, y = 0 } = params;
