@@ -21,11 +21,8 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['html2sketch', './src/'],
-          ['html2sketch/*', './src/*'],
-          ['@docs-utils', './docs/__utils__'],
-          ['@e2e-utils', './e2e/__utils__'],
-          ['@test-utils', './tests/__utils__'],
+          ['uxdm', './packages/uxdm/src'],
+          ['@uxdm/schema', './packages/schema/src'],
         ],
       },
       typescript: {

@@ -31,9 +31,9 @@
     "clean": "lerna run clean && rm -rf es lib dist build coverage .umi .eslintcache",
     "lint": "npm run lint-eslint",
     "tsc": "tsc -p tsconfig.json",
-    "lint-eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./packages",
+    "lint-eslint": "eslint --cache --ext .ts,.tsx --format=pretty ./packages",
     "lint-staged": "lint-staged",
-    "lint-staged:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty",
+    "lint-staged:ts": "eslint --cache --ext .ts,.tsx --format=pretty",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ",
     "prepublishOnly": "npm run test && npm run build && np --no-cleanup --yolo --no-publish --any-branch",
     "prettier": "prettier -c --write \"**/**\"",
@@ -52,7 +52,7 @@
       "prettier --write",
       "git add"
     ],
-    "**/*.{js,ts,tsx}": "npm run lint-staged:js"
+    "**/*.{ts,tsx}": "npm run lint-staged:ts"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
