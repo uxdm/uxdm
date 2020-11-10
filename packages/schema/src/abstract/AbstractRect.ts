@@ -25,4 +25,4 @@ export interface AbstractRectType {
 /**
  * 矩形参数
  */
-export type RectInitParam = Partial<AbstractRectType>;
+export type RectParam = Partial<AbstractRectType>;

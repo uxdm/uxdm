@@ -1,4 +1,4 @@
-import { AbstractRectType, RectInitParam } from '@uxdm/schema';
+import { AbstractRectType, RectParam } from '@uxdm/schema';
 
 /**
  * 抽象矩形
@@ -7,7 +7,7 @@ import { AbstractRectType, RectInitParam } from '@uxdm/schema';
  * Defines an abstract rectangle of object
  */
 abstract class AbstractRect implements AbstractRectType {
-  protected constructor(params: RectInitParam) {
+  protected constructor(params: RectParam) {
     if (params) {
       const { height = 0, width = 0, x = 0, y = 0 } = params;
       this.x = x;
@@ -17,12 +17,12 @@ abstract class AbstractRect implements AbstractRectType {
     }
   }
 
-  x: number = 0;
+  x: AbstractRectType['x'] = 0;
 
-  y: number = 0;
+  y: AbstractRectType['y'] = 0;
 
-  width: number = 0;
+  width: AbstractRectType['width'] = 0;
 
-  height: number = 0;
+  height: AbstractRectType['height'] = 0;
 }
 export default AbstractRect;

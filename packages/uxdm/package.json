@@ -9,7 +9,7 @@
   "author": "arvinxx <arvinx@foxmail.com>",
   "homepage": "https://github.com/uxdm/uxdm/tree/master/packages/uxdm#readme",
   "license": "MIT",
-  "main": "lib/index",
+  "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -26,7 +26,8 @@
     "url": "git+https://github.com/uxdm/uxdm.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "jest",
+    "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache"
   },
   "bugs": {
     "url": "https://github.com/uxdm/uxdm/issues"
@@ -35,5 +36,5 @@
     "@uxdm/schema": "^0.0.1-alpha.3",
     "transformation-matrix": "^2.5.0"
   },
-  "gitHead": "7fac385916aad561bcbc66749813d1e872297c1d"
+  "gitHead": "2064fb6583ffcca1c415e9d9830ffaadec09282b"
 }

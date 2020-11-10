@@ -1,10 +1,20 @@
-import { RectInitParam } from '../index';
+import { AbstractRectType, Matrix } from '../abstract';
+
 /**
- * 定界框入参类型
+ * 定界框输出类型
  */
-export interface BoundingParam extends RectInitParam {
+export interface BoundingType extends AbstractRectType {
   /**
    * 旋转参数
    */
-  rotation?: number;
+  rotation: number;
+  /**
+   * 矩阵类型
+   */
+  matrices: Matrix[];
 }
+
+/**
+ * 定界框入参类型
+ */
+export type BoundingParam = Partial<BoundingType>;

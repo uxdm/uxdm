@@ -18,7 +18,7 @@ storybook-static
 npm-debug.log*
 yarn-error.log
 
-/coverage
+coverage
 .idea
 yarn.lock
 package-lock.json

@@ -21,8 +21,8 @@
   "repository": "git+https://github.com/uxdm/uxdm.git",
   "scripts": {
     "build:schema": "yarn n scripts/compiler.ts",
-    "publish": "npm publish",
-    "n": "ts-node"
+    "n": "ts-node",
+    "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache"
   },
   "bugs": {
     "url": "https://github.com/uxdm/uxdm/issues"
@@ -31,5 +31,5 @@
     "ts-node": "^9.0.0",
     "typescript-json-schema": "^0.43.0"
   },
-  "gitHead": "7fac385916aad561bcbc66749813d1e872297c1d"
+  "gitHead": "2064fb6583ffcca1c415e9d9830ffaadec09282b"
 }
