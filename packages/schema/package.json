@@ -19,10 +19,8 @@
   },
   "repository": "git+https://github.com/uxdm/uxdm.git",
   "scripts": {
-    "build": "father-build && webpack",
     "build:schema": "yarn n scripts/compiler.ts",
     "publish": "npm publish",
-    "prepublishOnly": "yarn build",
     "n": "ts-node"
   },
   "bugs": {
@@ -32,5 +30,5 @@
     "ts-node": "^9.0.0",
     "typescript-json-schema": "^0.43.0"
   },
-  "gitHead": "470d23c96491b393ad51770435abe9fca56d523a"
+  "gitHead": "be12873ab952a9269dec1bd1e31533b689009c42"
 }
