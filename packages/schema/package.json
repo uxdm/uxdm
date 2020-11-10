@@ -15,6 +15,7 @@
     "lib"
   ],
   "publishConfig": {
+    "access": "public",
     "registry": " https://registry.npmjs.org/"
   },
   "repository": "git+https://github.com/uxdm/uxdm.git",
@@ -30,5 +31,5 @@
     "ts-node": "^9.0.0",
     "typescript-json-schema": "^0.43.0"
   },
-  "gitHead": "be12873ab952a9269dec1bd1e31533b689009c42"
+  "gitHead": "7fac385916aad561bcbc66749813d1e872297c1d"
 }
