@@ -33,5 +33,6 @@
   "dependencies": {
     "@uxdm/schema": "^0.0.1-alpha.0",
     "transformation-matrix": "^2.5.0"
-  }
+  },
+  "gitHead": "470d23c96491b393ad51770435abe9fca56d523a"
 }
