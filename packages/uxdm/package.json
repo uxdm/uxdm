@@ -1,6 +1,6 @@
 {
   "name": "uxdm",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "User Experience Description Model",
   "keywords": [
     "uxdm",
@@ -32,7 +32,7 @@
     "url": "https://github.com/uxdm/uxdm/issues"
   },
   "dependencies": {
-    "@uxdm/schema": "^0.0.1-alpha.2",
+    "@uxdm/schema": "^0.0.1-alpha.3",
     "transformation-matrix": "^2.5.0"
   },
   "gitHead": "7fac385916aad561bcbc66749813d1e872297c1d"
