@@ -17,4 +17,4 @@ export interface BoundingType extends AbstractRectType {
 /**
  * 定界框入参类型
  */
-export type BoundingParam = Partial<BoundingType>;
+export type BoundingParams = Partial<BoundingType>;

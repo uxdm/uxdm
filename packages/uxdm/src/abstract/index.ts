@@ -1,1 +1,3 @@
-export { default as AbstractRect } from './AbstractRect';
+export { AbstractRect } from './AbstractRect';
+export { AbstractNode } from './AbstractNode';
+export { AbstractGroupNode } from './AbstractGroupNode';

@@ -1,4 +1,4 @@
-import { BoundingParam, BoundingType } from '@uxdm/schema';
+import { BoundingParams, BoundingType } from '@uxdm/schema';
 import { AbstractRect } from '../abstract';
 
 /**
@@ -9,7 +9,7 @@ import { AbstractRect } from '../abstract';
  * 用于描述对象在空间坐标中的实际位置、变换、旋转和缩放的情况
  */
 export class Bounding extends AbstractRect {
-  constructor(params?: BoundingParam) {
+  constructor(params?: BoundingParams) {
     super(params);
     if (params) {
       const { rotation = 0 } = params;
