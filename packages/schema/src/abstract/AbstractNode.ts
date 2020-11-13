@@ -1,8 +1,14 @@
-import { DeepPartial, Overwrite } from 'utility-types';
+import { Assign, DeepPartial, Overwrite } from 'utility-types';
 import { OmitFunction } from '../utils';
 import { NodeType } from '../nodes';
 import { IAbstractObject } from './AbstractObject';
-import { BoundingType, IBounding, ILayout, LayoutType } from '../objects';
+import {
+  BoundingParams,
+  BoundingType,
+  IBounding,
+  ILayout,
+  LayoutType,
+} from '../objects';
 
 /**
  * 抽象节点的属性
@@ -57,4 +63,6 @@ export type AbstractNodeType = Overwrite<
 /**
  * 抽象节点的入参
  */
-export type AbstractNodeParams = DeepPartial<AbstractNodeType>;
+export type AbstractNodeParams = DeepPartial<
+  Assign<Omit<AbstractNodeType, 'type' | 'bounding'>, BoundingParams>
+>;

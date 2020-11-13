@@ -1,0 +1,36 @@
+{
+  "name": "@uxdm/model-sketch",
+  "version": "0.0.1",
+  "description": "An adaptor for sketch of uxdm",
+  "keywords": [
+    "uxdm"
+  ],
+  "author": "arvinxx <arvinx@foxmail.com>",
+  "homepage": "https://github.com/uxdm/uxdm/tree/master/packages/model-sketch#readme",
+  "license": "MIT",
+  "main": "lib/index",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uxdm/uxdm.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "cov": "jest --coverage"
+  },
+  "bugs": {
+    "url": "https://github.com/uxdm/uxdm/issues"
+  },
+  "dependencies": {
+    "@sketch-hq/sketch-file-format-ts": "^5.1.1",
+    "color": "^3.1.3",
+    "css": "^3.0.0",
+    "transformation-matrix": "^2.5.0",
+    "uxdm": "^0.0.1-beta.0"
+  }
+}

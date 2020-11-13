@@ -48,7 +48,7 @@ export class RectangleNode extends AbstractNode implements IRectangleNode {
 
   cornerRadius: number = 0;
 
-  readonly type: AbstractNodeType['type'] = 'RECTANGLE';
+  readonly type: AbstractNodeType['type'] = 'Rectangle';
 
   toJSON(): RectangleNodeType {
     const json = super.toJSON();

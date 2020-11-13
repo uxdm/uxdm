@@ -6,8 +6,11 @@
     "module": "CommonJS",
     "noEmitOnError": false,
     "declaration": true,
+    "esModuleInterop": true,
     "paths": {
       "@uxdm/schema": ["./packages/schema/src"],
+      "@uxdm/model-sketch": ["./packages/model-sketch/src"],
+      "@uxdm/model-sketch/*": ["./packages/model-sketch/src/*"],
       "uxdm/*": ["./packages/uxdm/src/*"],
       "uxdm": ["./packages/uxdm/src"]
     }

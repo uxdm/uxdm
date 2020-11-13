@@ -28,7 +28,7 @@ export class GroupNode extends AbstractGroupNode implements IGroupNode {
 
   name = 'group';
 
-  readonly type: AbstractNodeType['type'] = 'GROUP';
+  readonly type: AbstractNodeType['type'] = 'Group';
 
   toJSON(): GroupNodeType {
     const json = super.toJSON();

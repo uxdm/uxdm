@@ -58,7 +58,7 @@ describe('GroupNode 类', () => {
       },
       locked: false,
       name: 'group',
-      type: 'GROUP',
+      type: 'Group',
       visible: true,
       children: [],
       bounding: { x: 0, y: 0, width: 0, height: 0, rotation: 0 },

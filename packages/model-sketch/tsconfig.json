@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES5",
+    "declaration": true
+  },
+  "include": ["src", "types"],
+  "exclude": ["tests"]
+}

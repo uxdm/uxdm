@@ -5,6 +5,7 @@ import {
 } from '@uxdm/schema';
 import { AbstractObject } from './AbstractObject';
 import { Bounding, Layout } from '../objects';
+import { generateID } from '../utils';
 
 /**
  * 抽象节点
@@ -21,6 +22,7 @@ export abstract class AbstractNode
       this.visible = params.visible ?? true;
       this.name = params.name || 'node';
       this.locked = params.locked || false;
+
       if (params.layout) {
         this.layout = new Layout(params.layout);
       }
@@ -34,7 +36,7 @@ export abstract class AbstractNode
    */
   abstract clone();
 
-  id: IAbstractNode['id'];
+  id: IAbstractNode['id'] = generateID();
 
   locked: IAbstractNode['locked'] = false;
 

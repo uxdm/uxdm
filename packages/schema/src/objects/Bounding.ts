@@ -11,6 +11,11 @@ export interface IBounding extends AbstractRectType {
   matrices: Matrix[];
 
   /**
+   * 是否维持比例
+   */
+  constrainProportions: boolean;
+
+  /**
    * 横轴中点
    */
   centerX: number;

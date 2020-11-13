@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SketchBounding 类 正常生成 SketchBounding  不传参 1`] = `
+Object {
+  "height": 0,
+  "rotation": 0,
+  "width": 0,
+  "x": 0,
+  "y": 0,
+}
+`;
+
+exports[`SketchBounding 类 正常生成 SketchBounding  传参 1`] = `
+Object {
+  "height": 100,
+  "rotation": 0,
+  "width": 100,
+  "x": 5,
+  "y": 5,
+}
+`;

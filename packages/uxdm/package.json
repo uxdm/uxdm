@@ -36,8 +36,7 @@
   },
   "dependencies": {
     "@uxdm/schema": "^0.0.1-beta.0",
-    "nanoid": "^3.1.16",
-    "transformation-matrix": "^2.5.0"
+    "nanoid": "^3.1.16"
   },
   "gitHead": "2064fb6583ffcca1c415e9d9830ffaadec09282b",
   "devDependencies": {

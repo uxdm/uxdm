@@ -48,7 +48,7 @@ describe('Rectangle 类', () => {
       },
       locked: false,
       name: 'rectangle',
-      type: 'RECTANGLE',
+      type: 'Rectangle',
       visible: true,
       bounding: { rotation: 0, height: 0, width: 0, y: 0, x: 0 },
     };

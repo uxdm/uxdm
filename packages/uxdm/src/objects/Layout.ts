@@ -1,11 +1,12 @@
 import {
+  LayoutConstraint,
   ILayout,
   LayoutParams,
   LayoutType,
   SelfFlexboxAlign,
   SelfLayoutMode,
-  LayoutConstraint,
 } from '@uxdm/schema';
+
 import { AbstractObject } from '../abstract';
 
 /**

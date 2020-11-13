@@ -1,8 +1,23 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "ES5",
-    "declaration": true
+    "module": "esnext",
+    "target": "ES2015",
+    "lib": ["esnext", "dom"],
+    "sourceMap": true,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true
   },
   "include": ["src", "types"],
   "exclude": ["tests"]

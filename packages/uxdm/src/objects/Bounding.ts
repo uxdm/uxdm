@@ -27,6 +27,15 @@ export class Bounding extends AbstractRect implements IBounding {
    */
   matrices: IBounding['matrices'] = [];
 
+  /**
+   * 维持长宽比
+   * @description
+   * 默认不固定保持长宽比
+   *
+   * @default false
+   */
+  constrainProportions: boolean = false;
+
   get centerX() {
     return this.x + this.width / 2;
   }
@@ -99,20 +108,6 @@ export class Bounding extends AbstractRect implements IBounding {
     this.x += x;
     this.y += y;
   }
-
-  /**
-   * 应用矩阵
-   * @param matrix
-   */
-  // applyMatrix(matrix: Matrix) {
-  //   const { x, y } = applyToPoint(matrix, { x: this.x, y: this.y });
-  //   this.x = x;
-  //   this.y = y;
-  //   // 需要
-  //   // const { a, b, c, d } = matrix;
-  //   // const rotation = matrixToRotation(a, b, c, d);
-  //   // this.rotation = rotation;
-  // }
 
   /**
    * 转换为 JSON 对象
