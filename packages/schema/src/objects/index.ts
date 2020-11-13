@@ -1,2 +1,2 @@
 export * from './Bounding';
-export * from './Point';
+export * from './Layout';

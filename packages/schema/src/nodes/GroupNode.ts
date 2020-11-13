@@ -1,16 +1,15 @@
-import { IAbstractGroupNode } from '../abstract';
+import { Assign, DeepPartial } from 'utility-types';
+import { AbstractGroupNodeType, IAbstractGroupNode } from '../abstract';
 import { OmitFunction } from '../utils';
 
 /**
  * 抽象分组节点的接口
  */
-export interface IGroupNode extends IAbstractGroupNode {
-  /**
-   * 单纯为了测试 group 属性
-   */
-  testGroup: string;
-}
+export interface IGroupNode extends IAbstractGroupNode {}
 
-export type GroupNodeType = OmitFunction<IGroupNode>;
+export type GroupNodeType = Assign<
+  OmitFunction<IGroupNode>,
+  AbstractGroupNodeType
+>;
 
-export type GroupNodeParams = Partial<GroupNodeType>;
+export type GroupNodeParams = DeepPartial<GroupNodeType>;

@@ -1,4 +1,5 @@
 import { Bounding } from 'uxdm';
+import { BoundingType } from '@uxdm/schema';
 
 describe('Bounding', () => {
   it('无参数', () => {
@@ -89,13 +90,28 @@ describe('Bounding', () => {
     });
 
     it('toJSON', () => {
-      expect(bounding.toJSON()).toStrictEqual({
+      const json: BoundingType = {
         x: 5,
         y: 10,
         height: 20,
         width: 15,
         rotation: 0,
-      });
+        matrices: [],
+      };
+      expect(bounding.toJSON()).toStrictEqual(json);
+    });
+
+    it('from JSON', () => {
+      const json: BoundingType = {
+        x: 5,
+        y: 10,
+        height: 20,
+        width: 15,
+        rotation: 0,
+        matrices: [],
+      };
+
+      expect(Bounding.fromJSON(json)).toBeInstanceOf(Bounding);
     });
   });
 });

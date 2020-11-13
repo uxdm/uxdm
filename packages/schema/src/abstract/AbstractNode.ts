@@ -1,10 +1,13 @@
+import { DeepPartial, Overwrite } from 'utility-types';
 import { OmitFunction } from '../utils';
 import { NodeType } from '../nodes';
+import { IAbstractObject } from './AbstractObject';
+import { ILayout, LayoutType } from '../objects';
 
 /**
  * 抽象节点的属性
  */
-export interface IAbstractNode<T = any> {
+export interface IAbstractNode<T = unknown> extends IAbstractObject {
   /**
    * 表明节点的类型,每种节点都有
    */
@@ -14,11 +17,6 @@ export interface IAbstractNode<T = any> {
    * 克隆自身的方法
    */
   clone(): T;
-
-  /**
-   * 节点的内部标识符
-   */
-  id: string;
 
   /**
    * 节点的名称
@@ -38,26 +36,25 @@ export interface IAbstractNode<T = any> {
   locked: boolean;
 
   /**
-   *
+   * 布局类型
+   */
+  layout: ILayout;
+  /**
+   * 定界框
    */
 
-  /**
-   * Returns a string representation of the node.
-   */
-  toString(): string;
-
-  /**
-   * 将属性输出为 json
-   */
-  toJSON(): AbstractNodeType;
+  // bounding:Bounding
 }
 
 /**
  * 抽象节点的属性
  */
-export type AbstractNodeType = OmitFunction<IAbstractNode>;
+export type AbstractNodeType = Overwrite<
+  OmitFunction<IAbstractNode>,
+  { layout: LayoutType }
+>;
 
 /**
  * 抽象节点的入参
  */
-export type AbstractNodeParams = Partial<AbstractNodeType>;
+export type AbstractNodeParams = DeepPartial<AbstractNodeType>;

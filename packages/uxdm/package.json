@@ -27,6 +27,7 @@
   },
   "scripts": {
     "test": "jest",
+    "cov": "jest --coverage",
     "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache"
   },
   "bugs": {
@@ -34,7 +35,11 @@
   },
   "dependencies": {
     "@uxdm/schema": "^0.0.1-alpha.3",
+    "nanoid": "^3.1.16",
     "transformation-matrix": "^2.5.0"
   },
-  "gitHead": "2064fb6583ffcca1c415e9d9830ffaadec09282b"
+  "gitHead": "2064fb6583ffcca1c415e9d9830ffaadec09282b",
+  "devDependencies": {
+    "tsconfig-paths-jest": "^0.0.1"
+  }
 }

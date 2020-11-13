@@ -2,8 +2,10 @@
  * 节点类型
  * @description
  */
-export enum NodeType {
-  Group = 'GROUP',
-  Rectangle = 'RECTANGLE',
-  Line = 'LINE',
+export enum NodeEnum {
+  GROUP = 'GROUP',
+  RECTANGLE = 'RECTANGLE',
+  LINE = 'LINE',
 }
+
+export type NodeType = keyof typeof NodeEnum;

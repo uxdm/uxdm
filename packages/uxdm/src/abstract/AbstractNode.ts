@@ -2,7 +2,10 @@ import {
   AbstractNodeParams,
   IAbstractNode,
   AbstractNodeType,
+  ILayout,
 } from '@uxdm/schema';
+import { AbstractObject } from './AbstractObject';
+import { Layout } from '../objects';
 
 /**
  * 抽象节点
@@ -10,13 +13,18 @@ import {
  * 在 UXDM 中，节点是表示图层的基础类型。
  * UXDM 会包含有许多不同类型的节点，每种都有自己的属性集。
  */
-export abstract class AbstractNode implements IAbstractNode<AbstractNode> {
+export abstract class AbstractNode
+  extends AbstractObject
+  implements IAbstractNode<AbstractNode> {
   protected constructor(params?: AbstractNodeParams) {
+    super(params);
     if (params) {
-      this.visible = params.visible;
-      this.name = params.name;
-      this.locked = params.locked;
-      this.id = params.id;
+      this.visible = params.visible ?? true;
+      this.name = params.name || 'node';
+      this.locked = params.locked || false;
+      if (params.layout) {
+        this.layout = new Layout(params.layout);
+      }
     }
   }
 
@@ -29,27 +37,26 @@ export abstract class AbstractNode implements IAbstractNode<AbstractNode> {
 
   id: IAbstractNode['id'];
 
-  locked: IAbstractNode['locked'];
+  locked: IAbstractNode['locked'] = false;
 
-  name: IAbstractNode['name'];
+  name: IAbstractNode['name'] = 'node';
 
-  visible: IAbstractNode['visible'];
+  visible: IAbstractNode['visible'] = true;
 
-  toString(): string {
-    const json = this.toJSON();
-    return JSON.stringify(json);
-  }
+  layout: ILayout = new Layout();
 
   /**
    * 将属性输出为 json
    */
   toJSON(): AbstractNodeType {
+    const json = super.toJSON();
     return {
+      ...json,
       type: this.type,
-      id: this.id,
       locked: this.locked,
       name: this.name,
       visible: this.visible,
+      layout: this.layout.toJSON(),
     };
   }
 }

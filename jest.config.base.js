@@ -1,3 +1,5 @@
+const tsconfig = require('./tsconfig.json');
+
 module.exports = {
   preset: 'ts-jest',
   roots: ['<rootDir>/src', '<rootDir>/tests'],
@@ -6,10 +8,6 @@ module.exports = {
   },
   testRegex: '(/tests/.*.(test|spec)).tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  moduleNameMapper: {
-    uxdm: '<rootDir>/src',
-  },
-  collectCoverage: true,
   coveragePathIgnorePatterns: ['(tests/.*.mock).(jsx?|tsx?)$'],
   verbose: true,
   globals: {

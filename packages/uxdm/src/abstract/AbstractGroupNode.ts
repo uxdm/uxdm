@@ -2,8 +2,10 @@ import {
   AbstractGroupNodeParams,
   AbstractGroupNodeType,
   IAbstractGroupNode,
+  IContainerLayout,
 } from '@uxdm/schema';
 import { AbstractNode } from './AbstractNode';
+import { ContainerLayout } from '../objects';
 
 /**
  * 抽象节点
@@ -17,17 +19,28 @@ export abstract class AbstractGroupNode
   protected constructor(params?: AbstractGroupNodeParams) {
     super(params);
     if (params) {
-      this.children = params.children;
+      this.children = params.children || [];
+
+      this.clipsContent = params.clipsContent || false;
+      if (params.layout) {
+        this.layout = new ContainerLayout(params.layout);
+      }
     }
   }
 
-  children: Array<unknown>;
+  children: Array<unknown> = [];
+
+  layout: IContainerLayout = new ContainerLayout();
 
   toJSON(): AbstractGroupNodeType {
     const json = super.toJSON();
     return {
       ...json,
       children: this.children,
+      layout: this.layout.toJSON(),
+      clipsContent: this.clipsContent,
     };
   }
+
+  clipsContent: boolean = false;
 }

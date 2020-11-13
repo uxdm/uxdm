@@ -21,6 +21,7 @@
   "repository": "git+https://github.com/uxdm/uxdm.git",
   "scripts": {
     "build:schema": "yarn n scripts/compiler.ts",
+    "tsc": "tsc -p tsconfig.build.json",
     "n": "ts-node",
     "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache"
   },

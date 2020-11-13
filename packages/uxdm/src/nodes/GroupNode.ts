@@ -3,10 +3,9 @@ import {
   IGroupNode,
   GroupNodeType,
   GroupNodeParams,
-  NodeType,
 } from '@uxdm/schema';
 
-import { AbstractNode } from '../abstract';
+import { AbstractGroupNode } from '../abstract';
 
 /**
  * 编组节点
@@ -17,24 +16,27 @@ import { AbstractNode } from '../abstract';
  *
  * 它与 Frame Node 不同，后者会定义布局，在HTML中更接近于<div>。
  */
-export class RectangleNode extends AbstractNode implements IGroupNode {
-  constructor(params: GroupNodeParams) {
+export class GroupNode extends AbstractGroupNode implements IGroupNode {
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  constructor(params?: GroupNodeParams) {
     super(params);
-
     if (params) {
-      this.testGroup = params.testGroup;
+      const { name } = params;
+      this.name = name || 'group';
     }
   }
 
-  readonly type: AbstractNodeType['type'] = NodeType.Rectangle;
+  name = 'group';
+
+  readonly type: AbstractNodeType['type'] = 'GROUP';
 
   toJSON(): GroupNodeType {
     const json = super.toJSON();
-    return { ...json, testGroup: this.testGroup };
+    return { ...json };
   }
 
   clone() {
     const { id, ...params } = this.toJSON();
-    return new RectangleNode(params);
+    return new GroupNode(params);
   }
 }

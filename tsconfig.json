@@ -8,6 +8,7 @@
     "declaration": true,
     "paths": {
       "@uxdm/schema": ["./packages/schema/src"],
+      "uxdm/*": ["./packages/uxdm/src/*"],
       "uxdm": ["./packages/uxdm/src"]
     }
   },
