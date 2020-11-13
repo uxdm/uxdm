@@ -1,6 +1,6 @@
 {
   "name": "uxdm",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-beta.0",
   "description": "User Experience Description Model",
   "keywords": [
     "uxdm",
@@ -35,7 +35,7 @@
     "url": "https://github.com/uxdm/uxdm/issues"
   },
   "dependencies": {
-    "@uxdm/schema": "^0.0.1-alpha.3",
+    "@uxdm/schema": "^0.0.1-beta.0",
     "nanoid": "^3.1.16",
     "transformation-matrix": "^2.5.0"
   },
