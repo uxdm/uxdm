@@ -1,7 +1,11 @@
 import { DeepPartial, Overwrite } from 'utility-types';
 import { IAbstractNode } from './AbstractNode';
 import { OmitFunction } from '../utils';
-import { ContainerLayoutType, IContainerLayout } from '../objects';
+import {
+  BoundingType,
+  ContainerLayoutType,
+  IContainerLayout,
+} from '../objects';
 
 /**
  * 抽象分组节点的接口
@@ -32,7 +36,7 @@ export interface IAbstractGroupNode extends IAbstractNode<IAbstractGroupNode> {
  */
 export type AbstractGroupNodeType = Overwrite<
   OmitFunction<IAbstractGroupNode>,
-  { layout: ContainerLayoutType }
+  { layout: ContainerLayoutType; bounding: BoundingType }
 >;
 
 /**

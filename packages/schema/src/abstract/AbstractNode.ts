@@ -2,7 +2,7 @@ import { DeepPartial, Overwrite } from 'utility-types';
 import { OmitFunction } from '../utils';
 import { NodeType } from '../nodes';
 import { IAbstractObject } from './AbstractObject';
-import { ILayout, LayoutType } from '../objects';
+import { BoundingType, IBounding, ILayout, LayoutType } from '../objects';
 
 /**
  * 抽象节点的属性
@@ -39,11 +39,11 @@ export interface IAbstractNode<T = unknown> extends IAbstractObject {
    * 布局类型
    */
   layout: ILayout;
+
   /**
    * 定界框
    */
-
-  // bounding:Bounding
+  bounding: IBounding;
 }
 
 /**
@@ -51,7 +51,7 @@ export interface IAbstractNode<T = unknown> extends IAbstractObject {
  */
 export type AbstractNodeType = Overwrite<
   OmitFunction<IAbstractNode>,
-  { layout: LayoutType }
+  { layout: LayoutType; bounding: BoundingType }
 >;
 
 /**

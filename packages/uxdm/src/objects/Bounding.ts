@@ -1,4 +1,4 @@
-import { BoundingParams, BoundingType } from '@uxdm/schema';
+import { BoundingParams, BoundingType, IBounding } from '@uxdm/schema';
 import { AbstractRect } from '../abstract';
 
 /**
@@ -8,7 +8,7 @@ import { AbstractRect } from '../abstract';
  *
  * 用于描述对象在空间坐标中的实际位置、变换、旋转和缩放的情况
  */
-export class Bounding extends AbstractRect {
+export class Bounding extends AbstractRect implements IBounding {
   constructor(params?: BoundingParams) {
     super(params);
     if (params) {
@@ -25,7 +25,7 @@ export class Bounding extends AbstractRect {
   /**
    * 变换矩阵
    */
-  matrices: BoundingType['matrices'] = [];
+  matrices: IBounding['matrices'] = [];
 
   get centerX() {
     return this.x + this.width / 2;
@@ -123,14 +123,13 @@ export class Bounding extends AbstractRect {
     x: this.x,
     y: this.y,
     rotation: this.rotation,
-    matrices: this.matrices,
   });
 
   /**
    * 从 JSON 初始化定界框
    * @param json
    */
-  static fromJSON = (json: BoundingType) => {
+  static fromJSON = (json: BoundingParams) => {
     return new Bounding(json);
   };
 }

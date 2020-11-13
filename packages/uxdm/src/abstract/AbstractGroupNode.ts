@@ -2,7 +2,6 @@ import {
   AbstractGroupNodeParams,
   AbstractGroupNodeType,
   IAbstractGroupNode,
-  IContainerLayout,
 } from '@uxdm/schema';
 import { AbstractNode } from './AbstractNode';
 import { ContainerLayout } from '../objects';
@@ -30,7 +29,7 @@ export abstract class AbstractGroupNode
 
   children: Array<unknown> = [];
 
-  layout: IContainerLayout = new ContainerLayout();
+  layout: ContainerLayout = new ContainerLayout();
 
   toJSON(): AbstractGroupNodeType {
     const json = super.toJSON();

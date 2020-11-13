@@ -61,6 +61,7 @@ describe('GroupNode 类', () => {
       type: 'GROUP',
       visible: true,
       children: [],
+      bounding: { x: 0, y: 0, width: 0, height: 0, rotation: 0 },
     };
     const group = new GroupNode();
 

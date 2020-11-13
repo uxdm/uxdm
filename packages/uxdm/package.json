@@ -26,6 +26,7 @@
     "url": "git+https://github.com/uxdm/uxdm.git"
   },
   "scripts": {
+    "tsc": "tsc",
     "test": "jest",
     "cov": "jest --coverage",
     "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache"

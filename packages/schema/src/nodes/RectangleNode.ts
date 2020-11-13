@@ -1,6 +1,7 @@
 import { Assign } from 'utility-types';
 import { IAbstractNode, AbstractNodeType } from '../abstract';
 import { OmitFunction } from '../utils';
+import { BoundingParams } from '../objects';
 
 /**
  * 抽象分组节点的接口
@@ -17,4 +18,6 @@ export type RectangleNodeType = Assign<
   AbstractNodeType
 >;
 
-export type RectangleNodeParams = Partial<Omit<RectangleNodeType, 'type'>>;
+export type RectangleNodeParams = Partial<
+  Assign<Omit<RectangleNodeType, 'type' | 'bounding'>, BoundingParams>
+>;

@@ -2,10 +2,9 @@ import {
   AbstractNodeParams,
   IAbstractNode,
   AbstractNodeType,
-  ILayout,
 } from '@uxdm/schema';
 import { AbstractObject } from './AbstractObject';
-import { Layout } from '../objects';
+import { Bounding, Layout } from '../objects';
 
 /**
  * 抽象节点
@@ -43,7 +42,97 @@ export abstract class AbstractNode
 
   visible: IAbstractNode['visible'] = true;
 
-  layout: ILayout = new Layout();
+  layout: Layout = new Layout();
+
+  bounding: Bounding = new Bounding();
+
+  get x() {
+    return this.bounding.x;
+  }
+
+  set x(x: number) {
+    this.bounding.x = x;
+  }
+
+  get y() {
+    return this.bounding.y;
+  }
+
+  set y(y: number) {
+    this.bounding.y = y;
+  }
+
+  get centerX() {
+    return this.x + this.width / 2;
+  }
+
+  set centerX(centerX) {
+    this.x = centerX - this.width / 2;
+  }
+
+  get centerY() {
+    return this.y + this.height / 2;
+  }
+
+  set centerY(centerY) {
+    this.y = centerY - this.height / 2;
+  }
+
+  get width() {
+    return this.bounding.width;
+  }
+
+  set width(width: number) {
+    this.bounding.width = width;
+  }
+
+  get height() {
+    return this.bounding.height;
+  }
+
+  set height(height: number) {
+    this.bounding.height = height;
+  }
+
+  get right() {
+    return this.bounding.right;
+  }
+
+  set right(right) {
+    this.bounding.right = right;
+  }
+
+  get top() {
+    return this.bounding.top;
+  }
+
+  set top(top) {
+    this.bounding.top = top;
+  }
+
+  get bottom() {
+    return this.bounding.bottom;
+  }
+
+  set bottom(bottom) {
+    this.bounding.bottom = bottom;
+  }
+
+  get left() {
+    return this.bounding.left;
+  }
+
+  set left(left) {
+    this.bounding.left = left;
+  }
+
+  get rotation() {
+    return this.bounding.rotation;
+  }
+
+  set rotation(deg) {
+    this.bounding.rotation = deg;
+  }
 
   /**
    * 将属性输出为 json
@@ -57,6 +146,7 @@ export abstract class AbstractNode
       name: this.name,
       visible: this.visible,
       layout: this.layout.toJSON(),
+      bounding: this.bounding.toJSON(),
     };
   }
 }

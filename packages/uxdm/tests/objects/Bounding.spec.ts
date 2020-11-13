@@ -96,7 +96,6 @@ describe('Bounding', () => {
         height: 20,
         width: 15,
         rotation: 0,
-        matrices: [],
       };
       expect(bounding.toJSON()).toStrictEqual(json);
     });
@@ -108,7 +107,6 @@ describe('Bounding', () => {
         height: 20,
         width: 15,
         rotation: 0,
-        matrices: [],
       };
 
       expect(Bounding.fromJSON(json)).toBeInstanceOf(Bounding);
