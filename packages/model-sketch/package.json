@@ -1,7 +1,7 @@
 {
   "name": "@uxdm/model-sketch",
   "version": "0.0.1",
-  "description": "An adaptor for sketch of uxdm",
+  "description": "an uxdm adaptor for sketch model",
   "keywords": [
     "uxdm"
   ],
@@ -22,6 +22,10 @@
   "scripts": {
     "test": "jest",
     "cov": "jest --coverage"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "bugs": {
     "url": "https://github.com/uxdm/uxdm/issues"
