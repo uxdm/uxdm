@@ -36,6 +36,8 @@
   },
   "dependencies": {
     "@uxdm/schema": "^0.0.1-beta.1",
+    "axios": "^0.21.0",
+    "color": "^3.1.3",
     "nanoid": "^3.1.16"
   },
   "gitHead": "2064fb6583ffcca1c415e9d9830ffaadec09282b",
