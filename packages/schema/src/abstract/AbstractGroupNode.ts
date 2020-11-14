@@ -25,11 +25,6 @@ export interface IAbstractGroupNode extends IAbstractNode<IAbstractGroupNode> {
    * 分组节点的布局接口
    */
   layout: IContainerLayout;
-
-  /**
-   * 是否剪切内容
-   */
-  clipsContent: boolean;
 }
 
 /**

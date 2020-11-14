@@ -66,5 +66,7 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
 
   readonly type: NodeType = 'Ellipse';
 
-  clone() {}
+  clone() {
+    return this;
+  }
 }

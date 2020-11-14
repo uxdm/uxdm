@@ -1,1 +1,1 @@
-export * from './AbstractSketchObject';
+export { AbstractSketchObject } from './AbstractSketchObject';

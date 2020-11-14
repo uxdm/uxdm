@@ -1,6 +1,6 @@
 import { Declaration, parse as cssParse, Rule } from 'css';
 
-import AbstractStyle from '../abstract/AbstractStyle';
+import AbstractStyle from './AbstractStyle';
 import { ColorParam } from './Color';
 import Fill from './Fill';
 import Shadow from './Shadow';

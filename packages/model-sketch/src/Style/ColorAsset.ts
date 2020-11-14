@@ -1,6 +1,6 @@
 import { SketchFormat } from '../types';
 import Color from './Color';
-import AbstractStyle from '../abstract/AbstractStyle';
+import AbstractStyle from './AbstractStyle';
 
 /**
  * 颜色资产

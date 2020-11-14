@@ -6,7 +6,6 @@
     "module": "CommonJS",
     "noEmitOnError": false,
     "declaration": true,
-    "esModuleInterop": true,
     "paths": {
       "@uxdm/schema": ["./packages/schema/src"],
       "@uxdm/model-sketch": ["./packages/model-sketch/src"],
@@ -15,17 +14,5 @@
       "uxdm": ["./packages/uxdm/src"]
     }
   },
-  "exclude": ["config", "config"],
-  "typedocOptions": {
-    "inputFiles": ["packages/schema/src", "packages/uxdm/src"],
-    "mode": "modules",
-    "out": "docs/api ",
-    "exclude": ["**/*+(index|.spec|.e2e).ts"],
-    "plugin": ["typedoc-plugin-markdown"],
-    "excludePrivate": true,
-    "excludeProtected": true,
-    "categorizeByGroup": false,
-    "hideProjectName": true,
-    "hideBreadcrumbs": true
-  }
+  "exclude": ["config"]
 }

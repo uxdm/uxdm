@@ -1,6 +1,5 @@
-import { Group, Rectangle } from './layers';
-import { Intersection } from 'utility-types';
 import SketchFormat from '@sketch-hq/sketch-file-format-ts';
+import { Intersection } from 'utility-types';
 
 export { default as SketchFormat } from '@sketch-hq/sketch-file-format-ts';
 
@@ -11,6 +10,11 @@ export type CommonSketchProperty = Omit<
   >,
   '_class'
 >;
+
+export type SketchGroupLayout =
+  | SketchFormat.InferredGroupLayout // 水平或垂直布局
+  | SketchFormat.FreeformGroupLayout;
+
 /**
  * group 或 symbol 的 layout 参数类型
  */
@@ -49,8 +53,3 @@ export type SketchObjectType =
   | 'text'
   | 'triangle'
   | 'svg';
-
-/**
- * 任意可以成为图层的对象
- */
-export type AnyLayer = Group | Rectangle;

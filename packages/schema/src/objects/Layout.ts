@@ -12,7 +12,7 @@ import {
   LayoutConstraint,
   LayoutModeType,
 } from '../constants';
-import { IAbstractObject } from '../abstract';
+import { IAbstractObject } from '../abstract/AbstractObject';
 import { OmitFunction } from '../utils';
 
 export interface ILayout extends IAbstractObject {

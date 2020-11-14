@@ -1,6 +1,6 @@
-import SketchFormat from '@sketch-hq/sketch-file-format-ts';
+import { SketchFormat } from '../types';
 import { defaultContextSettings } from '../utils';
-import AbstractShadow, { ShadowParams } from '../abstract/AbstractShadow';
+import { ShadowParams, AbstractShadow } from './AbstractShadow';
 
 class Shadow extends AbstractShadow {
   constructor(props: ShadowParams) {

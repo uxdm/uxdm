@@ -1,6 +1,5 @@
 import ColorCls from 'color';
 import { SketchFormat } from '../types';
-import AbstractStyle from '../abstract/AbstractStyle';
 
 export declare type ColorType = {
   r: number;
@@ -25,7 +24,7 @@ export type ColorParam =
  * 创建颜色类型
  * @constructor 入参 {ColorParam}
  */
-class Color extends AbstractStyle {
+class Color {
   red: number;
 
   green: number;
@@ -37,8 +36,6 @@ class Color extends AbstractStyle {
   method: ColorCls;
 
   constructor(color?: ColorParam) {
-    super();
-
     if (!color) {
       this.method = ColorCls();
     }

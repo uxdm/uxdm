@@ -1,14 +1,34 @@
-import SketchFormat from '@sketch-hq/sketch-file-format-ts';
-import AbstractSketchObject from '../abstract/AbstractSketchObject';
-import { defaultExportOptions } from '../utils';
-import { getGroupLayout } from '../../utils/layout';
+import { ContainerLayout } from 'uxdm';
+import { IAbstractGroupNode, NodeType } from '@uxdm/schema';
+import { AbstractSketchObject } from '../abstract/AbstractSketchObject';
+import { getGroupLayout } from '../utils';
+import { SketchFormat, GroupLayoutType, SketchGroupLayout } from '../types';
+import { AnyLayer, SketchGroupParams } from '../layerType';
 
-import { GroupLayoutType, BaseLayerParams, AnyLayer } from '../../types';
-
-export class Group extends AbstractSketchObject {
-  constructor(params?: BaseLayerParams) {
-    super(SketchFormat.ClassValue.Group, params);
+export class Group extends AbstractSketchObject implements IAbstractGroupNode {
+  constructor(params?: SketchGroupParams) {
+    super(params);
+    if (params) {
+      const { layout, children } = params;
+      if (layout) {
+        this.layout = new ContainerLayout(params.layout);
+      }
+      if (children) {
+        this.addLayers(children);
+      }
+    }
   }
+
+  type: NodeType = 'Group';
+
+  children: AnyLayer[] = [];
+
+  layout: ContainerLayout = new ContainerLayout();
+
+  /**
+   * 是否点穿
+   */
+  hasClickThrough = false;
 
   /**
    * 添加图层
@@ -16,21 +36,30 @@ export class Group extends AbstractSketchObject {
    */
   addLayer(layer: AnyLayer) {
     // 在组里面的位置是相对位置关系
-    // 因此在添加图层的时候需要减掉父级的位置,得到算出相对位置
+    // 因此在添加图层的时候需要减掉父级的位置
+    // 算出相对位置
     layer.x -= this.x;
     layer.y -= this.y;
     layer.rotation -= this.rotation;
-    super.addLayer(layer);
+    this.children.push(layer);
+  }
+
+  /**
+   * 添加图层组
+   * @param layers
+   */
+  addLayers(layers: AnyLayer[]) {
+    layers.forEach((layer) => {
+      this.addLayer(layer);
+    });
   }
 
   /**
    * Symbol 布局
+   *
+   * @default 自由布局
    */
-  groupLayout:
-    | SketchFormat.InferredGroupLayout // 水平或垂直布局
-    | SketchFormat.FreeformGroupLayout = {
-    _class: 'MSImmutableFreeformGroupLayout',
-  }; // 自由布局
+  groupLayout: SketchGroupLayout = getGroupLayout('NONE');
 
   /**
    * 设置布局参数
@@ -43,11 +72,15 @@ export class Group extends AbstractSketchObject {
   /**
    * 获取 group 子级的尺寸
    */
-  getSize() {
-    let { width, height } = this;
+  get boundingSize() {
+    let width: number;
+    let height: number;
+
+    width = this.width;
+    height = this.height;
 
     if (width === 0 || height === 0) {
-      this.layers.forEach((layer) => {
+      this.children.forEach((layer) => {
         const layerWidth = layer.x + layer.width;
         const layerHeight = layer.y + layer.height;
 
@@ -63,39 +96,24 @@ export class Group extends AbstractSketchObject {
     return { width, height };
   }
 
+  clone(): Group {
+    const { id, ...params } = this.toJSON();
+
+    return new Group(params);
+  }
+
   /**
    * 转换为 Sketch JSON 对象
    */
   toSketchJSON = (): SketchFormat.Group => {
-    const groupJSON: SketchFormat.Group = {
-      _class: 'group',
-      do_objectID: this.id,
-      booleanOperation: SketchFormat.BooleanOperation.NA,
-      isFixedToViewport: false,
-      isFlippedHorizontal: false,
-      isFlippedVertical: false,
-      isVisible: true,
-      isLocked: this.locked,
-      layerListExpandedType: 0,
-      name: this.name || this.class,
-      nameIsFixed: false,
-      resizingConstraint: this.resizingConstraint,
-      resizingType: SketchFormat.ResizeType.Stretch,
-      rotation: 0,
-      shouldBreakMaskChain: false,
-      exportOptions: defaultExportOptions,
-      frame: this.frame.toSketchJSON(),
-      clippingMaskMode: 0,
-      hasClippingMask: this.hasClippingMask,
-      style: this.style.toSketchJSON(),
-      hasClickThrough: false,
-      groupLayout: this.groupLayout,
-      layers: this.layers.map((layer) => layer.toSketchJSON()),
-    };
+    const json = super.toSketchJSON();
 
-    if (this.userInfo) {
-      groupJSON.userInfo = this.userInfo;
-    }
-    return groupJSON;
+    return {
+      ...json,
+      _class: 'group',
+      hasClickThrough: this.hasClickThrough,
+      groupLayout: this.groupLayout,
+      layers: this.children.map((layer) => layer.toSketchJSON()),
+    };
   };
 }

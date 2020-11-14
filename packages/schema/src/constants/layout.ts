@@ -26,6 +26,9 @@ export enum ConstraintEnum {
 
 export type ConstraintType = keyof typeof ConstraintEnum;
 
+/**
+ * 布局约束
+ */
 export interface LayoutConstraint {
   /**
    * 横轴约束

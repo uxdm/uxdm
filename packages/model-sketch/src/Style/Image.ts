@@ -1,10 +1,10 @@
 import SketchFormat from '@sketch-hq/sketch-file-format-ts';
-import AbstractStyle from '../abstract/AbstractStyle';
+import AbstractStyle from './AbstractStyle';
 import {
   blobToBase64,
   initImageURL,
   getBase64ImageString,
-} from '../../utils/image';
+} from '../utils/image';
 
 /**
  * 图片资产

@@ -40,6 +40,7 @@
   },
   "gitHead": "2064fb6583ffcca1c415e9d9830ffaadec09282b",
   "devDependencies": {
+    "babel-jest": "^26.6.3",
     "tsconfig-paths-jest": "^0.0.1"
   }
 }

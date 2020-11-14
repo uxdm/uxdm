@@ -1,6 +1,7 @@
+import { Point } from '@uxdm/schema';
 import Color from './Color';
-import AbstractStyle from '../abstract/AbstractStyle';
-import { CGPoint, ColorStop, GradientProps, SketchFormat } from '../types';
+import AbstractStyle from './AbstractStyle';
+import { ColorStop, GradientProps, SketchFormat } from '../types';
 
 /**
  * 渐变对象
@@ -51,7 +52,7 @@ class Gradient extends AbstractStyle {
   /**
    * 起点
    */
-  from: CGPoint = { x: 0.5, y: 0 };
+  from: Point = { x: 0.5, y: 0 };
 
   /**
    * 色彩节点
@@ -61,7 +62,7 @@ class Gradient extends AbstractStyle {
   /**
    * 终点
    */
-  to: CGPoint = { x: 0.5, y: 1 };
+  to: Point = { x: 0.5, y: 1 };
 
   /**
    * 渐变类型

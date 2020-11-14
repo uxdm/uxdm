@@ -1,4 +1,4 @@
-import { SketchBounding } from '@uxdm/model-sketch';
+import { SketchBounding } from '@uxdm/model-sketch/objects';
 
 describe('SketchBounding 类', () => {
   describe('正常生成 SketchBounding ', () => {

@@ -1,16 +1,16 @@
 import { GroupLayoutType, SketchFormat } from '../types';
 import { GroupLayout, ResizingConstraint } from '../constants/layout';
 
-const containsAllItems = (needles: any[], haystack: string | any[]) =>
+export const containsAllItems = (needles: any[], haystack: string | any[]) =>
   needles.every((needle) => haystack.includes(needle));
 
-const noHeight = [
+export const noHeight = [
   ResizingConstraint.Top,
   ResizingConstraint.Bottom,
   ResizingConstraint.Height,
 ];
 
-const noWidth = [
+export const noWidth = [
   ResizingConstraint.Left,
   ResizingConstraint.Right,
   ResizingConstraint.Width,
@@ -20,6 +20,7 @@ const noWidth = [
  * 计算 Resizing 变量
  */
 export const calcResizingConstraint = (...args: ResizingConstraint[]) => {
+  console.log(args);
   const validValues = Object.values(ResizingConstraint);
 
   if (!args.every((arg) => validValues.includes(arg))) {

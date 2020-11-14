@@ -7,7 +7,7 @@ import {
   SelfLayoutMode,
 } from '@uxdm/schema';
 
-import { AbstractObject } from '../abstract';
+import { AbstractObject } from '../abstract/AbstractObject';
 
 /**
  * 布局对象

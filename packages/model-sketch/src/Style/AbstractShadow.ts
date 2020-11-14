@@ -1,5 +1,5 @@
-import SketchFormat from '@sketch-hq/sketch-file-format-ts';
-import Color, { ColorParam } from '../Style/Color';
+import { SketchFormat } from '../types';
+import Color, { ColorParam } from './Color';
 import AbstractStyle from './AbstractStyle';
 
 export interface ShadowParams {

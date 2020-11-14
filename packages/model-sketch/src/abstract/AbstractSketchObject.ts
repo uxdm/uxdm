@@ -1,10 +1,17 @@
-import { AbstractNode } from 'uxdm';
-import { AbstractNodeParams } from '@uxdm/schema';
-import { calcResizingConstraint, defaultExportOptions, uuid } from '../utils';
+import { AbstractNode } from 'uxdm/abstract';
+import {
+  calcResizingConstraint,
+  containsAllItems,
+  defaultExportOptions,
+  noHeight,
+  noWidth,
+  uuid,
+} from '../utils';
 import { SketchBounding } from '../objects';
 import Style from '../Style/Style';
 import { ResizingConstraint } from '../constants';
 import { CommonSketchProperty, SketchFormat } from '../types';
+import { SketchLayerParams } from '../layerType';
 
 const DEFAULT_USER_INFO_SCOPE = 'UXDM_SKETCH';
 
@@ -12,20 +19,14 @@ const DEFAULT_USER_INFO_SCOPE = 'UXDM_SKETCH';
  * 抽象的 Sketch 对象
  */
 export abstract class AbstractSketchObject extends AbstractNode {
-  protected constructor(params?: AbstractNodeParams) {
+  protected constructor(params?: SketchLayerParams) {
     super(params);
 
     this.id = uuid();
 
     this.style = new Style();
 
-    this.setResizingConstraint(ResizingConstraint.None);
-
     this.bounding = new SketchBounding(params);
-
-    if (params) {
-      this.name = params.name;
-    }
   }
 
   /**
@@ -33,11 +34,19 @@ export abstract class AbstractSketchObject extends AbstractNode {
    */
   bounding: SketchBounding = new SketchBounding();
 
+  /**
+   * 内部的名字
+   */
+  get frame() {
+    return this.bounding;
+  }
+
   style: Style;
 
-  userInfo: any = {};
-
-  resizingConstraint: ResizingConstraint = ResizingConstraint.None;
+  /**
+   * 保存在图层里的用户信息
+   */
+  userInfo: Record<string, any> | undefined;
 
   get isLocked() {
     return this.locked;
@@ -83,15 +92,14 @@ export abstract class AbstractSketchObject extends AbstractNode {
     this.bounding.verticalFlipped = verticalFlipped;
   }
 
+  /**
+   * 在原型中固定位置
+   */
   isFixedToViewport: boolean = false;
 
   /**
-   * Sketch 内部的名称为 frame
+   * 展开图层
    */
-  get frame() {
-    return this.bounding;
-  }
-
   layerListExpanded: SketchFormat.LayerListExpanded =
     SketchFormat.LayerListExpanded.Undecided;
 
@@ -103,18 +111,63 @@ export abstract class AbstractSketchObject extends AbstractNode {
   /**
    * 是否忽略遮罩链
    */
-  shouldBreakMaskChain: boolean = false;
+  shouldBreakMaskChain = false;
 
   /**
    * 是否存在剪贴蒙版
    */
   hasClippingMask = false;
 
-  setFixedWidthAndHeight() {
-    this.setResizingConstraint(
-      ResizingConstraint.Width,
-      ResizingConstraint.Height,
-    );
+  booleanOperation: SketchFormat.BooleanOperation =
+    SketchFormat.BooleanOperation.NA;
+
+  flow;
+
+  exportOptions = defaultExportOptions;
+
+  clippingMaskMode: number = 0;
+
+  get resizingConstraint(): ResizingConstraint {
+    const { horizontal, vertical } = this.constraints;
+    let xConstraint: ResizingConstraint[];
+    let yConstraint: ResizingConstraint[];
+    switch (horizontal) {
+      case 'MIN':
+        xConstraint = [ResizingConstraint.Left, ResizingConstraint.Width];
+        break;
+      case 'MAX':
+        xConstraint = [ResizingConstraint.Right, ResizingConstraint.Width];
+        break;
+      default:
+      case 'SCALE':
+        xConstraint = [];
+        break;
+      case 'CENTER':
+        xConstraint = [ResizingConstraint.Width];
+        break;
+      case 'STRETCH':
+        xConstraint = [ResizingConstraint.Left, ResizingConstraint.Right];
+        break;
+    }
+    switch (vertical) {
+      case 'MIN':
+        yConstraint = [ResizingConstraint.Top, ResizingConstraint.Height];
+        break;
+      case 'MAX':
+        yConstraint = [ResizingConstraint.Bottom, ResizingConstraint.Height];
+        break;
+      default:
+      case 'SCALE':
+        yConstraint = [];
+        break;
+      case 'CENTER':
+        yConstraint = [ResizingConstraint.Height];
+        break;
+      case 'STRETCH':
+        yConstraint = [ResizingConstraint.Top, ResizingConstraint.Bottom];
+        break;
+    }
+    return calcResizingConstraint(...xConstraint, ...yConstraint);
   }
 
   /**
@@ -122,11 +175,73 @@ export abstract class AbstractSketchObject extends AbstractNode {
    * @param constraints
    */
   setResizingConstraint(...constraints: ResizingConstraint[]) {
-    this.resizingConstraint = calcResizingConstraint(...constraints);
+    const validValues = Object.values(ResizingConstraint);
+
+    if (!constraints.every((arg) => validValues.includes(arg))) {
+      throw new Error('Unknown resizing constraint');
+    } else if (containsAllItems(noHeight, constraints)) {
+      throw new Error("Can't fix height when top & bottom are fixed");
+    } else if (containsAllItems(noWidth, constraints)) {
+      throw new Error("Can't fix width when left & right are fixed");
+    }
+    // 输入 None 时自由拉伸
+    if (constraints.includes(ResizingConstraint.None)) {
+      this.constraints.horizontal = 'SCALE';
+      this.constraints.vertical = 'SCALE';
+    } else {
+      // ==== 设置 X 轴 ===== //
+      // 固定左右
+      if (
+        constraints.includes(ResizingConstraint.Right) &&
+        constraints.includes(ResizingConstraint.Left)
+      ) {
+        this.constraints.horizontal = 'STRETCH';
+      }
+      // 固定右边
+      else if (constraints.includes(ResizingConstraint.Right)) {
+        this.constraints.horizontal = 'MAX';
+      }
+      // 固定左边
+      else if (constraints.includes(ResizingConstraint.Left)) {
+        this.constraints.horizontal = 'MIN';
+      }
+      // 固定宽度
+      else if (constraints.includes(ResizingConstraint.Width)) {
+        this.constraints.horizontal = 'CENTER';
+      }
+
+      // ==== 设置 Y 轴 ===== //
+
+      // 固定上下
+      if (
+        constraints.includes(ResizingConstraint.Top) &&
+        constraints.includes(ResizingConstraint.Bottom)
+      ) {
+        this.constraints.vertical = 'STRETCH';
+      }
+      // 固定底部
+      else if (constraints.includes(ResizingConstraint.Bottom)) {
+        this.constraints.vertical = 'MAX';
+      }
+      // 固定顶部
+      else if (constraints.includes(ResizingConstraint.Top)) {
+        this.constraints.vertical = 'MIN';
+      }
+      // 固定高度
+      else if (constraints.includes(ResizingConstraint.Height)) {
+        this.constraints.vertical = 'CENTER';
+      }
+    }
   }
 
-  // scope defines which Sketch plugin will have access to provided data via Settings.setLayerSettingForKey
-  // you should set it to the plugin ID e.g. "com.bohemiancoding.sketch.testplugin"
+  /**
+   * @description
+   *
+   * scope defines which Sketch plugin will have access to provided data
+   * 通过 Settings.setLayerSettingForKey 获取该值
+   * 需要符合插件 id
+   * 例如: "com.bohemiancoding.sketch.testplugin"
+   */
   setUserInfo(
     key: string | number,
     value: any,
@@ -140,17 +255,6 @@ export abstract class AbstractSketchObject extends AbstractNode {
   getUserInfo(key: string | number, scope = DEFAULT_USER_INFO_SCOPE) {
     return this.userInfo && this.userInfo[scope] && this.userInfo[scope][key];
   }
-
-  booleanOperation: SketchFormat.BooleanOperation =
-    SketchFormat.BooleanOperation.NA;
-
-  flow;
-
-  exportOptions = defaultExportOptions;
-
-  resizingType: SketchFormat.ResizeType = SketchFormat.ResizeType.Stretch;
-
-  clippingMaskMode: number = 0;
 
   toSketchJSON(): CommonSketchProperty {
     return {
@@ -173,8 +277,10 @@ export abstract class AbstractSketchObject extends AbstractNode {
       style: this.style.toSketchJSON(),
       shouldBreakMaskChain: this.shouldBreakMaskChain,
       rotation: this.rotation,
-      resizingType: this.resizingType,
+      resizingType: SketchFormat.ResizeType.Stretch,
       clippingMaskMode: this.clippingMaskMode,
     };
   }
 }
+
+export default AbstractSketchObject;

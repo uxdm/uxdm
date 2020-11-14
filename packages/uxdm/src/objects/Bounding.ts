@@ -1,5 +1,5 @@
 import { BoundingParams, BoundingType, IBounding } from '@uxdm/schema';
-import { AbstractRect } from '../abstract';
+import { AbstractRect } from '../abstract/AbstractRect';
 
 /**
  * 定界框

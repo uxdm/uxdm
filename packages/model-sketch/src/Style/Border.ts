@@ -1,6 +1,6 @@
 import { Point } from '@uxdm/schema';
 import Color, { ColorParam } from './Color';
-import AbstractStyle from '../abstract/AbstractStyle';
+import AbstractStyle from './AbstractStyle';
 import { SketchFormat } from '../types';
 
 import { defaultContextSettings } from '../utils';

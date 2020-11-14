@@ -1,2 +1,5 @@
 export { SketchBounding } from './objects';
-export * from './layers';
+export { Group, Rectangle } from './layers';
+
+export * from './types';
+export * from './constants';

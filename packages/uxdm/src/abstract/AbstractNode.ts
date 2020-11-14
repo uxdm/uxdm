@@ -2,10 +2,10 @@ import {
   AbstractNodeParams,
   IAbstractNode,
   AbstractNodeType,
+  LayoutConstraint,
 } from '@uxdm/schema';
 import { AbstractObject } from './AbstractObject';
 import { Bounding, Layout } from '../objects';
-import { generateID } from '../utils';
 
 /**
  * 抽象节点
@@ -19,12 +19,20 @@ export abstract class AbstractNode
   protected constructor(params?: AbstractNodeParams) {
     super(params);
     if (params) {
+      const { constraints, layout } = params;
+
       this.visible = params.visible ?? true;
       this.name = params.name || 'node';
       this.locked = params.locked || false;
 
-      if (params.layout) {
+      if (layout) {
         this.layout = new Layout(params.layout);
+      }
+      if (constraints) {
+        this.setConstraints({
+          horizontal: constraints.horizontal,
+          vertical: constraints.vertical,
+        });
       }
     }
   }
@@ -36,8 +44,6 @@ export abstract class AbstractNode
    */
   abstract clone();
 
-  id: IAbstractNode['id'] = generateID();
-
   locked: IAbstractNode['locked'] = false;
 
   name: IAbstractNode['name'] = 'node';
@@ -47,6 +53,29 @@ export abstract class AbstractNode
   layout: Layout = new Layout();
 
   bounding: Bounding = new Bounding();
+
+  /**
+   * 布局约束
+   * @description
+   * 将布局模块里面的约束透出来
+   */
+  get constraints() {
+    return this.layout.constraints;
+  }
+
+  /**
+   * 设置约束
+   * @param horizontal 横向约束
+   * @param vertical 纵向约束
+   */
+  setConstraints({ horizontal, vertical }: Partial<LayoutConstraint>) {
+    if (horizontal) {
+      this.layout.constraints.horizontal = horizontal;
+    }
+    if (vertical) {
+      this.layout.constraints.vertical = vertical;
+    }
+  }
 
   get x() {
     return this.bounding.x;

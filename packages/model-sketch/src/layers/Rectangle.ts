@@ -1,24 +1,18 @@
-import { NodeType, RectangleNodeParams } from '@uxdm/schema';
+import { IRectangleNode, NodeType } from '@uxdm/schema';
 import { SketchFormat } from '../types';
 import { AbstractSketchObject } from '../abstract';
-
-type CornerRadius = {
-  bottomLeft: number;
-  bottomRight: number;
-  topLeft: number;
-  topRight: number;
-};
+import { SketchRectangleParams } from '../layerType';
 
 /**
  * 矩形类型
  * */
-export class Rectangle extends AbstractSketchObject {
-  constructor(params?: RectangleNodeParams) {
+export class Rectangle extends AbstractSketchObject implements IRectangleNode {
+  constructor(params?: SketchRectangleParams) {
     super(params);
 
     if (params) {
       const { cornerRadius } = params;
-      this.cornerRadius = cornerRadius;
+      this.cornerRadius = cornerRadius || 0;
     }
   }
 
@@ -27,7 +21,7 @@ export class Rectangle extends AbstractSketchObject {
   /**
    * 圆角值
    */
-  cornerRadius: CornerRadius | number | number[] = 0;
+  cornerRadius: number = 0;
 
   clone() {
     return this;
@@ -66,14 +60,8 @@ export class Rectangle extends AbstractSketchObject {
       topRight = cornerRadius;
       bottomRight = cornerRadius;
       bottomLeft = cornerRadius;
-    } else if (cornerRadius instanceof Array) {
-      [topLeft, topRight, bottomRight, bottomLeft] = cornerRadius;
-    } else {
-      topLeft = cornerRadius.topLeft;
-      topRight = cornerRadius.topRight;
-      bottomRight = cornerRadius.bottomRight;
-      bottomLeft = cornerRadius.bottomLeft;
     }
+
     return [
       {
         _class: 'curvePoint',
