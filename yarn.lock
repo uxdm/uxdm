@@ -3674,6 +3674,13 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/fs-extra@^8.0.0":
+  version "8.1.1"
+  resolved "https://registry.npm.taobao.org/@types/fs-extra/download/@types/fs-extra-8.1.1.tgz#1e49f22d09aa46e19b51c0b013cb63d0d923a068"
+  integrity sha1-HknyLQmqRuGbUcCwE8tj0NkjoGg=
+  dependencies:
+    "@types/node" "*"
+
 "@types/fs-extra@^9.0.1":
   version "9.0.3"
   resolved "https://registry.npm.taobao.org/@types/fs-extra/download/@types/fs-extra-9.0.3.tgz#9996e5cce993508c32325380b429f04a1327523e"
@@ -7125,6 +7132,11 @@ cli-cursor@^3.1.0:
   dependencies:
     restore-cursor "^3.1.0"
 
+cli-spinners@^2.2.0:
+  version "2.5.0"
+  resolved "https://registry.npm.taobao.org/cli-spinners/download/cli-spinners-2.5.0.tgz#12763e47251bf951cb75c201dfa58ff1bcb2d047"
+  integrity sha1-EnY+RyUb+VHLdcIB36WP8byy0Ec=
+
 cli-table@^0.3.1:
   version "0.3.1"
   resolved "https://registry.npm.taobao.org/cli-table/download/cli-table-0.3.1.tgz#f53b05266a8b1a0b934b3d0821e6e2dc5914ae23"
@@ -8812,6 +8824,22 @@ dotenv@8.2.0, dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.npm.taobao.org/dotenv/download/dotenv-8.2.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdotenv%2Fdownload%2Fdotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha1-l+YZJZradQ7qPk6j4mvO6lQksWo=
+
+dpdm@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.npm.taobao.org/dpdm/download/dpdm-3.5.0.tgz#414402f21928694bc86cfe8e3583dc8fc97d013e"
+  integrity sha1-QUQC8hkoaUvIbP6ONYPcj8l9AT4=
+  dependencies:
+    "@types/fs-extra" "^8.0.0"
+    "@types/glob" "^7.1.1"
+    "@types/yargs" "^13.0.0"
+    chalk "^2.4.2"
+    fs-extra "^8.1.0"
+    glob "^7.1.4"
+    ora "^4.0.3"
+    tslib "^1.10.0"
+    typescript "^3.5.3"
+    yargs "^13.3.0"
 
 dumi-assets-types@1.0.0-beta.4:
   version "1.0.0-beta.4"
@@ -12393,6 +12421,11 @@ is-installed-globally@^0.3.1:
   dependencies:
     global-dirs "^2.0.1"
     is-path-inside "^3.0.1"
+
+is-interactive@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/is-interactive/download/is-interactive-1.0.0.tgz#cea6e6ae5c870a7b0a0004070b7b587e0252912e"
+  integrity sha1-zqbmrlyHCnsKAAQHC3tYfgJSkS4=
 
 is-module@^1.0.0:
   version "1.0.0"
@@ -16710,6 +16743,20 @@ optionator@^0.9.1:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
     word-wrap "^1.2.3"
+
+ora@^4.0.3:
+  version "4.1.1"
+  resolved "https://registry.npm.taobao.org/ora/download/ora-4.1.1.tgz?cache=0&sync_timestamp=1599425394087&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fora%2Fdownload%2Fora-4.1.1.tgz#566cc0348a15c36f5f0e979612842e02ba9dddbc"
+  integrity sha1-VmzANIoVw29fDpeWEoQuArqd3bw=
+  dependencies:
+    chalk "^3.0.0"
+    cli-cursor "^3.1.0"
+    cli-spinners "^2.2.0"
+    is-interactive "^1.0.0"
+    log-symbols "^3.0.0"
+    mute-stream "0.0.8"
+    strip-ansi "^6.0.0"
+    wcwidth "^1.0.1"
 
 ordered-read-streams@^1.0.0:
   version "1.0.1"
@@ -22674,7 +22721,7 @@ typescript-json-schema@^0.43.0:
     typescript "~4.0.2"
     yargs "^15.4.1"
 
-typescript@^3.7.2, typescript@^3.7.3:
+typescript@^3.5.3, typescript@^3.7.2, typescript@^3.7.3:
   version "3.9.7"
   resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.9.7.tgz?cache=0&sync_timestamp=1604481744842&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftypescript%2Fdownload%2Ftypescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
   integrity sha1-mNYApevcOPQMsndSLxLcgA6eJfo=
@@ -23565,7 +23612,7 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-wcwidth@^1.0.0:
+wcwidth@^1.0.0, wcwidth@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/wcwidth/download/wcwidth-1.0.1.tgz#f0b0dcf915bc5ff1528afadb2c0e17b532da2fe8"
   integrity sha1-8LDc+RW8X/FSivrbLA4XtTLaL+g=
