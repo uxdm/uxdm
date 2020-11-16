@@ -4,6 +4,10 @@ import { OmitFunction } from '../utils';
 
 export interface IBorder extends IPaint {
   /**
+   * 可见性
+   */
+  visible: boolean;
+  /**
    * 对齐方式
    */
   align: BorderAlignType;

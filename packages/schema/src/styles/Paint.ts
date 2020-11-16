@@ -1,14 +1,16 @@
+import { Overwrite } from 'utility-types';
 import { IAbstractObject } from '../abstract/AbstractObject';
 import { ColorParams, ColorType, IColor } from './Color';
 import { GradientParams, GradientType, IGradient } from './Gradient';
 import { IImage, ImageType } from './Image';
+import { OmitFunction } from '../utils';
 
 export enum PaintEnum {
   SOLID = 'SOLID',
   GRADIENT = 'GRADIENT',
   IMAGE = 'IMAGE',
 }
-export type PaintType = keyof typeof PaintEnum;
+export type Paint_Type = keyof typeof PaintEnum;
 
 export interface IPaint extends IAbstractObject {
   /**
@@ -18,7 +20,7 @@ export interface IPaint extends IAbstractObject {
   /**
    * 填充类型
    */
-  type: PaintType;
+  type: Paint_Type;
   color: IColor;
   image?: IImage;
   gradient: IGradient;
@@ -27,6 +29,8 @@ export interface IPaint extends IAbstractObject {
    */
   opacity: number;
 }
+
+export type PaintType = Overwrite<OmitFunction<IPaint>, BasePaintType>;
 
 export type PaintParams = {
   color?: ColorParams;

@@ -5,6 +5,7 @@ describe('Border 类', () => {
   it('无参数', () => {
     const border = new Border();
     expect(JSON.parse(JSON.stringify(border.toJSON()))).toEqual({
+      visible: true,
       align: 'INSIDE',
       color: {
         a: 1,
@@ -49,6 +50,7 @@ describe('Border 类', () => {
       type: 'SOLID',
     });
     expect(JSON.parse(JSON.stringify(border.toJSON()))).toEqual({
+      visible: true,
       align: 'OUTSIDE',
       color: {
         a: 0.3,
@@ -84,6 +86,7 @@ describe('Border 类', () => {
   it('部分参数', () => {
     const border = new Border({});
     expect(JSON.parse(JSON.stringify(border.toJSON()))).toEqual({
+      visible: true,
       align: 'INSIDE',
       color: {
         a: 1,

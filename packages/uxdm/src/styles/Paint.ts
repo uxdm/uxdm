@@ -1,4 +1,4 @@
-import { FillParams, FillType, PaintType, IPaint } from '@uxdm/schema';
+import { FillParams, Paint_Type, IPaint, PaintType } from '@uxdm/schema';
 import { AbstractObject } from '../abstract/AbstractObject';
 import { Color } from './Color';
 import { Gradient } from './Gradient';
@@ -39,7 +39,7 @@ export class Paint extends AbstractObject implements IPaint {
     }
   }
 
-  type: PaintType = 'SOLID';
+  type: Paint_Type = 'SOLID';
 
   name: string = 'Fill';
 
@@ -69,7 +69,7 @@ export class Paint extends AbstractObject implements IPaint {
     this._opacity = Math.min(Number(value), 1);
   }
 
-  toJSON(): FillType {
+  toJSON(): PaintType {
     const json = super.toJSON();
     return {
       ...json,
@@ -82,5 +82,3 @@ export class Paint extends AbstractObject implements IPaint {
     };
   }
 }
-
-export const Fill = Paint;

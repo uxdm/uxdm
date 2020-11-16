@@ -78,6 +78,7 @@ describe('Style 类', () => {
       },
       borders: [
         {
+          visible: true,
           align: 'INSIDE',
           color: {
             a: 1,
@@ -112,6 +113,7 @@ describe('Style 类', () => {
       ],
       fills: [
         {
+          visible: true,
           color: {
             a: 1,
             b: 0,

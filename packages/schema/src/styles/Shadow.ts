@@ -1,12 +1,7 @@
 import { Assign, DeepPartial, Overwrite } from 'utility-types';
-import {
-  BlendModeType,
-  ColorParams,
-  ColorType,
-  IAbstractObject,
-  IColor,
-  Point,
-} from '@uxdm/schema';
+import { IAbstractObject } from '../abstract';
+import { ColorParams, ColorType, IColor } from './Color';
+import { BlendModeType, Point } from '../constants';
 import { OmitFunction } from '../utils';
 
 export enum ShadowEnum {

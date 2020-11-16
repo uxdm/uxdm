@@ -77,6 +77,14 @@ export class Shadow extends AbstractObject implements IShadow {
     this.offset.y = y || 0;
   }
 
+  get opacity() {
+    return this.color.alpha;
+  }
+
+  set opacity(opacity) {
+    this.color.alpha = opacity;
+  }
+
   /**
    * 扩散效果
    */

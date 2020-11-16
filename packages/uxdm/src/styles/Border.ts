@@ -24,10 +24,11 @@ export class Border extends Paint implements IBorder {
         dashPattern,
         lineJoin,
         lineCap,
+        visible,
       } = params;
 
       this.thickness = thickness || 1;
-
+      this.visible = visible ?? true;
       this.align = align || 'INSIDE';
       this.position = position || 'FULL';
       this.lineCap = lineCap || 'NONE';
@@ -39,6 +40,14 @@ export class Border extends Paint implements IBorder {
     }
   }
 
+  /**
+   * 该描边是否可见
+   */
+  visible: boolean = true;
+
+  /**
+   * 虚线格式
+   */
   dashPattern: number[] = [];
 
   lineCap: BorderLineCapType = 'NONE';
@@ -71,6 +80,7 @@ export class Border extends Paint implements IBorder {
       lineJoin: this.lineJoin,
       dashPattern: this.dashPattern,
       position: this.position,
+      visible: this.visible,
     };
   }
 }

@@ -1,4 +1,4 @@
-import { AbstractObject } from 'uxdm';
+import { AbstractObject } from '../abstract';
 import {
   BorderOptionsParams,
   BorderOptionsType,
@@ -12,7 +12,8 @@ import {
   StyleType,
 } from '@uxdm/schema';
 
-import { Paint, Fill } from './Paint';
+import { Fill } from './Fill';
+
 import { Shadow } from './Shadow';
 
 import { Border } from './Border';
@@ -56,7 +57,7 @@ export class Style extends AbstractObject implements IStyle {
   /**
    * 填充
    * */
-  fills: Paint[] = [];
+  fills: Fill[] = [];
 
   /**
    * 外阴影
