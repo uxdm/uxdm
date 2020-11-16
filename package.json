@@ -27,7 +27,7 @@
     "---------   ": "",
     "check:lint": "npm run lint-eslint",
     "check:circular": "dpdm packages/**/*.ts  --warning false  --tree false  --exit-code circular:1  -T true",
-    "check:typings": "tsc -p tsconfig.json",
+    "check:typings": "tsc -p tsconfig-check.json",
     "---------    ": "",
     "clean": "lerna run clean && rm -rf es lib dist build coverage .umi .eslintcache",
     "lint-eslint": "eslint --cache --ext .ts,.tsx --format=pretty ./packages",
