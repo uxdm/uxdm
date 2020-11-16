@@ -26,7 +26,7 @@
     "test:coverage": "lerna run cov",
     "---------   ": "",
     "check:lint": "npm run lint-eslint",
-    "check:circular": "dpdm packages/**/*.ts",
+    "check:circular": "dpdm packages/**/*.ts  --warning false  --tree false  --exit-code circular:1  -T true",
     "check:typings": "tsc -p tsconfig.json",
     "---------    ": "",
     "clean": "lerna run clean && rm -rf es lib dist build coverage .umi .eslintcache",

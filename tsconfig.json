@@ -14,5 +14,5 @@
       "uxdm": ["./packages/uxdm/src"]
     }
   },
-  "exclude": ["config"]
+  "exclude": ["config", "scripts"]
 }
