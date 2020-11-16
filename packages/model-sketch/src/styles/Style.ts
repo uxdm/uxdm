@@ -56,7 +56,7 @@ class Style extends BaseStyle {
 
     return {
       _class: 'borderOptions',
-      isEnabled: this.borders.length > 0,
+      isEnabled: this.borderOptions.enabled,
       dashPattern: this.borderOptions.dashPattern,
       lineCapStyle,
       lineJoinStyle,

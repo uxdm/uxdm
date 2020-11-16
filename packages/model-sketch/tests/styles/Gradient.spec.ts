@@ -42,4 +42,13 @@ describe('Gradient 类', () => {
       ]);
     });
   });
+
+  it('渐变类型', () => {
+    const gradient = new Gradient();
+    expect(gradient.gradientType).toEqual(0);
+    gradient.type = 'RADIAL';
+    expect(gradient.gradientType).toEqual(1);
+    gradient.type = 'ANGULAR';
+    expect(gradient.gradientType).toEqual(2);
+  });
 });

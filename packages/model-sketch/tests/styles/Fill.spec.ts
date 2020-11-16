@@ -1,10 +1,10 @@
-import { Border } from '../../src/styles';
+import { Fill } from '../../src/styles';
 
-describe('Border 类', () => {
+describe('Fill 类', () => {
   it('toSketchJSON', () => {
-    const borderOptions = new Border();
-    expect(borderOptions.toSketchJSON()).toEqual({
-      _class: 'border',
+    const fill = new Fill();
+    expect(fill.toSketchJSON()).toEqual({
+      _class: 'fill',
       color: {
         _class: 'color',
         alpha: 1,
@@ -49,17 +49,10 @@ describe('Border 类', () => {
         to: '{0.5, 1}',
       },
       isEnabled: true,
-      position: 1,
-      thickness: 1,
+      noiseIndex: 0,
+      noiseIntensity: 0,
+      patternFillType: 1,
+      patternTileScale: 1,
     });
-  });
-  it('sketchPosition', () => {
-    const border = new Border({ align: 'CENTER' });
-    expect(border.sketchPosition).toEqual(0);
-    border.align = 'OUTSIDE';
-    expect(border.sketchPosition).toEqual(2);
-    // @ts-ignore
-    border.align = '';
-    expect(border.sketchPosition).toEqual(1);
   });
 });

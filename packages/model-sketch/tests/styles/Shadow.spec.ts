@@ -5,6 +5,8 @@ import { Shadow } from '../../src/styles';
 describe('Shadow 类', () => {
   it('toSketchJSON', () => {
     const shadow = new Shadow();
+    // @ts-ignore
+    shadow.type = '';
     const sketchShadow: SketchFormat.Shadow = {
       _class: 'shadow',
       blurRadius: 0,

@@ -10,7 +10,7 @@ import { getContextSettings, getFillType } from '../utils';
  * Sketch 填充对象
  * */
 class Fill extends BaseFill {
-  constructor(params: FillParams) {
+  constructor(params?: FillParams) {
     super(params);
     if (params) {
       const { color, image, gradient } = params;
