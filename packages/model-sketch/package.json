@@ -8,7 +8,9 @@
   "author": "arvinxx <arvinx@foxmail.com>",
   "homepage": "https://github.com/uxdm/uxdm/tree/master/packages/model-sketch#readme",
   "license": "MIT",
-  "main": "lib/index",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib"
   },
