@@ -23,6 +23,7 @@ module.exports = {
         map: [
           ['uxdm', './packages/uxdm/src'],
           ['@uxdm/schema', './packages/schema/src'],
+          ['@uxdm/model-sketch', './packages/model-sketch/src'],
         ],
       },
       typescript: {

@@ -23,7 +23,8 @@
   },
   "scripts": {
     "test": "jest",
-    "cov": "jest --coverage"
+    "cov": "jest --coverage",
+    "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache"
   },
   "publishConfig": {
     "access": "public",
