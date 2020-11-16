@@ -4,7 +4,6 @@ import {
   IGradient,
   ColorStop,
   GradientParams,
-  GradientType,
   ColorStopParams,
 } from '@uxdm/schema';
 import { Color } from './Color';
@@ -65,9 +64,9 @@ export class Gradient implements IGradient {
    * @description
    * 控制椭圆渐变长轴
    */
-  radius: number = 1;
+  radius?: number;
 
-  toJSON(): GradientType {
+  toJSON() {
     return {
       type: this.type,
       from: this.from,
@@ -76,6 +75,21 @@ export class Gradient implements IGradient {
         position: stop.position,
         color: stop.color.toJSON(),
       })),
+      radius: this.radius,
+    };
+  }
+
+  toParams() {
+    return {
+      stops: this.stops.map((stop) => {
+        return {
+          color: stop.color.toParams(),
+          position: stop.position,
+        };
+      }),
+      type: this.type,
+      to: this.to,
+      from: this.from,
       radius: this.radius,
     };
   }

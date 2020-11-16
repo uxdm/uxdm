@@ -23,7 +23,18 @@ export class Color implements IColor {
       this.method = ColorCls(
         `${rgb.replace('rgb', 'rgba')},${parseFloat(percent) / 100})`,
       );
-    } else {
+    }
+    // 处理 object 类型的对象
+    else if (typeof color === 'object') {
+      const { r = 0, b = 0, g = 0, a } = color;
+      if (typeof a === 'number') {
+        this.method = ColorCls({ r, g, b }).alpha(a);
+      } else {
+        this.method = ColorCls({ r, g, b });
+      }
+    }
+    // 处理其他字符串
+    else {
       this.method = ColorCls(color);
     }
 
@@ -154,14 +165,27 @@ export class Color implements IColor {
     return `rgba(${r},${g},${b},${a})`;
   }
 
+  get rgb(): string {
+    const r = this.method.red();
+    const b = this.method.blue();
+    const g = this.method.green();
+    return `rgb(${r},${g},${b})`;
+  }
+
   toJSON(): ColorType {
     return {
       r: this.red,
       g: this.green,
       b: this.blue,
       a: this.alpha,
-      hex: this.hex,
     };
+  }
+
+  /**
+   * 将对象转成用于实例化的参数值
+   */
+  toParams(): ColorParams {
+    return this.toJSON();
   }
 }
 

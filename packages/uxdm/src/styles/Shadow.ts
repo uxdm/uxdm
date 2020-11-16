@@ -4,10 +4,8 @@ import {
   Point,
   Shadow_Type,
   ShadowParams,
-  ShadowType,
 } from '@uxdm/schema';
-
-import { AbstractObject } from '../abstract/AbstractObject';
+import { AbstractObject } from '../abstract';
 import { Color } from './Color';
 
 export class Shadow extends AbstractObject implements IShadow {
@@ -110,7 +108,7 @@ export class Shadow extends AbstractObject implements IShadow {
    */
   visible: boolean = false;
 
-  toJSON(): ShadowType {
+  toJSON() {
     const json = super.toJSON();
     return {
       ...json,
@@ -121,6 +119,19 @@ export class Shadow extends AbstractObject implements IShadow {
       color: this.color.toJSON(),
       blur: this.blur,
       spread: this.spread,
+    };
+  }
+
+  toParams() {
+    return {
+      color: this.color.toParams(),
+      visible: this.visible,
+      blendMode: this.blendMode,
+      type: this.type,
+      offsetX: this.offsetX,
+      offsetY: this.offsetY,
+      spread: this.spread,
+      blur: this.blur,
     };
   }
 }

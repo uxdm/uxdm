@@ -1,5 +1,12 @@
-import { FillParams, Paint_Type, IPaint, PaintType } from '@uxdm/schema';
-import { AbstractObject } from '../abstract/AbstractObject';
+import {
+  FillParams,
+  Paint_Type,
+  IPaint,
+  PaintType,
+  BlendModeType,
+  PaintParams,
+} from '@uxdm/schema';
+import { AbstractObject } from '../abstract';
 import { Color } from './Color';
 import { Gradient } from './Gradient';
 import { Image } from './Image';
@@ -11,7 +18,7 @@ export class Paint extends AbstractObject implements IPaint {
   constructor(params?: FillParams) {
     super(params);
     if (params) {
-      const { type, color, name, image, gradient } = params;
+      const { type, color, name, image, gradient, blendMode, opacity } = params;
 
       if (type) {
         this.type = type;
@@ -27,6 +34,7 @@ export class Paint extends AbstractObject implements IPaint {
         case 'GRADIENT':
           this.gradient = new Gradient(gradient);
           defaultName = 'Gradient';
+
           break;
         case 'IMAGE':
           if (image) {
@@ -35,6 +43,11 @@ export class Paint extends AbstractObject implements IPaint {
           defaultName = 'Image';
       }
 
+      if (opacity) {
+        this.opacity = opacity;
+      }
+
+      this.blendMode = blendMode || 'NORMAL';
       this.name = name || defaultName;
     }
   }
@@ -50,7 +63,12 @@ export class Paint extends AbstractObject implements IPaint {
 
   gradient: Gradient = new Gradient();
 
-  image: Image;
+  image?: Image;
+
+  /**
+   * 混合模式
+   */
+  blendMode: BlendModeType = 'NORMAL';
 
   private _opacity: number = 1;
 
@@ -79,6 +97,18 @@ export class Paint extends AbstractObject implements IPaint {
       gradient: this.gradient.toJSON(),
       image: this.image?.toJSON(),
       opacity: this.opacity,
+      blendMode: this.blendMode,
+    };
+  }
+
+  toParams(): PaintParams {
+    return {
+      type: this.type,
+      opacity: this.opacity,
+      blendMode: this.blendMode,
+      color: this.color.toParams(),
+      gradient: this.gradient.toParams(),
+      image: this.image?.toParams(),
     };
   }
 }

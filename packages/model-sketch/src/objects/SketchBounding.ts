@@ -6,7 +6,7 @@ import { SketchFormat } from '../types';
 import { matrixToRotation } from '../utils/matrix';
 
 /**
- * 在 Sketch 专属定界框基础上添加了
+ * Sketch 的定界框
  */
 export class SketchBounding extends Bounding {
   /**

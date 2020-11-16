@@ -1,5 +1,5 @@
-import { AbstractObject } from '../abstract';
 import {
+  BlendModeType,
   BorderOptionsParams,
   BorderOptionsType,
   BorderParams,
@@ -9,8 +9,8 @@ import {
   IStyle,
   ShadowParams,
   StyleParams,
-  StyleType,
 } from '@uxdm/schema';
+import { AbstractObject } from '../abstract';
 
 import { Fill } from './Fill';
 
@@ -25,7 +25,15 @@ export class Style extends AbstractObject implements IStyle {
   constructor(params?: StyleParams) {
     super(params);
     if (params) {
-      const { borders, shadows, borderOptions, fills, innerShadows } = params;
+      const {
+        borders,
+        shadows,
+        borderOptions,
+        fills,
+        innerShadows,
+        opacity,
+        blendMode,
+      } = params;
 
       if (borders) {
         this.borders = borders
@@ -51,6 +59,11 @@ export class Style extends AbstractObject implements IStyle {
       if (borderOptions) {
         this.borderOptions = { ...this.borderOptions, ...borderOptions };
       }
+
+      if (opacity) {
+        this.opacity = Math.min(opacity, 1);
+      }
+      this.blendMode = blendMode || 'NORMAL';
     }
   }
 
@@ -82,7 +95,18 @@ export class Style extends AbstractObject implements IStyle {
     lineJoin: 'MITER',
     lineCap: 'NONE',
     dashPattern: [],
+    enabled: true,
   };
+
+  /**
+   * 混合模式
+   */
+  blendMode: BlendModeType = 'NORMAL';
+
+  /**
+   * 不透明度
+   */
+  opacity: number = 1;
 
   /**
    * 添加填充
@@ -187,7 +211,7 @@ export class Style extends AbstractObject implements IStyle {
     }
   }
 
-  toJSON(): StyleType {
+  toJSON() {
     const json = super.toJSON();
     return {
       ...json,
@@ -196,6 +220,20 @@ export class Style extends AbstractObject implements IStyle {
       innerShadows: this.innerShadows.map((s) => s.toJSON()),
       shadows: this.shadows.map((s) => s.toJSON()),
       borders: this.borders.map((b) => b.toJSON()),
+      opacity: this.opacity,
+      blendMode: this.blendMode,
+    };
+  }
+
+  toParams(): StyleParams {
+    return {
+      blendMode: this.blendMode,
+      fills: this.fills.map((item) => item.toParams()),
+      shadows: this.shadows.map((item) => item.toParams()),
+      borders: this.borders.map((item) => item.toParams()),
+      innerShadows: this.innerShadows.map((item) => item.toParams()),
+      opacity: this.opacity,
+      borderOptions: this.borderOptions,
     };
   }
 }

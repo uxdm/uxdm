@@ -8,7 +8,7 @@ import {
   uuid,
 } from '../utils';
 import { SketchBounding } from '../objects';
-import Style from '../Style/Style';
+import Style from '../styles/Style';
 import { ResizingConstraint } from '../constants';
 import { CommonSketchProperty, SketchFormat } from '../types';
 import { SketchLayerParams } from '../layerType';

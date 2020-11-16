@@ -17,12 +17,20 @@ export class Fill extends Paint implements IFill {
   /**
    * 该填色是否可见
    */
-  visible: boolean;
+  visible: boolean = true;
 
   toJSON(): FillType {
     const json = super.toJSON();
     return {
       ...json,
+      visible: this.visible,
+    };
+  }
+
+  toParams(): FillParams {
+    const params = super.toParams();
+    return {
+      ...params,
       visible: this.visible,
     };
   }

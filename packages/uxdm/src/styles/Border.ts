@@ -83,4 +83,21 @@ export class Border extends Paint implements IBorder {
       visible: this.visible,
     };
   }
+
+  /**
+   * 将对象转成用于实例化的参数值
+   */
+  toParams(): BorderParams {
+    const params = super.toParams();
+    return {
+      ...params,
+      thickness: this.thickness,
+      align: this.align,
+      lineCap: this.lineCap,
+      lineJoin: this.lineJoin,
+      dashPattern: this.dashPattern,
+      position: this.position,
+      visible: this.visible,
+    };
+  }
 }

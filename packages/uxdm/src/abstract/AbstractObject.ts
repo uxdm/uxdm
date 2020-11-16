@@ -2,7 +2,7 @@ import {
   IAbstractNode,
   IAbstractObject,
   AbstractObjectType,
-  AbstractObjectParam,
+  AbstractObjectParams,
 } from '@uxdm/schema';
 import { generateID } from '../utils';
 
@@ -13,7 +13,7 @@ import { generateID } from '../utils';
  * UXDM 会包含有许多不同类型的节点，每种都有自己的属性集。
  */
 export abstract class AbstractObject implements IAbstractObject {
-  protected constructor(params?: AbstractObjectParam) {
+  protected constructor(params?: AbstractObjectParams) {
     if (params) {
       this.id = params.id || generateID();
     }
