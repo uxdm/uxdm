@@ -9,10 +9,10 @@ jobs:
         uses: actions/checkout@master
 
       - name: install
-        run: npm install
+        run: yarn
 
       - name: lint
-        run: npm run check:lint && npm run check:typings && npm run check:circular
+        run: yarn check:lint && yarn check:typings && yarn check:circular
 
       - name: test
-        run: npm run test:coverage
+        run: yarn test:coverage
