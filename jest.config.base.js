@@ -7,7 +7,7 @@ module.exports = {
   },
   testRegex: '(/tests/.*.(test|spec)).tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  coveragePathIgnorePatterns: ['(tests/.*.mock).(jsx?|tsx?)$'],
+  coveragePathIgnorePatterns: ['(tests/.*.mock).(jsx?|tsx?)$', 'tests/**/*.ts'],
   verbose: true,
   globals: {
     'ts-jest': {

@@ -1,4 +1,4 @@
-import { FillParams, FillType, PaintType, IFill } from '@uxdm/schema';
+import { FillParams, FillType, PaintType, IPaint } from '@uxdm/schema';
 import { AbstractObject } from '../abstract/AbstractObject';
 import { Color } from './Color';
 import { Gradient } from './Gradient';
@@ -7,7 +7,7 @@ import { Image } from './Image';
 /**
  * 渐变对象
  * */
-export class Fill extends AbstractObject implements IFill {
+export class Paint extends AbstractObject implements IPaint {
   constructor(params?: FillParams) {
     super(params);
     if (params) {
@@ -26,12 +26,13 @@ export class Fill extends AbstractObject implements IFill {
           break;
         case 'GRADIENT':
           this.gradient = new Gradient(gradient);
-
+          defaultName = 'Gradient';
           break;
         case 'IMAGE':
           if (image) {
             this.image = new Image(image);
           }
+          defaultName = 'Image';
       }
 
       this.name = name || defaultName;
@@ -51,6 +52,23 @@ export class Fill extends AbstractObject implements IFill {
 
   image: Image;
 
+  private _opacity: number = 1;
+
+  get opacity() {
+    if (this.type === 'SOLID') {
+      return this.color.alpha;
+    }
+    return this._opacity;
+  }
+
+  set opacity(value) {
+    if (this.type === 'SOLID') {
+      this.color.alpha = value;
+      return;
+    }
+    this._opacity = Math.min(Number(value), 1);
+  }
+
   toJSON(): FillType {
     const json = super.toJSON();
     return {
@@ -60,6 +78,9 @@ export class Fill extends AbstractObject implements IFill {
       color: this.color.toJSON(),
       gradient: this.gradient.toJSON(),
       image: this.image?.toJSON(),
+      opacity: this.opacity,
     };
   }
 }
+
+export const Fill = Paint;

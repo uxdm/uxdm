@@ -20,7 +20,7 @@ export abstract class AbstractGroupNode
     if (params) {
       this.children = params.children || [];
 
-      this.clipsContent = params.clipsContent || false;
+      // this.clipsContent = params.clipsContent || false;
       if (params.layout) {
         this.layout = new ContainerLayout(params.layout);
       }
@@ -37,7 +37,6 @@ export abstract class AbstractGroupNode
       ...json,
       children: this.children,
       layout: this.layout.toJSON(),
-      clipsContent: this.clipsContent,
     };
   }
 

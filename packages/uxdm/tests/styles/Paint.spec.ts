@@ -1,14 +1,31 @@
-import { Fill } from '../../src/styles';
+import { Paint } from '../../src/styles';
+import { defaultColorStops } from './defaultValue';
 
-describe('Fill 类', () => {
+describe('Paint 类', () => {
   it('无参数', () => {
-    const fill = new Fill();
-    expect(fill).toBeInstanceOf(Fill);
+    const fill = new Paint();
+    expect(fill).toBeInstanceOf(Paint);
     expect(fill.type).toEqual('SOLID');
+  });
+  it('不透明度', () => {
+    const fill = new Paint();
+    expect(fill.opacity).toEqual(1);
+
+    fill.opacity = 0.5;
+    expect(fill.opacity).toEqual(0.5);
+
+    fill.type = 'IMAGE';
+    expect(fill.opacity).toEqual(1);
+    fill.opacity = 0.2;
+    expect(fill.opacity).toEqual(0.2);
+    fill.type = 'SOLID';
+    expect(fill.opacity).toEqual(0.5);
+    fill.opacity = 100;
+    expect(fill.opacity).toEqual(1);
   });
   describe('纯色填充', () => {
     it('满参数', () => {
-      const gradient = new Fill({
+      const gradient = new Paint({
         type: 'SOLID',
         color: 'red',
       });
@@ -18,7 +35,7 @@ describe('Fill 类', () => {
   });
   describe('渐变填充', () => {
     it('双色渐变', () => {
-      const fill = new Fill({
+      const fill = new Paint({
         type: 'GRADIENT',
         gradient: {
           stops: [
@@ -71,13 +88,14 @@ describe('Fill 类', () => {
           type: 'LINEAR',
         },
         id: 'id',
-        name: '',
+        name: 'Gradient',
+        opacity: 1,
         type: 'GRADIENT',
       });
     });
   });
   it('图片填充', () => {
-    const fill = new Fill({
+    const fill = new Paint({
       type: 'IMAGE',
       image:
         'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
@@ -100,7 +118,7 @@ describe('Fill 类', () => {
           y: 0,
         },
         radius: 1,
-        stops: [],
+        stops: defaultColorStops,
         to: {
           x: 0.5,
           y: 1,
@@ -115,7 +133,8 @@ describe('Fill 类', () => {
         url:
           'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
       },
-      name: '',
+      name: 'Image',
+      opacity: 1,
       type: 'IMAGE',
     });
   });

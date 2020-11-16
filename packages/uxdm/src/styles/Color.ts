@@ -27,23 +27,42 @@ export class Color implements IColor {
       this.method = ColorCls(color);
     }
 
-    this.alpha = this.method.alpha();
-    this.blue = this.method.blue();
-    this.green = this.method.green();
-    this.red = this.method.red();
-
     this.name = this.method.hex();
   }
 
   name: string;
 
-  red: number;
+  get red() {
+    return this.method.red();
+  }
 
-  green: number;
+  set red(value) {
+    this.method = this.method.red(value);
+  }
 
-  blue: number;
+  get green(): number {
+    return this.method.green();
+  }
 
-  alpha: number;
+  set green(value) {
+    this.method = this.method.green(value);
+  }
+
+  get blue(): number {
+    return this.method.blue();
+  }
+
+  set blue(value) {
+    this.method = this.method.blue(value);
+  }
+
+  get alpha(): number {
+    return this.method.alpha();
+  }
+
+  set alpha(value) {
+    this.method = this.method.alpha(value);
+  }
 
   method: ColorCls;
 

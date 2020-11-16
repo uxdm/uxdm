@@ -5,6 +5,40 @@ describe('Gradient 类', () => {
     it('无参数', () => {
       const gradient = new Gradient();
       expect(gradient).toBeInstanceOf(Gradient);
+      expect(gradient.toJSON()).toEqual({
+        from: {
+          x: 0.5,
+          y: 0,
+        },
+        radius: 1,
+        stops: [
+          {
+            color: {
+              a: 1,
+              b: 0,
+              g: 0,
+              hex: '#000000',
+              r: 0,
+            },
+            position: 0,
+          },
+          {
+            color: {
+              a: 1,
+              b: 255,
+              g: 255,
+              hex: '#FFFFFF',
+              r: 255,
+            },
+            position: 1,
+          },
+        ],
+        to: {
+          x: 0.5,
+          y: 1,
+        },
+        type: 'LINEAR',
+      });
     });
     it('满参数', () => {
       const gradient = new Gradient({
@@ -23,7 +57,7 @@ describe('Gradient 类', () => {
       expect(gradient.from).toEqual({ x: 0.5, y: 0 });
       expect(gradient.to).toEqual({ x: 0.5, y: 1 });
       expect(gradient.type).toEqual('LINEAR');
-      expect(gradient.stops).toHaveLength(0);
+      expect(gradient.stops).toHaveLength(2);
     });
   });
   describe('线性渐变', () => {

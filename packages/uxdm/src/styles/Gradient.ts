@@ -5,9 +5,11 @@ import {
   ColorStop,
   GradientParams,
   GradientType,
+  ColorStopParams,
 } from '@uxdm/schema';
 import { Color } from './Color';
 
+const defaultColorStopParams = ['black', 'white'];
 /**
  * 渐变对象
  * */
@@ -28,23 +30,9 @@ export class Gradient implements IGradient {
       this.to = to;
     }
     if (stops) {
-      this.stops = stops.map((stopParam, index) => {
-        // 判断是对象类型的 stop 参数
-        if (typeof stopParam === 'object' && 'color' in stopParam) {
-          return {
-            color: new Color(stopParam.color),
-            position: stopParam.position
-              ? stopParam.position
-              : index / (stops.length - 1),
-          };
-        }
-
-        // 不然就是颜色类型的 stop 参数
-        return {
-          color: new Color(stopParam),
-          position: index / (stops.length - 1),
-        };
-      });
+      const colorStops: ColorStopParams[] =
+        stops.length > 0 ? stops : defaultColorStopParams;
+      this.stops = Gradient.getColorStops(colorStops);
     }
 
     if (['ANGULAR', 'RADIAL'].includes(this.type) && radius) {
@@ -65,7 +53,7 @@ export class Gradient implements IGradient {
   /**
    * 色彩节点
    */
-  stops: ColorStop[] = [];
+  stops: ColorStop[] = Gradient.getColorStops(defaultColorStopParams);
 
   /**
    * 渐变类型
@@ -90,5 +78,29 @@ export class Gradient implements IGradient {
       })),
       radius: this.radius,
     };
+  }
+
+  /**
+   * 从 colorStop 参数项获取 ColorStop 类
+   * @param stops
+   */
+  static getColorStops(stops: ColorStopParams[]) {
+    return stops.map((stopParam, index) => {
+      // 判断是对象类型的 stop 参数
+      if (typeof stopParam === 'object' && 'color' in stopParam) {
+        return {
+          color: new Color(stopParam.color),
+          position: stopParam.position
+            ? stopParam.position
+            : index / (stops.length - 1),
+        };
+      }
+
+      // 不然就是颜色类型的 stop 参数
+      return {
+        color: new Color(stopParam),
+        position: index / (stops.length - 1),
+      };
+    });
   }
 }

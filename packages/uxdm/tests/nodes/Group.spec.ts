@@ -37,7 +37,6 @@ describe('GroupNode 类', () => {
 
   it('toJSON', () => {
     const json: GroupNodeType = {
-      clipsContent: false,
       id: 'id',
       layout: {
         constraints: {

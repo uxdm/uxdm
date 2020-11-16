@@ -19,7 +19,7 @@ describe('Color 类', () => {
       expect(color2.rgba).toBe('rgba(242,242,242,0.25)');
     });
   });
-  describe('调用方法正常', () => {
+  describe('get方法正常', () => {
     const inputColor = 'rgba(50,50,10,0.5)';
     const color = new Color(inputColor);
     it('rgba', () => {
@@ -68,7 +68,45 @@ describe('Color 类', () => {
       expect(color.saturationv).toBe(80);
     });
   });
-
+  describe('set 方法正常', () => {
+    const color = new Color('#1cd432');
+    it('red', () => {
+      expect(color.red).toEqual(28);
+      expect(color.green).toEqual(212);
+      expect(color.blue).toEqual(50);
+      color.red = 10;
+      expect(color.red).toEqual(10);
+      expect(color.green).toEqual(212);
+      expect(color.blue).toEqual(50);
+      color.red = 28;
+    });
+    it('blue', () => {
+      expect(color.red).toEqual(28);
+      expect(color.green).toEqual(212);
+      expect(color.blue).toEqual(50);
+      color.blue = 10;
+      expect(color.blue).toEqual(10);
+      expect(color.green).toEqual(212);
+      expect(color.red).toEqual(28);
+      color.blue = 50;
+    });
+    it('green', () => {
+      expect(color.red).toEqual(28);
+      expect(color.green).toEqual(212);
+      expect(color.blue).toEqual(50);
+      color.green = 10;
+      expect(color.green).toEqual(10);
+      expect(color.blue).toEqual(50);
+      expect(color.red).toEqual(28);
+      color.green = 212;
+    });
+    it('alpha', () => {
+      expect(color.alpha).toEqual(1);
+      color.alpha = 0.5;
+      expect(color.alpha).toEqual(0.5);
+      color.alpha = 1;
+    });
+  });
   describe('toJSON', () => {
     it('正常解析', () => {
       const color = new Color('rgb(50,50,10)');
