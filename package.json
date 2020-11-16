@@ -23,7 +23,7 @@
     "site:publish": "dumi build && gh-pages -d ./dist",
     "--------- ": "",
     "test": "lerna run test",
-    "test:cov": "lerna run cov",
+    "test:coverage": "lerna run cov",
     "---------   ": "",
     "clean": "lerna run clean && rm -rf es lib dist build coverage .umi .eslintcache",
     "lint": "npm run lint-eslint",
