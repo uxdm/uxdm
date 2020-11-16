@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: install
-        run: yarn
+        run: rm -rf yarn.lock && yarn
 
       - name: lint
         run: yarn check:lint && yarn check:typings && yarn check:circular
