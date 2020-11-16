@@ -5,15 +5,18 @@ describe('Style 类', () => {
   it('无参数', () => {
     const style = new Style();
     expect(style.toJSON()).toEqual({
+      blendMode: 'NORMAL',
       borderOptions: {
         align: 'INSIDE',
         dashPattern: [],
         lineCap: 'NONE',
         lineJoin: 'MITER',
+        enabled: true,
       },
       borders: [],
       fills: [],
       id: 'id',
+      opacity: 1,
       innerShadows: [],
       shadows: [],
     });
@@ -21,14 +24,17 @@ describe('Style 类', () => {
   it('部分参数', () => {
     const style = new Style({});
     expect(style.toJSON()).toEqual({
+      blendMode: 'NORMAL',
       borderOptions: {
         align: 'INSIDE',
         dashPattern: [],
         lineCap: 'NONE',
+        enabled: true,
         lineJoin: 'MITER',
       },
       borders: [],
       fills: [],
+      opacity: 1,
       id: 'id',
       innerShadows: [],
       shadows: [],
@@ -70,21 +76,23 @@ describe('Style 类', () => {
       ],
     });
     expect(JSON.parse(JSON.stringify(style.toJSON()))).toEqual({
+      blendMode: 'NORMAL',
       borderOptions: {
         lineJoin: 'ROUND',
         dashPattern: [3, 4],
         align: 'CENTER',
         lineCap: 'ROUND',
+        enabled: true,
       },
       borders: [
         {
           visible: true,
           align: 'INSIDE',
+          blendMode: 'NORMAL',
           color: {
             a: 1,
             b: 0,
             g: 255,
-            hex: '#FFFF00',
             r: 255,
           },
           dashPattern: [],
@@ -93,7 +101,6 @@ describe('Style 类', () => {
               x: 0.5,
               y: 0,
             },
-            radius: 1,
             stops: defaultColorStops,
             to: {
               x: 0.5,
@@ -113,12 +120,12 @@ describe('Style 类', () => {
       ],
       fills: [
         {
+          blendMode: 'NORMAL',
           visible: true,
           color: {
             a: 1,
             b: 0,
             g: 0,
-            hex: '#000000',
             r: 0,
           },
           gradient: {
@@ -126,14 +133,12 @@ describe('Style 类', () => {
               x: 0.3,
               y: 1,
             },
-            radius: 1,
             stops: [
               {
                 color: {
                   a: 1,
                   b: 0,
                   g: 0,
-                  hex: '#FF0000',
                   r: 255,
                 },
                 position: 0,
@@ -143,7 +148,6 @@ describe('Style 类', () => {
                   a: 1,
                   b: 0,
                   g: 128,
-                  hex: '#008000',
                   r: 0,
                 },
                 position: 1,
@@ -157,7 +161,7 @@ describe('Style 类', () => {
           },
           id: 'id',
           name: 'Gradient',
-          opacity: 1,
+          opacity: 0.4,
           type: 'GRADIENT',
         },
       ],
@@ -170,7 +174,6 @@ describe('Style 类', () => {
             a: 1,
             b: 26,
             g: 63,
-            hex: '#123F1A',
             r: 18,
           },
           id: 'id',
@@ -191,7 +194,6 @@ describe('Style 类', () => {
             a: 1,
             b: 91,
             g: 4,
-            hex: '#02045B',
             r: 2,
           },
           id: 'id',
@@ -204,6 +206,7 @@ describe('Style 类', () => {
           visible: true,
         },
       ],
+      opacity: 1,
     });
   });
 
@@ -247,7 +250,6 @@ describe('Style 类', () => {
           a: 1,
           b: 132,
           g: 86,
-          hex: '#E15684',
           r: 225,
         });
       });
@@ -307,6 +309,7 @@ describe('Style 类', () => {
         expect(style.borderOptions).toEqual({
           align: 'INSIDE',
           dashPattern: [],
+          enabled: true,
           lineCap: 'NONE',
           lineJoin: 'MITER',
         });
@@ -351,16 +354,177 @@ describe('Style 类', () => {
             lineJoin: 'BEVEL',
             dash: 1,
             spacing: 3,
+            enabled: true,
           });
 
           expect(style.borderOptions).toEqual({
             lineCap: 'SQUARE',
             align: 'OUTSIDE',
             lineJoin: 'BEVEL',
+            enabled: true,
             dashPattern: [1, 3],
           });
         });
       });
+    });
+  });
+
+  it('toParams', () => {
+    const style = new Style({
+      borderOptions: {
+        lineJoin: 'ROUND',
+        dashPattern: [3, 4],
+        align: 'CENTER',
+        lineCap: 'ROUND',
+      },
+      fills: [
+        {
+          type: 'GRADIENT',
+          opacity: 0.4,
+          gradient: {
+            from: { x: 0.3, y: 1 },
+            to: { x: 0.5, y: 1 },
+            type: 'LINEAR',
+            stops: ['red', 'green'],
+          },
+        },
+      ],
+      borders: [{ type: 'SOLID', color: 'yellow' }],
+      shadows: [
+        { color: 'rgb(2,4,91)', offsetX: 4, offsetY: 40, blur: 4, spread: 13 },
+      ],
+      innerShadows: [
+        {
+          offsetX: 2,
+          offsetY: 4,
+          blur: 8,
+          blendMode: 'COLOR_BURN',
+          visible: false,
+        },
+      ],
+      opacity: 0.3,
+    });
+    expect(JSON.parse(JSON.stringify(style.toParams()))).toEqual({
+      blendMode: 'NORMAL',
+      borderOptions: {
+        lineJoin: 'ROUND',
+        dashPattern: [3, 4],
+        align: 'CENTER',
+        lineCap: 'ROUND',
+        enabled: true,
+      },
+      borders: [
+        {
+          visible: true,
+          align: 'INSIDE',
+          blendMode: 'NORMAL',
+          color: {
+            a: 1,
+            b: 0,
+            g: 255,
+            r: 255,
+          },
+          dashPattern: [],
+          gradient: {
+            from: {
+              x: 0.5,
+              y: 0,
+            },
+            stops: defaultColorStops,
+            to: {
+              x: 0.5,
+              y: 1,
+            },
+            type: 'LINEAR',
+          },
+          lineCap: 'NONE',
+          lineJoin: 'MITER',
+          opacity: 1,
+          position: 'FULL',
+          thickness: 1,
+          type: 'SOLID',
+        },
+      ],
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          visible: true,
+          color: {
+            a: 1,
+            b: 0,
+            g: 0,
+            r: 0,
+          },
+          gradient: {
+            from: {
+              x: 0.3,
+              y: 1,
+            },
+            stops: [
+              {
+                color: {
+                  a: 1,
+                  b: 0,
+                  g: 0,
+                  r: 255,
+                },
+                position: 0,
+              },
+              {
+                color: {
+                  a: 1,
+                  b: 0,
+                  g: 128,
+                  r: 0,
+                },
+                position: 1,
+              },
+            ],
+            to: {
+              x: 0.5,
+              y: 1,
+            },
+            type: 'LINEAR',
+          },
+          opacity: 0.4,
+          type: 'GRADIENT',
+        },
+      ],
+      innerShadows: [
+        {
+          blendMode: 'COLOR_BURN',
+          blur: 8,
+          color: {
+            a: 1,
+            b: 0,
+            g: 0,
+            r: 0,
+          },
+          offsetX: 2,
+          offsetY: 4,
+          spread: 0,
+          type: 'INNER_SHADOW',
+          visible: false,
+        },
+      ],
+      shadows: [
+        {
+          blendMode: 'NORMAL',
+          blur: 4,
+          color: {
+            a: 1,
+            b: 91,
+            g: 4,
+            r: 2,
+          },
+          offsetX: 4,
+          offsetY: 40,
+          spread: 13,
+          type: 'SHADOW',
+          visible: true,
+        },
+      ],
+      opacity: 0.3,
     });
   });
 });

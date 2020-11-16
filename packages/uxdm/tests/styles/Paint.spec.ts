@@ -3,25 +3,25 @@ import { defaultColorStops } from './defaultValue';
 
 describe('Paint 类', () => {
   it('无参数', () => {
-    const fill = new Paint();
-    expect(fill).toBeInstanceOf(Paint);
-    expect(fill.type).toEqual('SOLID');
+    const paint = new Paint();
+    expect(paint).toBeInstanceOf(Paint);
+    expect(paint.type).toEqual('SOLID');
   });
   it('不透明度', () => {
-    const fill = new Paint();
-    expect(fill.opacity).toEqual(1);
+    const paint = new Paint();
+    expect(paint.opacity).toEqual(1);
 
-    fill.opacity = 0.5;
-    expect(fill.opacity).toEqual(0.5);
+    paint.opacity = 0.5;
+    expect(paint.opacity).toEqual(0.5);
 
-    fill.type = 'IMAGE';
-    expect(fill.opacity).toEqual(1);
-    fill.opacity = 0.2;
-    expect(fill.opacity).toEqual(0.2);
-    fill.type = 'SOLID';
-    expect(fill.opacity).toEqual(0.5);
-    fill.opacity = 100;
-    expect(fill.opacity).toEqual(1);
+    paint.type = 'IMAGE';
+    expect(paint.opacity).toEqual(1);
+    paint.opacity = 0.2;
+    expect(paint.opacity).toEqual(0.2);
+    paint.type = 'SOLID';
+    expect(paint.opacity).toEqual(0.5);
+    paint.opacity = 100;
+    expect(paint.opacity).toEqual(1);
   });
   describe('纯色填充', () => {
     it('满参数', () => {
@@ -35,7 +35,7 @@ describe('Paint 类', () => {
   });
   describe('渐变填充', () => {
     it('双色渐变', () => {
-      const fill = new Paint({
+      const paint = new Paint({
         type: 'GRADIENT',
         gradient: {
           stops: [
@@ -44,13 +44,13 @@ describe('Paint 类', () => {
           ],
         },
       });
-      expect(fill.gradient.stops.length).toBe(2);
-      expect(JSON.parse(JSON.stringify(fill.toJSON()))).toStrictEqual({
+      expect(paint.gradient.stops.length).toBe(2);
+      expect(JSON.parse(JSON.stringify(paint.toJSON()))).toStrictEqual({
+        blendMode: 'NORMAL',
         color: {
           a: 1,
           b: 0,
           g: 0,
-          hex: '#000000',
           r: 0,
         },
         gradient: {
@@ -58,14 +58,12 @@ describe('Paint 类', () => {
             x: 0.5,
             y: 0,
           },
-          radius: 1,
           stops: [
             {
               color: {
                 a: 1,
                 b: 0,
                 g: 255,
-                hex: '#FFFF00',
                 r: 255,
               },
               position: 0,
@@ -75,7 +73,6 @@ describe('Paint 类', () => {
                 a: 1,
                 b: 0,
                 g: 0,
-                hex: '#FF0000',
                 r: 255,
               },
               position: 0.4,
@@ -95,21 +92,21 @@ describe('Paint 类', () => {
     });
   });
   it('图片填充', () => {
-    const fill = new Paint({
+    const paint = new Paint({
       type: 'IMAGE',
       image:
         'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
     });
-    expect(fill.type).toEqual('IMAGE');
-    expect(fill.image.url).toEqual(
+    expect(paint.type).toEqual('IMAGE');
+    expect(paint.image.url).toEqual(
       'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
     );
-    expect(fill.toJSON()).toEqual({
+    expect(JSON.parse(JSON.stringify(paint.toJSON()))).toEqual({
+      blendMode: 'NORMAL',
       color: {
         a: 1,
         b: 0,
         g: 0,
-        hex: '#000000',
         r: 0,
       },
       gradient: {
@@ -117,7 +114,6 @@ describe('Paint 类', () => {
           x: 0.5,
           y: 0,
         },
-        radius: 1,
         stops: defaultColorStops,
         to: {
           x: 0.5,
@@ -136,6 +132,60 @@ describe('Paint 类', () => {
       name: 'Image',
       opacity: 1,
       type: 'IMAGE',
+    });
+  });
+
+  it('toParams', () => {
+    const paint = new Paint({
+      type: 'GRADIENT',
+      gradient: {
+        stops: [
+          { color: 'yellow', position: 0 },
+          { color: 'red', position: 0.4 },
+        ],
+      },
+    });
+    expect(JSON.parse(JSON.stringify(paint.toParams()))).toStrictEqual({
+      blendMode: 'NORMAL',
+      color: {
+        a: 1,
+        b: 0,
+        g: 0,
+        r: 0,
+      },
+      gradient: {
+        from: {
+          x: 0.5,
+          y: 0,
+        },
+        stops: [
+          {
+            color: {
+              a: 1,
+              b: 0,
+              g: 255,
+              r: 255,
+            },
+            position: 0,
+          },
+          {
+            color: {
+              a: 1,
+              b: 0,
+              g: 0,
+              r: 255,
+            },
+            position: 0.4,
+          },
+        ],
+        to: {
+          x: 0.5,
+          y: 1,
+        },
+        type: 'LINEAR',
+      },
+      opacity: 1,
+      type: 'GRADIENT',
     });
   });
 });

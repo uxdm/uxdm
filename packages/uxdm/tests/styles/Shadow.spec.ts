@@ -10,7 +10,6 @@ describe('Shadow 类', () => {
         a: 1,
         b: 0,
         g: 0,
-        hex: '#000000',
         r: 0,
       },
       id: 'id',
@@ -43,7 +42,6 @@ describe('Shadow 类', () => {
         a: 1,
         b: 0,
         g: 0,
-        hex: '#FF0000',
         r: 255,
       },
       id: 'id',
@@ -65,7 +63,6 @@ describe('Shadow 类', () => {
         a: 1,
         b: 0,
         g: 0,
-        hex: '#000000',
         r: 0,
       },
       id: 'id',
@@ -75,6 +72,41 @@ describe('Shadow 类', () => {
       },
       blur: 0,
       spread: 0,
+      type: 'INNER_SHADOW',
+      visible: false,
+    });
+  });
+
+  it('opacity', () => {
+    const shadow = new Shadow();
+    expect(shadow.opacity).toEqual(1);
+    shadow.opacity = 0.4;
+    expect(shadow.opacity).toEqual(0.4);
+  });
+
+  it('toParams', () => {
+    const shadow = new Shadow({
+      type: 'INNER_SHADOW',
+      color: 'red',
+      spread: 10,
+      blur: 5,
+      visible: false,
+      offsetY: 2,
+      offsetX: 8,
+      blendMode: 'DARKEN',
+    });
+    expect(shadow.toParams()).toEqual({
+      blendMode: 'DARKEN',
+      color: {
+        a: 1,
+        b: 0,
+        g: 0,
+        r: 255,
+      },
+      offsetY: 2,
+      offsetX: 8,
+      blur: 5,
+      spread: 10,
       type: 'INNER_SHADOW',
       visible: false,
     });
