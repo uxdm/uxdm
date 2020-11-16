@@ -21,6 +21,11 @@ export interface IImage extends IAbstractObject {
    * 转换成的 base64 数据
    */
   base64: string;
+
+  /**
+   * 还原输入的参数
+   */
+  toParams(): string;
 }
 
 export type ImageType = Omit<OmitFunction<IImage>, 'initialized'>;

@@ -14,9 +14,24 @@ export interface IGradient {
   type: GradientTypes;
   from: Point;
   to: Point;
-  radius?: number;
   stops: ColorStop[];
+  radius?: number;
+  toJSON(): GradientType;
+  toParams(): GradientParams;
 }
+
+export type GradientType = Overwrite<
+  Partial<IGradient>,
+  { stops: { color: ColorType; position: number }[] }
+>;
+
+export type GradientParams = {
+  from?: Point;
+  to?: Point;
+  stops?: ColorStopParams[];
+  type?: GradientTypes;
+  radius?: number;
+};
 
 export interface ColorStop {
   /**
@@ -35,16 +50,3 @@ export type ColorStopParams =
       position?: number;
       color: ColorParams;
     };
-
-export type GradientType = Overwrite<
-  Partial<IGradient>,
-  { stops: { color: ColorType; position: number }[] }
->;
-
-export type GradientParams = {
-  from?: Point;
-  to?: Point;
-  stops?: ColorStopParams[];
-  type?: GradientTypes;
-  radius?: number;
-};

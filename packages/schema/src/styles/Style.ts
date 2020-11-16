@@ -5,6 +5,7 @@ import { IPaint } from './Paint';
 import { BorderOptionsType, BorderParams, BorderType, IBorder } from './Border';
 import { OmitFunction } from '../utils';
 import { FillParams, FillType } from './Fill';
+import { BlendModeType } from '../constants';
 
 /**
  * 样式
@@ -41,6 +42,14 @@ export interface IStyle extends IAbstractObject {
    * 在 UXDM 中,该项参数集成在了 IBorder 中
    */
   borderOptions: BorderOptionsType;
+
+  opacity: number;
+
+  blendMode: BlendModeType;
+
+  toJSON(): StyleType;
+
+  toParams(): StyleParams;
 }
 
 export type StyleType = Overwrite<

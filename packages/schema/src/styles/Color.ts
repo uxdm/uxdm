@@ -8,19 +8,20 @@ export interface IColor {
   alpha: number;
 
   toJSON(): ColorType;
+
+  toParams(): ColorParams;
 }
 
 export type ColorType = {
   r: number;
-  g?: number;
-  b?: number;
-  a?: number;
-  hex?: string;
+  g: number;
+  b: number;
+  a: number;
 };
 
 export type ColorParams =
   // Color 对象
-  | ColorType
+  | Partial<ColorType>
   // HEX值
   | string
   // 序号

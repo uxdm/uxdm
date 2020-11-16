@@ -55,6 +55,10 @@ export interface IShadow extends IAbstractObject {
    * 混合模式
    */
   blendMode: BlendModeType;
+
+  toJSON(): ShadowType;
+
+  toParams(): ShadowParams;
 }
 
 export type ShadowType = Overwrite<OmitFunction<IShadow>, { color: ColorType }>;

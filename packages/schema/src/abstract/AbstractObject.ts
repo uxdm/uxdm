@@ -28,4 +28,4 @@ export type AbstractObjectType = OmitFunction<IAbstractObject>;
 /**
  * 抽象对象参数
  */
-export type AbstractObjectParam = Partial<AbstractObjectType>;
+export type AbstractObjectParams = Partial<AbstractObjectType>;

@@ -87,9 +87,9 @@ export type BorderType = Overwrite<OmitFunction<IBorder>, BasePaintType>;
 
 export type BorderParams = Overwrite<Partial<BorderType>, PaintParams>;
 
-export type BorderOptionsType = Pick<
-  IBorder,
-  'dashPattern' | 'lineJoin' | 'lineCap' | 'align'
+export type BorderOptionsType = Assign<
+  Pick<IBorder, 'dashPattern' | 'lineJoin' | 'lineCap' | 'align'>,
+  { enabled: boolean }
 >;
 
 export type BorderOptionsParams = Assign<
