@@ -12,16 +12,53 @@ describe('Color 类', () => {
 
       expect(color.rgba).toBe('rgba(20,30,40,1)');
     });
-    it('支持 rgb + 不透明度', () => {
+    it('支持 rgba', () => {
       const color = new Color('rgb(100,200 ,200) 10%');
       expect(color.rgba).toBe('rgba(100,200,200,0.1)');
       const color2 = new Color('rgb(242, 242, 242) 25%');
       expect(color2.rgba).toBe('rgba(242,242,242,0.25)');
     });
+    it('支持 rgb', () => {
+      const color = new Color('rgb(2,4,91)');
+      expect(color.toJSON()).toEqual({
+        r: 2,
+        g: 4,
+        b: 91,
+        a: 1,
+      });
+      const param = color.toParams();
+      expect(new Color(param).rgba).toEqual('rgba(2,4,91,1)');
+    });
+    it('支持入参为对象', () => {
+      const color = new Color({
+        r: 12,
+        g: 32,
+        b: 35,
+        // @ts-ignore
+        re: 12321,
+      });
+      expect(color.hex).toEqual('#0C2023');
+
+      const color2 = new Color({
+        r: 12,
+        b: 35,
+        a: 0.3,
+        // @ts-ignore
+        xxx: '23',
+      });
+      expect(color2.rgba).toEqual('rgba(12,0,35,0.3)');
+
+      const color3 = new Color({});
+      expect(color3.hex).toBe('#000000');
+    });
   });
   describe('get方法正常', () => {
     const inputColor = 'rgba(50,50,10,0.5)';
     const color = new Color(inputColor);
+    it('rgb', () => {
+      const color = new Color('rgb(2,4,91)');
+      expect(color.rgb).toEqual('rgb(2,4,91)');
+    });
     it('rgba', () => {
       expect(color.rgba).toBe('rgba(50,50,10,0.5)');
     });
@@ -115,8 +152,19 @@ describe('Color 类', () => {
         g: 50,
         b: 10,
         a: 1,
-        hex: '#32320A',
       });
     });
+  });
+
+  it('toParams', () => {
+    const color = new Color('rgba(24,78,34,0.2)');
+    expect(color.toParams()).toEqual({
+      a: 0.2,
+      b: 34,
+      g: 78,
+      r: 24,
+    });
+    const params = color.toParams();
+    expect(new Color(params).rgba).toEqual('rgba(24,78,34,0.2)');
   });
 });
