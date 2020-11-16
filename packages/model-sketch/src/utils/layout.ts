@@ -20,7 +20,6 @@ export const noWidth = [
  * 计算 Resizing 变量
  */
 export const calcResizingConstraint = (...args: ResizingConstraint[]) => {
-  console.log(args);
   const validValues = Object.values(ResizingConstraint);
 
   if (!args.every((arg) => validValues.includes(arg))) {

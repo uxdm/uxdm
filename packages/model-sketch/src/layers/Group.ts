@@ -1,9 +1,16 @@
+import { Assign } from 'utility-types';
 import { ContainerLayout } from 'uxdm';
 import { IAbstractGroupNode, NodeType } from '@uxdm/schema';
-import { AbstractSketchObject } from '../abstract/AbstractSketchObject';
+import { AbstractSketchObject } from '../abstract';
 import { getGroupLayout } from '../utils';
 import { SketchFormat, GroupLayoutType, SketchGroupLayout } from '../types';
-import { AnyLayer, SketchGroupParams } from '../layerType';
+import { AnyLayer } from '../types/anyLayer';
+import { SketchLayerParams } from '../types/layerType';
+
+export type SketchGroupParams = Assign<
+  SketchLayerParams,
+  { children?: AnyLayer[] }
+>;
 
 export class Group extends AbstractSketchObject implements IAbstractGroupNode {
   constructor(params?: SketchGroupParams) {

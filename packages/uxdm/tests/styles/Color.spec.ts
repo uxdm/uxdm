@@ -56,8 +56,7 @@ describe('Color 类', () => {
     const inputColor = 'rgba(50,50,10,0.5)';
     const color = new Color(inputColor);
     it('rgb', () => {
-      const color = new Color('rgb(2,4,91)');
-      expect(color.rgb).toEqual('rgb(2,4,91)');
+      expect(color.rgb).toEqual('rgb(50,50,10)');
     });
     it('rgba', () => {
       expect(color.rgba).toBe('rgba(50,50,10,0.5)');

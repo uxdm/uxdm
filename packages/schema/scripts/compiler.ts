@@ -7,6 +7,7 @@ import {
   buildGenerator,
 } from 'typescript-json-schema';
 
+// @ts-ignore
 import { compilerOptions } from '../tsconfig.build.json';
 
 // optionally pass argument to schema generator

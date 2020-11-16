@@ -1,7 +1,17 @@
-import { IRectangleNode, NodeType } from '@uxdm/schema';
+import { Assign } from 'utility-types';
+import {
+  AbstractNodeParams,
+  IRectangleNode,
+  NodeType,
+  RectangleNodeParams,
+} from '@uxdm/schema';
 import { SketchFormat } from '../types';
 import { AbstractSketchObject } from '../abstract';
-import { SketchRectangleParams } from '../layerType';
+
+export type SketchRectangleParams = Assign<
+  AbstractNodeParams,
+  RectangleNodeParams
+>;
 
 /**
  * 矩形类型

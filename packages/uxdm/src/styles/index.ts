@@ -6,3 +6,4 @@ export * from './Shadow';
 export * from './Fill';
 export * from './Border';
 export * from './Style';
+export * from './TextStyle';

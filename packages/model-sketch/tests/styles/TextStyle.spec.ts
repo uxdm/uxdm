@@ -5,7 +5,7 @@ describe('TextStyle 类', () => {
     it('正常解析', () => {
       const textStyle = new TextStyle();
 
-      expect(textStyle.toSketchJSON()).toMatchSnapshot();
+      expect(textStyle.toSketchJSON()).toEqual({});
     });
   });
 });

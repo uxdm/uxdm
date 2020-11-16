@@ -1,14 +1,3 @@
-export const SYSTEM_FONTS = [
-  /* * Apple * */
-  '-apple-system',
-  'system-ui',
-  'BlinkMacSystemFont',
-  /* * Microsoft * */
-  'Segoe UI',
-  /* * Android * */
-  'Roboto',
-];
-
 type FontWeightType =
   | 'Regular'
   | 'Bold'

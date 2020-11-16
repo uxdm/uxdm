@@ -1,4 +1,5 @@
 import { AbstractNode } from 'uxdm/abstract';
+import { AbstractNodeParams } from '@uxdm/schema';
 import {
   calcResizingConstraint,
   containsAllItems,
@@ -11,9 +12,10 @@ import { SketchBounding } from '../objects';
 import Style from '../styles/Style';
 import { ResizingConstraint } from '../constants';
 import { CommonSketchProperty, SketchFormat } from '../types';
-import { SketchLayerParams } from '../layerType';
 
 const DEFAULT_USER_INFO_SCOPE = 'UXDM_SKETCH';
+
+export type SketchLayerParams = AbstractNodeParams;
 
 /**
  * 抽象的 Sketch 对象
