@@ -13,6 +13,7 @@ import { Layout } from '../objects';
  * @description
  *
  * 可以将它们看作是layers面板中的一个文件夹。
+ * @category 节点
  */
 export class RectangleNode extends AbstractNode implements IRectangleNode {
   constructor(params?: RectangleNodeParams) {

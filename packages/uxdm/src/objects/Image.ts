@@ -10,6 +10,7 @@ import {
 
 /**
  * 图片资产
+ * @category 对象
  * */
 export class Image extends AbstractObject implements IImage {
   constructor(url: string) {

@@ -10,6 +10,7 @@ import {
 
 /**
  * 抽象分组节点的接口
+ * @category 抽象对象
  */
 export interface IAbstractGroupNode extends IAbstractNode<IAbstractGroupNode> {
   /**

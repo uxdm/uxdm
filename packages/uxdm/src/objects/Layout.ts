@@ -11,6 +11,7 @@ import { AbstractObject } from '../abstract/AbstractObject';
 
 /**
  * 布局对象
+ * @category 对象
  */
 export class Layout extends AbstractObject implements ILayout {
   constructor(params?: LayoutParams) {

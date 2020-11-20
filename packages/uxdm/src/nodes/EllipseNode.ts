@@ -3,8 +3,8 @@ import { AbstractNode } from '../abstract';
 
 /**
  * 椭圆图形
+ * @category 节点
  */
-
 export class EllipseNode extends AbstractNode implements IEllipseNode {
   constructor(params?: EllipseNodeParams) {
     super(params);

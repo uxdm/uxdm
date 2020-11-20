@@ -11,7 +11,8 @@ import { getFirstFont } from '../utils';
 
 /**
  * 文本样式
- */
+ * @category 样式
+ * */
 export class TextStyle extends AbstractObject implements ITextStyle {
   constructor(params?: TextStyleParams) {
     super(params);

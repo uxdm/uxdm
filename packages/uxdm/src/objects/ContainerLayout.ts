@@ -13,6 +13,10 @@ import {
 } from '@uxdm/schema';
 import { Layout } from './Layout';
 
+/**
+ * 容器布局
+ * @category 对象
+ */
 export class ContainerLayout extends Layout implements IContainerLayout {
   constructor(params?: ContainerLayoutParams) {
     super(params);

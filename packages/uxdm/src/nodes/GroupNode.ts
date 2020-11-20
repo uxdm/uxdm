@@ -15,6 +15,7 @@ import { AbstractGroupNode } from '../abstract';
  * 可以将它们看作是layers面板中的一个文件夹。
  *
  * 它与 Frame Node 不同，后者会定义布局，在HTML中更接近于<div>。
+ * @category 节点
  */
 export class GroupNode extends AbstractGroupNode implements IGroupNode {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor

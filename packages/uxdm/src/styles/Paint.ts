@@ -9,10 +9,11 @@ import {
 import { AbstractObject } from '../abstract';
 import { Color } from './Color';
 import { Gradient } from './Gradient';
-import { Image } from './Image';
+import { Image } from '../objects';
 
 /**
- * 渐变对象
+ * 油漆
+ * @category 样式
  * */
 export class Paint extends AbstractObject implements IPaint {
   constructor(params?: FillParams) {
@@ -61,8 +62,14 @@ export class Paint extends AbstractObject implements IPaint {
    */
   color: Color = new Color();
 
+  /**
+   * 渐变
+   */
   gradient: Gradient = new Gradient();
 
+  /**
+   * 图片
+   */
   image?: Image;
 
   /**

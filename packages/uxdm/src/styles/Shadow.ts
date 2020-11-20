@@ -8,6 +8,10 @@ import {
 import { AbstractObject } from '../abstract';
 import { Color } from './Color';
 
+/**
+ * 阴影
+ * @category 样式
+ */
 export class Shadow extends AbstractObject implements IShadow {
   constructor(params?: ShadowParams) {
     super(params);

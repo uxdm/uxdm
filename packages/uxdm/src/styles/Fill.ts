@@ -3,6 +3,8 @@ import { Paint } from './Paint';
 
 /**
  * 渐变对象
+ *
+ * @category 样式
  * */
 export class Fill extends Paint implements IFill {
   constructor(params?: FillParams) {

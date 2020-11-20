@@ -2,6 +2,7 @@ import { OmitFunction } from '../utils';
 
 /**
  * 抽象矩形
+ * @category 抽象对象
  */
 export interface IAbstractObject {
   /**

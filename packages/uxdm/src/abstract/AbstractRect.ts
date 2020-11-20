@@ -5,6 +5,7 @@ import { AbstractRectType, RectParam } from '@uxdm/schema';
  * @description 业务实体中的抽象矩形
  * 可以用在定界框 矩形图形 布局 等实体中
  * Defines an abstract rectangle of object
+ * @category 抽象对象
  */
 export abstract class AbstractRect implements AbstractRectType {
   protected constructor(params: RectParam) {

@@ -3,6 +3,8 @@ import { ColorParams, ColorType, IColor } from '@uxdm/schema';
 
 /**
  * 颜色
+ *
+ * @category 样式
  */
 export class Color implements IColor {
   constructor(color?: ColorParams) {

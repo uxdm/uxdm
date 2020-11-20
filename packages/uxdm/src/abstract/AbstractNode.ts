@@ -12,6 +12,7 @@ import { Bounding, Layout } from '../objects';
  * @description
  * 在 UXDM 中，节点是表示图层的基础类型。
  * UXDM 会包含有许多不同类型的节点，每种都有自己的属性集。
+ * @category 抽象对象
  */
 export abstract class AbstractNode
   extends AbstractObject

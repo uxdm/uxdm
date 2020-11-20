@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export const SYSTEM_FONTS = [
   /* * Apple * */
   '-apple-system',
@@ -12,6 +15,7 @@ export const SYSTEM_FONTS = [
 /**
  *  输入: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif
  *  输出: PingFang SC
+ *  @internal
  */
 export function getFirstFont(fonts: string, skipSystemFonts?: boolean) {
   let regularFont: string | null = null;

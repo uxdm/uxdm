@@ -8,9 +8,14 @@ import {
 } from '@uxdm/schema';
 import { Color } from './Color';
 
+/**
+ * @internal
+ */
 const defaultColorStopParams = ['black', 'white'];
 /**
  * 渐变对象
+ *
+ * @category 样式
  * */
 export class Gradient implements IGradient {
   constructor(params?: GradientParams) {

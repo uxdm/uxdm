@@ -10,7 +10,9 @@ import {
 import { Paint } from './Paint';
 
 /**
- * 描边对象
+ * 描边
+ *
+ * @category 样式
  * */
 export class Border extends Paint implements IBorder {
   constructor(params?: BorderParams) {

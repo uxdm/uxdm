@@ -1,5 +1,5 @@
 import { BoundingParams, BoundingType, IBounding } from '@uxdm/schema';
-import { AbstractRect } from '../abstract/AbstractRect';
+import { AbstractRect } from '../abstract';
 
 /**
  * 定界框
@@ -7,6 +7,7 @@ import { AbstractRect } from '../abstract/AbstractRect';
  * 定界框是一种围绕在图像、形状或文本周围的矩形边框.
  *
  * 用于描述对象在空间坐标中的实际位置、变换、旋转和缩放的情况
+ * @category 对象
  */
 export class Bounding extends AbstractRect implements IBounding {
   constructor(params?: BoundingParams) {

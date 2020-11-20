@@ -20,6 +20,7 @@ import { Border } from './Border';
 
 /**
  * 样式
+ * @category 样式
  */
 export class Style extends AbstractObject implements IStyle {
   constructor(params?: StyleParams) {
