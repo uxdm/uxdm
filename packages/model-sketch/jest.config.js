@@ -1,15 +1,17 @@
-const base = require('../../jest.config.base.js');
+const base = require('../../jest.config.base');
+
+const packageName = 'model-sketch';
+
+const root = '<rootDir>/packages/model-sketch';
 
 module.exports = {
   ...base,
-  name: '@uxdm/model-sketch',
-  displayName: '@uxdm/model-sketch',
+  rootDir: '../..',
+  roots: [root],
+  name: packageName,
+  displayName: packageName,
   moduleNameMapper: {
-    '@uxdm/model-sketch': '<rootDir>/src',
-    uxdm: '<rootDir>/../uxdm/src',
-    'uxdm/(.*)$': '<rootDir>/../uxdm/src/$1',
-    '@uxdm/model-sketch/(.*)$': '<rootDir>/src/$1',
-    '@uxdm/schema': '<rootDir>/../schema/src',
-    '^uuid': '<rootDir>/tests/__mocks__/uuid.ts',
+    ...base.moduleNameMapper,
+    '^uuid$': `${root}/tests/__mocks__/uuid.ts`,
   },
 };

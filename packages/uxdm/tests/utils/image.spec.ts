@@ -2,7 +2,7 @@ import {
   ensureBase64DataURL,
   getBase64ImageString,
   base64ToSvgString,
-} from '../../src/utils';
+} from 'uxdm/utils';
 
 describe('ensureBase64DataURL', () => {
   it('base64 则不变', () => {

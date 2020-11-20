@@ -1,4 +1,4 @@
-import { Shadow } from '../../src/styles/Shadow';
+import { Shadow } from 'uxdm';
 
 describe('Shadow 类', () => {
   it('无参数', () => {

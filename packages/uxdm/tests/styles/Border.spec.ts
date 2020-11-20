@@ -1,4 +1,4 @@
-import { Border } from '../../src/styles';
+import { Border } from 'uxdm';
 import { defaultColorStops } from './defaultValue';
 
 describe('Border 类', () => {

@@ -1,4 +1,4 @@
-import { Gradient } from '../../src/styles';
+import { Gradient } from '@uxdm/model-sketch/styles';
 
 describe('Gradient 类', () => {
   describe('线性渐变', () => {

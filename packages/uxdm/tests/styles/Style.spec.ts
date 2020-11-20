@@ -1,4 +1,4 @@
-import { Style } from '../../src/styles';
+import { Style } from 'uxdm';
 import { defaultColorStops } from './defaultValue';
 
 describe('Style 类', () => {

@@ -1,4 +1,4 @@
-import { Color } from '../../src/styles';
+import { Color } from 'uxdm';
 
 describe('Color 类', () => {
   describe('正常创建', () => {

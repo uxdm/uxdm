@@ -1,4 +1,4 @@
-import { generateID } from '../../src/utils';
+import { generateID } from 'uxdm/utils';
 
 describe('id', () => {
   it('should id', () => {

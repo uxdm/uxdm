@@ -1,4 +1,4 @@
-import { Border } from '../../src/styles';
+import { Border } from '@uxdm/model-sketch/styles';
 
 describe('Border 类', () => {
   it('toSketchJSON', () => {

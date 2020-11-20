@@ -1,4 +1,4 @@
-import { Style } from '../../src/styles';
+import { Style } from '@uxdm/model-sketch/styles';
 
 describe('Style 类', () => {
   describe('toSketchJSON', () => {

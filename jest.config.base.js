@@ -1,14 +1,22 @@
+const path = require('path');
+
 module.exports = {
   preset: 'ts-jest',
-  roots: ['<rootDir>/src', '<rootDir>/tests'],
   transform: {
-    '^.+\\.jsx?$': 'babel-jest', // Adding this line solved the issue
-    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.(t|j)sx?$': 'ts-jest',
   },
   testRegex: '(/tests/.*.(test|spec)).tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  coveragePathIgnorePatterns: ['(tests/.*.mock).(jsx?|tsx?)$', 'tests'],
   verbose: true,
+  moduleNameMapper: {
+    '^uxdm/(.*)$': '<rootDir>/packages/uxdm/src/$1',
+    '^uxdm$': '<rootDir>/packages/uxdm/src',
+    '^@uxdm/schema/(.*)$': '<rootDir>/packages/schema/src/$1',
+    '^@uxdm/schema': '<rootDir>/packages/schema/src',
+    '^@uxdm/model-sketch/(.*)$': '<rootDir>/packages/model-sketch/src/$1',
+    '^@uxdm/model-sketch': '<rootDir>/packages/model-sketch/src',
+  },
+  rootDir: path.resolve(__dirname, '.'),
   globals: {
     'ts-jest': {
       diagnostics: false,

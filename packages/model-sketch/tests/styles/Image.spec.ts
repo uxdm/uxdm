@@ -1,4 +1,4 @@
-import { Image } from '../../src/styles';
+import { Image } from '@uxdm/model-sketch/styles';
 
 describe('Image 类', () => {
   it('创建时地址错误 直接抛出错误', () => {

@@ -1,4 +1,4 @@
-import { matrixToRotation } from '../../src/utils/matrix';
+import { matrixToRotation } from '@uxdm/model-sketch/utils';
 
 describe('matrixToRotation', () => {
   it('矩阵转角度', () => {

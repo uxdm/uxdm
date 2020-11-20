@@ -1,4 +1,4 @@
-import { Color } from '../../src/styles';
+import { Color } from '@uxdm/model-sketch/styles';
 
 describe('Color 类', () => {
   describe('toSketchJSON', () => {

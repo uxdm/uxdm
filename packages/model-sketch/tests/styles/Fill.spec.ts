@@ -1,4 +1,4 @@
-import { Fill } from '../../src/styles';
+import { Fill } from '@uxdm/model-sketch/styles';
 
 describe('Fill 类', () => {
   it('toSketchJSON', () => {

@@ -1,6 +1,5 @@
-import { ResizingConstraint } from '@uxdm/model-sketch';
-import { Rectangle } from '../../src/layers';
-import { calcResizingConstraint } from '../../src/utils';
+import { ResizingConstraint, Rectangle } from '@uxdm/model-sketch';
+import { calcResizingConstraint } from '@uxdm/model-sketch/utils';
 
 describe('Rectangle 类', () => {
   describe('toSketchJSON 转换正常', () => {

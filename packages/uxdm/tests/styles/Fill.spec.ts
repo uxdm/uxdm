@@ -1,4 +1,4 @@
-import { Fill } from '../../src/styles';
+import { Fill } from 'uxdm';
 import { defaultColorStops } from './defaultValue';
 
 describe('Fill 类', () => {

@@ -1,10 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "target": "ES5",
-    "esModuleInterop": true,
-    "declaration": true
-  },
-  "include": ["src", "types"],
+  "include": ["src"],
   "exclude": ["tests"]
 }

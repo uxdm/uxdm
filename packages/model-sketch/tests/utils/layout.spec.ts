@@ -1,5 +1,8 @@
-import { calcResizingConstraint, getGroupLayout } from '../../src/utils';
-import { ResizingConstraint } from '../../src/constants';
+import { ResizingConstraint } from '@uxdm/model-sketch';
+import {
+  calcResizingConstraint,
+  getGroupLayout,
+} from '@uxdm/model-sketch/utils';
 
 describe('calcResizingConstraint', () => {
   it('约束:左 右 顶 高度', () => {

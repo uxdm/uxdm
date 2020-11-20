@@ -1,4 +1,4 @@
-import { Paint } from '../../src/styles';
+import { Paint } from 'uxdm';
 import { defaultColorStops } from './defaultValue';
 
 describe('Paint 类', () => {

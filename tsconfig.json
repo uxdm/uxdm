@@ -2,10 +2,9 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true,
-    "baseUrl": ".",
-    "module": "CommonJS",
     "noEmitOnError": false,
     "declaration": true,
+    "baseUrl": ".",
     "paths": {
       "@uxdm/schema": ["./packages/schema/src"],
       "@uxdm/model-sketch": ["./packages/model-sketch/src"],

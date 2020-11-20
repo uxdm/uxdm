@@ -1,6 +1,5 @@
-import SketchFormat from '@sketch-hq/sketch-file-format-ts';
-
-import { Shadow } from '../../src/styles';
+import { SketchFormat } from '@uxdm/model-sketch';
+import { Shadow } from '@uxdm/model-sketch/styles';
 
 describe('Shadow 类', () => {
   it('toSketchJSON', () => {

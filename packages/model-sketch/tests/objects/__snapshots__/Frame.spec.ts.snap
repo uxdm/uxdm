@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SketchBounding 类 正常生成 SketchBounding  不传参 1`] = `
+exports[`Frame 类 正常生成 Frame  不传参 1`] = `
 Object {
   "height": 0,
   "rotation": 0,
@@ -10,7 +10,7 @@ Object {
 }
 `;
 
-exports[`SketchBounding 类 正常生成 SketchBounding  传参 1`] = `
+exports[`Frame 类 正常生成 Frame  传参 1`] = `
 Object {
   "height": 100,
   "rotation": 0,
