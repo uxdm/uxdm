@@ -8,7 +8,7 @@ import { matrixToRotation } from '../utils/matrix';
 /**
  * Sketch 的定界框
  */
-export class SketchBounding extends Bounding {
+export class Frame extends Bounding {
   /**
    * 翻转 X 轴
    */

@@ -1,4 +1,4 @@
-export { SketchBounding } from './objects';
+export { Frame } from './objects';
 export { Group, Rectangle } from './layers';
 
 export * from './types';

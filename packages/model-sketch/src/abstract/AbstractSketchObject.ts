@@ -8,7 +8,7 @@ import {
   noWidth,
   uuid,
 } from '../utils';
-import { SketchBounding } from '../objects';
+import { Frame } from '../objects';
 import Style from '../styles/Style';
 import { ResizingConstraint } from '../constants';
 import { CommonSketchProperty, SketchFormat } from '../types';
@@ -28,13 +28,13 @@ export abstract class AbstractSketchObject extends AbstractNode {
 
     this.style = new Style();
 
-    this.bounding = new SketchBounding(params);
+    this.bounding = new Frame(params);
   }
 
   /**
    * sketch 的定界框
    */
-  bounding: SketchBounding = new SketchBounding();
+  bounding: Frame = new Frame();
 
   /**
    * 内部的名字
