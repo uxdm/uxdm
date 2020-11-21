@@ -3,9 +3,12 @@ import {
   IAbstractNode,
   AbstractNodeType,
   LayoutConstraint,
+  StyleParams,
+  BlendModeType,
 } from '@uxdm/schema';
 import { AbstractObject } from './AbstractObject';
 import { Bounding, Layout } from '../objects';
+import { Style } from '../styles';
 
 /**
  * 抽象节点
@@ -17,15 +20,28 @@ import { Bounding, Layout } from '../objects';
 export abstract class AbstractNode
   extends AbstractObject
   implements IAbstractNode<AbstractNode> {
+  /**
+   * 构造函数
+   */
   protected constructor(params?: AbstractNodeParams) {
     super(params);
     if (params) {
-      const { constraints, layout, width, height, x, y, rotation } = params;
+      const {
+        constraints,
+        layout,
+        width,
+        height,
+        x,
+        y,
+        rotation,
+        style,
+      } = params;
 
       this.visible = params.visible ?? true;
       this.name = params.name || 'node';
       this.locked = params.locked || false;
 
+      // ===== 布局参数 ===== //
       if (layout) {
         this.layout = new Layout(params.layout);
       }
@@ -37,11 +53,18 @@ export abstract class AbstractNode
         });
       }
 
+      // ===== 定界框参数 ===== //
       this.x = x || 0;
       this.y = y || 0;
       this.width = width || 0;
       this.height = height || 0;
       this.rotation = rotation || 0;
+
+      // ===== 样式参数 ===== //
+      if (style) {
+        this.style =
+          style instanceof Style ? style : new Style(style as StyleParams);
+      }
     }
   }
 
@@ -58,9 +81,20 @@ export abstract class AbstractNode
 
   visible: IAbstractNode['visible'] = true;
 
+  /**
+   * 布局
+   */
   layout: Layout = new Layout();
 
+  /**
+   * 定界框
+   */
   bounding: Bounding = new Bounding();
+
+  /**
+   * 样式
+   */
+  style: Style = new Style();
 
   /**
    * 布局约束
@@ -85,6 +119,9 @@ export abstract class AbstractNode
     }
   }
 
+  /**
+   * X 坐标值
+   */
   get x() {
     return this.bounding.x;
   }
@@ -174,6 +211,36 @@ export abstract class AbstractNode
   }
 
   /**
+   * 获取节点的不透明度
+   */
+  get opacity() {
+    return this.style.opacity;
+  }
+
+  /**
+   * 设置节点的不透明度
+   * @param opacity
+   */
+  set opacity(opacity) {
+    this.style.opacity = opacity;
+  }
+
+  /**
+   * 获取样式的混合模式
+   */
+  get blendMode() {
+    return this.style.blendMode;
+  }
+
+  /**
+   * 设置混合模式
+   * @param blendMode
+   */
+  set blendMode(blendMode: BlendModeType) {
+    this.style.blendMode = blendMode;
+  }
+
+  /**
    * 将属性输出为 json
    */
   toJSON(): AbstractNodeType {
@@ -186,6 +253,7 @@ export abstract class AbstractNode
       visible: this.visible,
       layout: this.layout.toJSON(),
       bounding: this.bounding.toJSON(),
+      style: this.style.toJSON(),
     };
   }
 

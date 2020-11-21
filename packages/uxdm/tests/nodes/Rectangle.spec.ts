@@ -51,6 +51,22 @@ describe('Rectangle 类', () => {
       type: 'Rectangle',
       visible: true,
       bounding: { rotation: 0, height: 0, width: 0, y: 0, x: 0 },
+      style: {
+        blendMode: 'NORMAL',
+        borderOptions: {
+          align: 'INSIDE',
+          dashPattern: [],
+          enabled: true,
+          lineCap: 'NONE',
+          lineJoin: 'MITER',
+        },
+        borders: [],
+        fills: [],
+        id: 'id',
+        innerShadows: [],
+        opacity: 1,
+        shadows: [],
+      },
     };
     const rectangle = new RectangleNode();
     expect(JSON.parse(JSON.stringify(rectangle.toJSON()))).toStrictEqual(json);

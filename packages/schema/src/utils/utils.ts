@@ -11,6 +11,7 @@ import {
   IAbstractGroupNode,
   IAbstractObject,
 } from '../abstract';
+import { StyleParams, StyleType } from '@uxdm/schema';
 
 /**
  *
@@ -32,6 +33,7 @@ export type NodeTypeUtils<T extends IAbstractObject> = Overwrite<
   {
     layout: T extends IAbstractGroupNode ? ContainerLayoutType : LayoutType;
     bounding: BoundingType;
+    style: StyleType;
   }
 >;
 
@@ -41,10 +43,16 @@ export type NodeTypeUtils<T extends IAbstractObject> = Overwrite<
  * 然后将 bounding 的参数能拉平到第一层级
  */
 export type NodeParamsUtils<T extends AbstractNodeType> = DeepPartial<
-  Assign<
-    // 移除 bounding 参数变成平级
-    Assign<Omit<T, 'type' | 'bounding'>, BoundingParams>,
-    // 将 constraints 参数从 layout 中取出来
-    Pick<LayoutParams, 'constraints'>
+  // 覆盖掉样式参数
+  Overwrite<
+    Assign<
+      // 移除 bounding 参数
+      // 将 width height 变成同一级
+      Assign<Omit<T, 'type' | 'bounding'>, BoundingParams>,
+      // 将 constraints 参数从 layout 中取出来
+      // 加到变量中
+      Pick<LayoutParams, 'constraints'>
+    >,
+    { style: StyleParams }
   >
 >;

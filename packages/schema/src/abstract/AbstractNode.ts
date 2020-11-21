@@ -2,6 +2,7 @@ import { NodeParamsUtils, NodeTypeUtils } from '../utils';
 import { LayoutConstraint, NodeType } from '../constants';
 import { IAbstractObject } from './AbstractObject';
 import { IBounding, ILayout } from '../objects';
+import { IStyle } from '../styles';
 
 /**
  * 抽象节点的属性
@@ -18,6 +19,11 @@ export interface IAbstractNode<T = unknown> extends IAbstractObject {
    * 节点的名称
    */
   name: string;
+
+  /**
+   * 样式属性
+   */
+  style: IStyle;
 
   /** **** 场景相关的能力 ***** * */
 
