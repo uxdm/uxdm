@@ -11,7 +11,7 @@ import {
   IAbstractGroupNode,
   IAbstractObject,
 } from '../abstract';
-import { StyleParams, StyleType } from '@uxdm/schema';
+import { StyleParams, StyleType } from '../styles';
 
 /**
  *
