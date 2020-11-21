@@ -37,10 +37,12 @@
     "url": "https://github.com/uxdm/uxdm/issues"
   },
   "dependencies": {
-    "@uxdm/schema": "^0.0.1-beta.3",
     "axios": "^0.21.0",
     "color": "^3.1.3",
     "nanoid": "^3.1.16"
+  },
+  "peerDependencies": {
+    "@uxdm/schema": "^0.0.1-beta.3"
   },
   "gitHead": "2064fb6583ffcca1c415e9d9830ffaadec09282b",
   "devDependencies": {

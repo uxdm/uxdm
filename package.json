@@ -17,6 +17,7 @@
     "build": "father-build",
     "---------": "",
     "release": "yarn build && lerna publish",
+    "release:only": "lerna publish",
     "---------     ": "",
     "api:dev": "concurrently \"yarn api:watch\" \"yarn api:server\"",
     "api:build": "typedoc",
