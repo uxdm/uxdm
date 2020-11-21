@@ -1,9 +1,14 @@
 {
-  "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "module": "ESNext",
     "noEmit": true,
     "noEmitOnError": false,
-    "declaration": true,
+    "lib": ["esnext", "dom"],
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "target": "ESNext",
     "baseUrl": ".",
     "paths": {
       "@uxdm/schema": ["./packages/schema/src"],

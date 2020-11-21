@@ -1,3 +1,3 @@
 tasks:
-  - init: npm install
+  - init: yarn
     command: npm start

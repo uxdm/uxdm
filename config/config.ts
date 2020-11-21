@@ -6,11 +6,7 @@ const isProdSite =
 
 export default defineConfig({
   title: 'uxdm',
-  // logo: 'https://gw.alipayobjects.com/zos/antfincdn/8AsXJa8sgo/Logo.svg',
   mode: 'site',
-  // 部署在非根目录时, base 和 publicPath 都需要配置
-  // base: isProdSite ? '/uxdm/' : '/',
-  // publicPath: isProdSite ? '/uxdm/' : '/',
   extraBabelPlugins: [
     [
       'import',
@@ -24,6 +20,10 @@ export default defineConfig({
   navs: [
     null,
     {
+      title: 'API',
+      path: isProdSite ? '/api' : 'http://localhost:5000',
+    },
+    {
       title: 'GitHub',
       path: 'https://github.com/uxdm/uxdm',
     },
@@ -31,6 +31,5 @@ export default defineConfig({
   dynamicImport: {
     loading: '@ant-design/pro-skeleton',
   },
-
   hash: true,
 });
