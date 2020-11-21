@@ -1,4 +1,4 @@
-import { BlendModeType } from '@uxdm/schema';
+import { BlendModeType } from 'uxdm';
 import { SketchFormat } from '../types';
 
 export const getSketchBlendMode = (blendMode: BlendModeType) => {

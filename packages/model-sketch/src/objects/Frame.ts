@@ -1,5 +1,5 @@
-import { Matrix } from '@uxdm/schema';
-import { Bounding } from 'uxdm';
+import { Matrix, Bounding } from 'uxdm';
+
 import { applyToPoint } from 'transformation-matrix';
 
 import { SketchFormat } from '../types';

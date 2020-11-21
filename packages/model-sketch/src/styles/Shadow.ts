@@ -1,5 +1,5 @@
-import { ShadowParams } from '@uxdm/schema';
-import { Shadow as BaseShadow } from 'uxdm';
+import { ShadowParams, Shadow as BaseShadow } from 'uxdm';
+
 import { SketchFormat } from '../types';
 import Color from './Color';
 import { getContextSettings } from '../utils';

@@ -4,7 +4,7 @@ import {
   IRectangleNode,
   NodeType,
   RectangleNodeParams,
-} from '@uxdm/schema';
+} from 'uxdm';
 import { SketchFormat } from '../types';
 import { AbstractSketchObject } from '../abstract';
 

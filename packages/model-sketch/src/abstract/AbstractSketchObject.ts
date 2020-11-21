@@ -1,5 +1,4 @@
-import { AbstractNode } from 'uxdm/abstract';
-import { AbstractNodeParams } from '@uxdm/schema';
+import { AbstractNode, AbstractNodeParams } from 'uxdm';
 import {
   calcResizingConstraint,
   containsAllItems,

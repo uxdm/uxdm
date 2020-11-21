@@ -1,4 +1,4 @@
-import { Paint_Type } from '@uxdm/schema';
+import { Paint_Type } from 'uxdm';
 import { SketchFormat } from '../types';
 
 export const getFillType = (type: Paint_Type) => {

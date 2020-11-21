@@ -1,5 +1,5 @@
-import { StyleParams, WindingRuleType } from '@uxdm/schema';
-import { Style as BaseStyle } from 'uxdm';
+import { StyleParams, WindingRuleType, Style as BaseStyle } from 'uxdm';
+
 import Fill from './Fill';
 import Shadow from './Shadow';
 import Border from './Border';

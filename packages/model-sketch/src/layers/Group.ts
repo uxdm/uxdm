@@ -1,6 +1,5 @@
 import { Assign } from 'utility-types';
-import { ContainerLayout } from 'uxdm';
-import { IAbstractGroupNode, NodeType } from '@uxdm/schema';
+import { ContainerLayout, IAbstractGroupNode, NodeType } from 'uxdm';
 import { AbstractSketchObject } from '../abstract';
 import { getGroupLayout } from '../utils';
 import { SketchFormat, GroupLayoutType, SketchGroupLayout } from '../types';

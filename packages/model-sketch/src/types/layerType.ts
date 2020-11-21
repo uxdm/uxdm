@@ -1,4 +1,4 @@
-import { AbstractNodeParams } from '@uxdm/schema';
+import { AbstractNodeParams } from 'uxdm';
 
 /**
  * 抽象节点的入参

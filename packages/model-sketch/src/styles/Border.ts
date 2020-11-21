@@ -1,5 +1,9 @@
-import { BorderParams, ColorParams, GradientParams } from '@uxdm/schema';
-import { Border as BaseBorder } from 'uxdm';
+import {
+  Border as BaseBorder,
+  BorderParams,
+  ColorParams,
+  GradientParams,
+} from 'uxdm';
 import Color from './Color';
 import Gradient from './Gradient';
 import { SketchFormat } from '../types';

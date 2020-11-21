@@ -1,5 +1,9 @@
-import { Fill as BaseFill } from 'uxdm';
-import { ColorParams, FillParams, GradientParams } from '@uxdm/schema';
+import {
+  Fill as BaseFill,
+  ColorParams,
+  FillParams,
+  GradientParams,
+} from 'uxdm';
 import Color from './Color';
 import Gradient from './Gradient';
 import Image from './Image';

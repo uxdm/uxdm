@@ -40,7 +40,6 @@
     "uuid": "^8.3.1"
   },
   "peerDependencies": {
-    "@uxdm/schema": "latest",
     "uxdm": "latest"
   }
 }
