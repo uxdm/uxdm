@@ -16,7 +16,7 @@
     "start": "concurrently \"yarn api:dev\" \"yarn site:dev\"",
     "build": "father-build",
     "---------": "",
-    "publish": "lerna publish",
+    "release": "lerna publish",
     "---------     ": "",
     "api:dev": "concurrently \"yarn api:watch\" \"yarn api:server\"",
     "api:build": "typedoc",
