@@ -1,8 +1,7 @@
-import { Assign, DeepPartial, Overwrite } from 'utility-types';
+import { Overwrite } from 'utility-types';
 import { IAbstractNode } from './AbstractNode';
-import { OmitFunction } from '../utils';
+import { GroupParamsUtils, OmitFunction } from '../utils';
 import {
-  BoundingParams,
   BoundingType,
   ContainerLayoutType,
   IContainerLayout,
@@ -39,6 +38,4 @@ export type AbstractGroupNodeType = Overwrite<
 /**
  * 抽象分组节点的入参属性
  */
-export type AbstractGroupNodeParams = DeepPartial<
-  Assign<Omit<AbstractGroupNodeType, 'type' | 'bounding'>, BoundingParams>
->;
+export type AbstractGroupNodeParams = GroupParamsUtils<AbstractGroupNodeType>;

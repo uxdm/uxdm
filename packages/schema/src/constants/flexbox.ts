@@ -38,6 +38,7 @@ export enum FlexboxArrangeDirection {
    */
   VERTICAL_REVERSE = 'VERTICAL_REVERSE',
 }
+export type FlexboxArrangeDirectionType = keyof typeof FlexboxArrangeDirection;
 
 /**
  * 子级对象在容器中的排列方式
@@ -98,6 +99,7 @@ export enum FlexboxArrange {
    */
   EVEN = 'EVEN',
 }
+export type FlexboxArrangeType = keyof typeof FlexboxArrange;
 
 /**
  * 子级对象是否换行的参数
@@ -136,6 +138,7 @@ export enum FlexboxWrap {
    */
   WRAP_REVERSE = `WRAP_REVERSE`,
 }
+export type FlexboxWrapType = keyof typeof FlexboxWrap;
 
 /**
  * 子级对象在容器中垂直主轴的对齐方式
@@ -206,6 +209,7 @@ export enum ContainerFlexboxAlign {
    */
   EVEN = 'EVEN',
 }
+export type ContainerFlexboxAlignType = keyof typeof ContainerFlexboxAlign;
 
 /**
  * 子级对象在容器中副轴(垂直主轴)的对齐方式
@@ -268,3 +272,4 @@ export enum SelfFlexboxAlign {
    */
   AUTO = 'AUTO',
 }
+export type SelfFlexboxAlignType = keyof typeof SelfFlexboxAlign;

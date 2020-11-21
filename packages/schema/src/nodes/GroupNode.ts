@@ -1,6 +1,6 @@
-import { Assign, DeepPartial } from 'utility-types';
+import { Assign } from 'utility-types';
 import { AbstractGroupNodeType, IAbstractGroupNode } from '../abstract';
-import { OmitFunction } from '../utils';
+import { GroupParamsUtils, OmitFunction } from '../utils';
 
 /**
  * 抽象分组节点的接口
@@ -12,4 +12,4 @@ export type GroupNodeType = Assign<
   AbstractGroupNodeType
 >;
 
-export type GroupNodeParams = DeepPartial<GroupNodeType>;
+export type GroupNodeParams = GroupParamsUtils<GroupNodeType>;

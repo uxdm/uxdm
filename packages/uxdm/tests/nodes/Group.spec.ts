@@ -85,4 +85,12 @@ describe('GroupNode 类', () => {
   //     expect(json.hasClippingMask).toBeTruthy();
   //   });
   // });
+
+  describe('参数设计', () => {
+    it('可以传入 width 和 height 作为参数', () => {
+      const group = new GroupNode({ width: 100, height: 50 });
+      expect(group.width).toBe(100);
+      expect(group.height).toBe(50);
+    });
+  });
 });

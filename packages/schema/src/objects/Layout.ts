@@ -1,20 +1,22 @@
 import { DeepPartial } from 'utility-types';
 import {
   // type
-  ContainerFlexboxAlign,
   PaddingValue,
-  SelfFlexboxAlign,
-  // Enum
-  FlexboxArrange,
-  FlexboxArrangeDirection,
-  SelfLayoutMode,
-  FlexboxWrap,
-  LayoutConstraint,
+  SelfLayoutModeType,
+  SelfFlexboxAlignType,
   LayoutModeType,
+  LayoutConstraint,
+  ContainerFlexboxAlignType,
+  FlexboxArrangeType,
+  FlexboxArrangeDirectionType,
+  FlexboxWrapType,
 } from '../constants';
-import { IAbstractObject } from '../abstract/AbstractObject';
+import { IAbstractObject } from '../abstract';
 import { OmitFunction } from '../utils';
-
+/**
+ * 布局对象的声明接口
+ * @category 布局
+ */
 export interface ILayout extends IAbstractObject {
   /**
    * 约束参数
@@ -27,13 +29,13 @@ export interface ILayout extends IAbstractObject {
    *
    * @default {SelfLayoutMode.Auto} 默认是 auto
    */
-  selfLayoutMode?: SelfLayoutMode;
+  selfLayoutMode?: SelfLayoutModeType;
   /**
    * 元素本身采用的 flexbox align 属性
    * @description 如果自己是 flexbox 的子级 这个配置项会生效
    *
    */
-  selfFlexboxAlign?: SelfFlexboxAlign;
+  selfFlexboxAlign?: SelfFlexboxAlignType;
   /**
    * 元素在容器内部的排序
    *
@@ -66,8 +68,14 @@ export interface ILayout extends IAbstractObject {
   toJSON(): LayoutType;
 }
 
-export type LayoutType = OmitFunction<ILayout>;
-
+/**
+ * 布局对象 JSON 结构
+ * @category 布局
+ */ export type LayoutType = OmitFunction<ILayout>;
+/**
+ * 布局对象入参
+ * @category 布局
+ */
 export type LayoutParams = DeepPartial<LayoutType>;
 
 /**
@@ -124,25 +132,25 @@ export interface ContainerFlexbox {
    * @description
    * 主轴
    */
-  direction: keyof typeof FlexboxArrangeDirection;
+  direction: FlexboxArrangeDirectionType;
   /**
    * 描述子级是否换行
    *
    * 对应 css 中 flexbox 的 `flex-wrap`
    */
-  wrap: keyof typeof FlexboxWrap;
+  wrap: FlexboxWrapType;
   /**
    * 用于描述子级主轴的排列方式
    * @description
    * 此属性仅适用容器的直接子级
    */
-  arrange: keyof typeof FlexboxArrange;
+  arrange: FlexboxArrangeType;
   /**
    * 用于描述子级垂直主轴的对齐方式
    * @description
    * 此属性仅适用容器的直接子级
    */
-  align: keyof typeof ContainerFlexboxAlign;
+  align: ContainerFlexboxAlignType;
 }
 
 export type ContainerLayoutType = OmitFunction<IContainerLayout>;

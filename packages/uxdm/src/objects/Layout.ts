@@ -3,17 +3,28 @@ import {
   ILayout,
   LayoutParams,
   LayoutType,
-  SelfFlexboxAlign,
-  SelfLayoutMode,
+  SelfLayoutModeType,
+  SelfFlexboxAlignType,
 } from '@uxdm/schema';
 
-import { AbstractObject } from '../abstract/AbstractObject';
+import { AbstractObject } from '../abstract';
 
 /**
  * 布局对象
+ * @description
+ * 此布局对象用于描述节点自身在层级中的布局关系,
+ * 也是所有图形节点的的 layout 属性类型.
+ * @relate
+ * 如希望描述 Group 类型的节点布局
+ * 使用 ContainerLayout
+ *
  * @category 对象
  */
 export class Layout extends AbstractObject implements ILayout {
+  /**
+   * 布局对象初始化方法
+   * @param params
+   */
   constructor(params?: LayoutParams) {
     super(params);
 
@@ -30,16 +41,25 @@ export class Layout extends AbstractObject implements ILayout {
       this.constraints = { ...this.constraints, ...constraints };
       this.selfFlexboxShrink = selfFlexboxShrink || 0;
       this.selfFlexboxOrder = selfFlexboxOrder || 0;
-      this.selfFlexboxAlign =
-        selfFlexboxAlign || ('AUTO' as SelfFlexboxAlign.AUTO);
+      this.selfFlexboxAlign = selfFlexboxAlign || 'AUTO';
       this.selfFlexboxGrow = selfFlexboxGrow || 0;
-      this.selfLayoutMode = selfLayoutMode || ('AUTO' as SelfLayoutMode.Auto);
+      this.selfLayoutMode = selfLayoutMode || 'Auto';
     }
   }
 
-  selfLayoutMode: SelfLayoutMode;
+  /**
+   * 自身的布局模式
+   *
+   * @default 默认值 Auto
+   */
+  selfLayoutMode: SelfLayoutModeType = 'Auto';
 
-  selfFlexboxAlign: SelfFlexboxAlign;
+  /**
+   * 自身采用的 flexbox align 属性
+   * @description 如果自己是 flexbox 的子级 这个配置项会生效
+   * @default 默认值 Auto
+   */
+  selfFlexboxAlign: SelfFlexboxAlignType;
 
   selfFlexboxOrder: number;
 

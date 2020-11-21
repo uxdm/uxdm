@@ -1,6 +1,6 @@
 {
   "name": "uxdm",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.3",
   "description": "User Experience Description Model",
   "keywords": [
     "uxdm",
@@ -29,7 +29,9 @@
     "tsc": "tsc",
     "test": "jest",
     "cov": "jest --coverage",
-    "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache"
+    "build": "father-build",
+    "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache",
+    "release": "yarn publish"
   },
   "bugs": {
     "url": "https://github.com/uxdm/uxdm/issues"
