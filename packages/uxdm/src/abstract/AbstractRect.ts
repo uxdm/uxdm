@@ -1,4 +1,4 @@
-import { AbstractRectType, RectParam } from '@uxdm/schema';
+import { AbstractRectType, RectParam } from '../types';
 
 /**
  * 抽象矩形

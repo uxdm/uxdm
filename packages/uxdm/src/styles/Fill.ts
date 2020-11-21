@@ -1,4 +1,4 @@
-import { FillParams, FillType, IFill } from '@uxdm/schema';
+import { FillParams, FillType, IFill } from '../types';
 import { Paint } from './Paint';
 
 /**

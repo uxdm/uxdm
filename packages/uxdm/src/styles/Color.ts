@@ -1,5 +1,5 @@
 import ColorCls from 'color';
-import { ColorParams, ColorType, IColor } from '@uxdm/schema';
+import { ColorParams, ColorType, IColor } from '../types';
 
 /**
  * 颜色
@@ -190,5 +190,3 @@ export class Color implements IColor {
     return this.toJSON();
   }
 }
-
-export default Color;

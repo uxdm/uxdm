@@ -1,7 +1,6 @@
-import { IImage, ImageType } from '@uxdm/schema';
 import axios from 'axios';
-
-import { AbstractObject } from '../abstract';
+import { IImage, ImageType } from '../types';
+import { AbstractObject } from '../abstract/AbstractObject';
 import { blobToBase64, initImageURL, getBase64ImageString } from '../utils';
 
 /**

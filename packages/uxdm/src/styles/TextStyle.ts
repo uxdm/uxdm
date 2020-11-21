@@ -4,9 +4,9 @@ import {
   TextStyleParams,
   TextStyleType,
   TextVerticalAlignType,
-} from '@uxdm/schema';
+} from '../types';
 import { Color } from './Color';
-import { AbstractObject } from '../abstract';
+import { AbstractObject } from '../abstract/AbstractObject';
 import { getFirstFont } from '../utils';
 
 /**

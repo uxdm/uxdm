@@ -4,8 +4,8 @@ import {
   Point,
   Shadow_Type,
   ShadowParams,
-} from '@uxdm/schema';
-import { AbstractObject } from '../abstract';
+} from '../types';
+import { AbstractObject } from '../abstract/AbstractObject';
 import { Color } from './Color';
 
 /**

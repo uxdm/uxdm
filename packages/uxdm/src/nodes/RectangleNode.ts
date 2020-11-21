@@ -3,7 +3,7 @@ import {
   IRectangleNode,
   RectangleNodeType,
   RectangleNodeParams,
-} from '@uxdm/schema';
+} from '../types';
 
 import { AbstractNode } from '../abstract';
 import { Layout } from '../objects';

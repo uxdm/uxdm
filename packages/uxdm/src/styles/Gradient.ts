@@ -5,7 +5,7 @@ import {
   ColorStop,
   GradientParams,
   ColorStopParams,
-} from '@uxdm/schema';
+} from '../types';
 import { Color } from './Color';
 
 /**

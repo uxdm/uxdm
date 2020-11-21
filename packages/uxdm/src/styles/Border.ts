@@ -6,7 +6,7 @@ import {
   BorderPositionType,
   BorderType,
   IBorder,
-} from '@uxdm/schema';
+} from '../types';
 import { Paint } from './Paint';
 
 /**

@@ -9,8 +9,8 @@ import {
   IStyle,
   ShadowParams,
   StyleParams,
-} from '@uxdm/schema';
-import { AbstractObject } from '../abstract';
+} from '../types';
+import { AbstractObject } from '../abstract/AbstractObject';
 import { Fill } from './Fill';
 import { Shadow } from './Shadow';
 import { Border } from './Border';

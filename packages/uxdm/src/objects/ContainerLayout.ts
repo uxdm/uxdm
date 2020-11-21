@@ -10,7 +10,7 @@ import {
   LayoutModeEnum,
   LayoutModeType,
   PaddingValue,
-} from '@uxdm/schema';
+} from '../types';
 import { Layout } from './Layout';
 
 /**

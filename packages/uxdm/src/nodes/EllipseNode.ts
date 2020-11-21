@@ -1,4 +1,4 @@
-import { EllipseNodeParams, IEllipseNode, NodeType } from '@uxdm/schema';
+import { EllipseNodeParams, IEllipseNode, NodeType } from '../types';
 import { AbstractNode } from '../abstract';
 
 /**

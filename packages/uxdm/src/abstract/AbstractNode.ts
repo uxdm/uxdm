@@ -5,7 +5,7 @@ import {
   LayoutConstraint,
   StyleParams,
   BlendModeType,
-} from '@uxdm/schema';
+} from '../types';
 import { AbstractObject } from './AbstractObject';
 import { Bounding, Layout } from '../objects';
 import { Style } from '../styles';

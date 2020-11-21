@@ -3,7 +3,7 @@ import {
   IGroupNode,
   GroupNodeType,
   GroupNodeParams,
-} from '@uxdm/schema';
+} from '../types';
 
 import { AbstractGroupNode } from '../abstract';
 

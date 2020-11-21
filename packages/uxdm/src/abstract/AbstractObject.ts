@@ -3,7 +3,7 @@ import {
   IAbstractObject,
   AbstractObjectType,
   AbstractObjectParams,
-} from '@uxdm/schema';
+} from '../types';
 import { generateID } from '../utils';
 
 /**

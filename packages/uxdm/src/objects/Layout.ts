@@ -5,9 +5,9 @@ import {
   LayoutType,
   SelfLayoutModeType,
   SelfFlexboxAlignType,
-} from '@uxdm/schema';
+} from '../types';
 
-import { AbstractObject } from '../abstract';
+import { AbstractObject } from '../abstract/AbstractObject';
 import { checkValidParams } from '../utils';
 
 /**

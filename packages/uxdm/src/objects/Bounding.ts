@@ -1,5 +1,5 @@
-import { BoundingParams, BoundingType, IBounding } from '@uxdm/schema';
-import { AbstractRect } from '../abstract';
+import { BoundingParams, BoundingType, IBounding } from '../types';
+import { AbstractRect } from '../abstract/AbstractRect';
 import { checkValidParams } from '../utils';
 
 /**

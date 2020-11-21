@@ -2,7 +2,7 @@ import {
   AbstractGroupNodeParams,
   AbstractGroupNodeType,
   IAbstractGroupNode,
-} from '@uxdm/schema';
+} from '../types';
 import { AbstractNode } from './AbstractNode';
 import { ContainerLayout } from '../objects';
 
