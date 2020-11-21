@@ -1,5 +1,5 @@
 import { Fill as BaseFill } from 'uxdm';
-import { FillParams } from '@uxdm/schema';
+import { ColorParams, FillParams, GradientParams } from '@uxdm/schema';
 import Color from './Color';
 import Gradient from './Gradient';
 import Image from './Image';
@@ -14,14 +14,20 @@ class Fill extends BaseFill {
     super(params);
     if (params) {
       const { color, image, gradient } = params;
+
       if (color) {
-        this.color = new Color(color);
+        this.color =
+          color instanceof Color ? color : new Color(color as ColorParams);
       }
       if (image) {
-        this.image = new Image(image);
+        this.image =
+          image instanceof Image ? image : new Image(image as string);
       }
       if (gradient) {
-        this.gradient = new Gradient(gradient);
+        this.gradient =
+          gradient instanceof Gradient
+            ? gradient
+            : new Gradient(gradient as GradientParams);
       }
     }
   }

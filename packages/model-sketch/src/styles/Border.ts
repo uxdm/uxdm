@@ -1,4 +1,4 @@
-import { BorderParams } from '@uxdm/schema';
+import { BorderParams, ColorParams, GradientParams } from '@uxdm/schema';
 import { Border as BaseBorder } from 'uxdm';
 import Color from './Color';
 import Gradient from './Gradient';
@@ -14,8 +14,17 @@ class Border extends BaseBorder {
     if (params) {
       const { color, gradient } = params;
 
-      this.color = new Color(color);
-      this.gradient = new Gradient(gradient);
+      if (color) {
+        this.color =
+          color instanceof Color ? color : new Color(color as ColorParams);
+      }
+
+      if (gradient) {
+        this.gradient =
+          gradient instanceof Gradient
+            ? gradient
+            : new Gradient(gradient as GradientParams);
+      }
     }
   }
 
