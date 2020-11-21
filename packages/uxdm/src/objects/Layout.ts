@@ -8,7 +8,7 @@ import {
 } from '@uxdm/schema';
 
 import { AbstractObject } from '../abstract';
-import { checkValidParams } from 'uxdm/utils';
+import { checkValidParams } from '../utils';
 
 /**
  * 布局对象

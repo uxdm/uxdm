@@ -1,6 +1,6 @@
 import { BoundingParams, BoundingType, IBounding } from '@uxdm/schema';
 import { AbstractRect } from '../abstract';
-import { checkValidParams } from 'uxdm/utils';
+import { checkValidParams } from '../utils';
 
 /**
  * 定界框
