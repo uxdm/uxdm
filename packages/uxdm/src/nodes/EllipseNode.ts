@@ -11,16 +11,27 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
 
     if (params) {
       const { cx, cy, rx, ry, name } = params;
-
-      this.rx = rx || 0;
-      this.ry = ry || 0;
-
-      this.cx = cx || 0;
-      this.cy = cy || 0;
+      if (rx) {
+        this.rx = rx;
+      }
+      if (ry) {
+        this.ry = ry;
+      }
+      if (cx) {
+        this.cx = cx;
+      }
+      if (cy) {
+        this.cy = cy;
+      }
 
       this.name = name || 'ellipse';
     }
   }
+
+  /**
+   * 类型
+   */
+  readonly type: NodeType = 'Ellipse';
 
   /**
    * 获取 x 中点值
@@ -63,8 +74,6 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
     this.top = this.x + (this.height / 2 - ry);
     this.height = ry * 2;
   }
-
-  readonly type: NodeType = 'Ellipse';
 
   clone() {
     return this;
