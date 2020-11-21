@@ -4,6 +4,6 @@ module.exports = {
   ...baseConfig,
   projects: ['<rootDir>/packages/*/jest.config.js'],
   moduleDirectories: ['node_modules'],
-  collectCoverageFrom: ['<rootDir>/packages/*/src/**/*.{ts,tsx}'],
+  collectCoverageFrom: ['<rootDir>/packages/*/src/**/*.ts'],
   coverageDirectory: '<rootDir>/coverage/',
 };
