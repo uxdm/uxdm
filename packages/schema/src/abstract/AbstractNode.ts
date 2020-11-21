@@ -1,29 +1,18 @@
-import { Assign, DeepPartial, Overwrite } from 'utility-types';
-import { OmitFunction } from '../utils';
-import { NodeType } from '../constants';
+import { NodeParamsUtils, NodeTypeUtils } from '../utils';
+import { LayoutConstraint, NodeType } from '../constants';
 import { IAbstractObject } from './AbstractObject';
-import {
-  BoundingParams,
-  BoundingType,
-  IBounding,
-  ILayout,
-  LayoutParams,
-  LayoutType,
-} from '../objects';
+import { IBounding, ILayout } from '../objects';
 
 /**
  * 抽象节点的属性
+ * @category 抽象对象
  */
 export interface IAbstractNode<T = unknown> extends IAbstractObject {
   /**
-   * 表明节点的类型,每种节点都有
+   * 节点的类型
+   * @description 每种节点都有
    */
   type: NodeType;
-
-  /**
-   * 克隆自身的方法
-   */
-  clone(): T;
 
   /**
    * 节点的名称
@@ -48,25 +37,29 @@ export interface IAbstractNode<T = unknown> extends IAbstractObject {
   layout: ILayout;
 
   /**
+   * 约束参数
+   */
+  constraints: LayoutConstraint;
+
+  /**
    * 定界框
    */
   bounding: IBounding;
+
+  /**
+   * 克隆自身的方法
+   */
+  clone(): T;
 }
 
 /**
  * 抽象节点的属性
+ * @category 抽象对象
  */
-export type AbstractNodeType = Overwrite<
-  OmitFunction<IAbstractNode>,
-  { layout: LayoutType; bounding: BoundingType }
->;
+export type AbstractNodeType = NodeTypeUtils<IAbstractNode>;
 
 /**
  * 抽象节点的入参
+ * @category 抽象对象
  */
-export type AbstractNodeParams = DeepPartial<
-  Assign<
-    Assign<Omit<AbstractNodeType, 'type' | 'bounding'>, BoundingParams>,
-    LayoutParams
-  >
->;
+export type AbstractNodeParams = NodeParamsUtils<AbstractNodeType>;

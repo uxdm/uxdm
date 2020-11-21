@@ -18,7 +18,6 @@ import { AbstractGroupNode } from '../abstract';
  * @category 节点
  */
 export class GroupNode extends AbstractGroupNode implements IGroupNode {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(params?: GroupNodeParams) {
     super(params);
     if (params) {
@@ -82,5 +81,14 @@ export class GroupNode extends AbstractGroupNode implements IGroupNode {
   clone() {
     const { id, ...params } = this.toJSON();
     return new GroupNode(params);
+  }
+
+  toParams(): GroupNodeParams {
+    const params = super.toParams();
+    const { name } = this;
+    return {
+      ...params,
+      name: name === 'group' ? undefined : name,
+    };
   }
 }

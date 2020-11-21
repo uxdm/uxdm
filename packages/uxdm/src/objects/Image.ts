@@ -62,6 +62,8 @@ export class Image extends AbstractObject implements IImage {
     };
   }
 
+  // TODO: 如何解决继承后无法修改输出类型的问题?
+  // @ts-ignore
   toParams(): string {
     return this.url;
   }

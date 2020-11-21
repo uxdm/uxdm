@@ -126,7 +126,7 @@ export class Shadow extends AbstractObject implements IShadow {
     };
   }
 
-  toParams() {
+  toParams(): ShadowParams {
     return {
       color: this.color.toParams(),
       visible: this.visible,

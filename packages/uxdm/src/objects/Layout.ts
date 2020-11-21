@@ -8,6 +8,7 @@ import {
 } from '@uxdm/schema';
 
 import { AbstractObject } from '../abstract';
+import { checkValidParams } from 'uxdm/utils';
 
 /**
  * 布局对象
@@ -43,7 +44,7 @@ export class Layout extends AbstractObject implements ILayout {
       this.selfFlexboxOrder = selfFlexboxOrder || 0;
       this.selfFlexboxAlign = selfFlexboxAlign || 'AUTO';
       this.selfFlexboxGrow = selfFlexboxGrow || 0;
-      this.selfLayoutMode = selfLayoutMode || 'Auto';
+      this.selfLayoutMode = selfLayoutMode || 'AUTO';
     }
   }
 
@@ -52,7 +53,7 @@ export class Layout extends AbstractObject implements ILayout {
    *
    * @default 默认值 Auto
    */
-  selfLayoutMode: SelfLayoutModeType = 'Auto';
+  selfLayoutMode: SelfLayoutModeType;
 
   /**
    * 自身采用的 flexbox align 属性
@@ -84,5 +85,45 @@ export class Layout extends AbstractObject implements ILayout {
       selfLayoutMode: this.selfLayoutMode,
       selfFlexboxGrow: this.selfFlexboxGrow,
     };
+  }
+
+  toParams(): LayoutParams {
+    const params = super.toParams();
+    const {
+      selfFlexboxShrink,
+      selfLayoutMode,
+      selfFlexboxGrow,
+      selfFlexboxAlign,
+      selfFlexboxOrder,
+    } = this;
+    const constraints: Partial<LayoutConstraint> = {};
+    if (this.constraints.horizontal !== 'MIN') {
+      constraints.horizontal = this.constraints.horizontal;
+    }
+    if (this.constraints.vertical !== 'MIN') {
+      constraints.vertical = this.constraints.vertical;
+    }
+
+    const layoutParams = {
+      ...params,
+      constraints:
+        !constraints.horizontal && !constraints.vertical
+          ? undefined
+          : constraints,
+      selfFlexboxAlign:
+        selfFlexboxAlign === 'AUTO' ? undefined : selfFlexboxAlign,
+      selfFlexboxShrink:
+        selfFlexboxShrink === 0 ? undefined : selfFlexboxShrink,
+      selfFlexboxGrow: selfFlexboxGrow === 0 ? undefined : selfFlexboxGrow,
+      selfLayoutMode: selfLayoutMode === 'AUTO' ? undefined : selfLayoutMode,
+      selfFlexboxOrder: selfFlexboxOrder === 0 ? undefined : selfFlexboxOrder,
+    };
+
+    // 如果 layout 中只有一个值( id 的)
+    // 则返回 undefined
+    const isValid = checkValidParams(layoutParams, 1);
+    if (!isValid) return;
+
+    return layoutParams;
   }
 }

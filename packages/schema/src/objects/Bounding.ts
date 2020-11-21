@@ -1,4 +1,4 @@
-import { AbstractRectType } from '../abstract/AbstractRect';
+import { AbstractRectType } from '../abstract';
 import { Matrix } from '../constants';
 
 export interface IBounding extends AbstractRectType {

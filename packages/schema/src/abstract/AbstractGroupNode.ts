@@ -1,11 +1,6 @@
-import { Overwrite } from 'utility-types';
 import { IAbstractNode } from './AbstractNode';
-import { GroupParamsUtils, OmitFunction } from '../utils';
-import {
-  BoundingType,
-  ContainerLayoutType,
-  IContainerLayout,
-} from '../objects';
+import { NodeParamsUtils, NodeTypeUtils } from '../utils';
+import { IContainerLayout } from '../objects';
 
 /**
  * 抽象分组节点的接口
@@ -30,12 +25,9 @@ export interface IAbstractGroupNode extends IAbstractNode<IAbstractGroupNode> {
 /**
  * 抽象分组节点的属性
  */
-export type AbstractGroupNodeType = Overwrite<
-  OmitFunction<IAbstractGroupNode>,
-  { layout: ContainerLayoutType; bounding: BoundingType }
->;
+export type AbstractGroupNodeType = NodeTypeUtils<IAbstractGroupNode>;
 
 /**
  * 抽象分组节点的入参属性
  */
-export type AbstractGroupNodeParams = GroupParamsUtils<AbstractGroupNodeType>;
+export type AbstractGroupNodeParams = NodeParamsUtils<AbstractGroupNodeType>;

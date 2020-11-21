@@ -20,7 +20,7 @@ export abstract class AbstractNode
   protected constructor(params?: AbstractNodeParams) {
     super(params);
     if (params) {
-      const { constraints, layout } = params;
+      const { constraints, layout, width, height, x, y, rotation } = params;
 
       this.visible = params.visible ?? true;
       this.name = params.name || 'node';
@@ -29,12 +29,19 @@ export abstract class AbstractNode
       if (layout) {
         this.layout = new Layout(params.layout);
       }
+
       if (constraints) {
         this.setConstraints({
           horizontal: constraints.horizontal,
           vertical: constraints.vertical,
         });
       }
+
+      this.x = x || 0;
+      this.y = y || 0;
+      this.width = width || 0;
+      this.height = height || 0;
+      this.rotation = rotation || 0;
     }
   }
 
@@ -179,6 +186,32 @@ export abstract class AbstractNode
       visible: this.visible,
       layout: this.layout.toJSON(),
       bounding: this.bounding.toJSON(),
+    };
+  }
+
+  /**
+   * 输出入参
+   */
+  toParams(): AbstractNodeParams {
+    const params = super.toParams();
+
+    const bounding = this.bounding.toParams();
+    const { locked, visible } = this;
+
+    const layoutParams = this.layout.toParams();
+    let layout = layoutParams;
+    if (layoutParams) {
+      const { id, ...res } = layoutParams;
+      layout = res;
+    }
+
+    return {
+      ...params,
+      ...bounding,
+      ...layout,
+      locked: locked || undefined,
+      visible: visible ? undefined : visible,
+      name: this.name,
     };
   }
 }

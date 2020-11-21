@@ -20,24 +20,9 @@ export class RectangleNode extends AbstractNode implements IRectangleNode {
     super(params);
 
     if (params) {
-      const {
-        cornerRadius,
-        name,
-        layout,
-        height,
-        y,
-        width,
-        x,
-        rotation,
-      } = params;
+      const { cornerRadius, name, layout } = params;
       this.cornerRadius = cornerRadius || 0;
       this.name = name || 'rectangle';
-
-      this.x = x || 0;
-      this.y = y || 0;
-      this.width = width || 0;
-      this.height = height || 0;
-      this.rotation = rotation || 0;
 
       if (layout) {
         this.layout = new Layout(layout);

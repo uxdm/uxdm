@@ -35,4 +35,10 @@ export abstract class AbstractObject implements IAbstractObject {
       id: this.id,
     };
   }
+
+  toParams(): AbstractObjectParams {
+    return {
+      id: this.id,
+    };
+  }
 }

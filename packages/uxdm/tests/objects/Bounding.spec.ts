@@ -1,5 +1,5 @@
 import { Bounding } from 'uxdm';
-import { BoundingType } from '@uxdm/schema';
+import { BoundingParams, BoundingType } from '@uxdm/schema';
 
 describe('Bounding', () => {
   it('无参数', () => {
@@ -110,6 +110,28 @@ describe('Bounding', () => {
       };
 
       expect(Bounding.fromJSON(json)).toBeInstanceOf(Bounding);
+    });
+
+    describe('toParams', () => {
+      it('无参数', () => {
+        const group = new Bounding();
+        expect(group.toParams()).toBeUndefined();
+      });
+      it('空参数', () => {
+        const group = new Bounding({});
+        expect(group.toParams()).toBeUndefined();
+      });
+      it('带有参数', () => {
+        const params: BoundingParams = {
+          height: 100,
+          width: 100,
+          x: 10,
+          y: 20,
+          rotation: 30,
+        };
+        const group = new Bounding(params);
+        expect(group.toParams()).toEqual(params);
+      });
     });
   });
 });

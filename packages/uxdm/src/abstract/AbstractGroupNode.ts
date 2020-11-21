@@ -19,11 +19,18 @@ export abstract class AbstractGroupNode
   protected constructor(params?: AbstractGroupNodeParams) {
     super(params);
     if (params) {
-      this.children = params.children || [];
+      const { children, layout, constraints } = params;
+      this.children = children || [];
 
       // this.clipsContent = params.clipsContent || false;
-      if (params.layout) {
+      if (layout) {
         this.layout = new ContainerLayout(params.layout);
+      }
+      if (constraints) {
+        this.setConstraints({
+          horizontal: constraints.horizontal,
+          vertical: constraints.vertical,
+        });
       }
     }
   }
@@ -31,6 +38,8 @@ export abstract class AbstractGroupNode
   children: Array<unknown> = [];
 
   layout: ContainerLayout = new ContainerLayout();
+
+  clipsContent: boolean = false;
 
   toJSON(): AbstractGroupNodeType {
     const json = super.toJSON();
@@ -40,6 +49,4 @@ export abstract class AbstractGroupNode
       layout: this.layout.toJSON(),
     };
   }
-
-  clipsContent: boolean = false;
 }

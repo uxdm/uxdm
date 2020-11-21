@@ -1,5 +1,6 @@
 import { BoundingParams, BoundingType, IBounding } from '@uxdm/schema';
 import { AbstractRect } from '../abstract';
+import { checkValidParams } from 'uxdm/utils';
 
 /**
  * 定界框
@@ -127,5 +128,21 @@ export class Bounding extends AbstractRect implements IBounding {
    */
   static fromJSON = (json: BoundingParams) => {
     return new Bounding(json);
+  };
+
+  toParams = (): BoundingParams => {
+    const { height, width, y, x, rotation } = this;
+    const bounding = {
+      height: height === 0 ? undefined : height,
+      width: width === 0 ? undefined : width,
+      x: x === 0 ? undefined : x,
+      y: y === 0 ? undefined : y,
+      rotation: rotation === 0 ? undefined : rotation,
+    };
+
+    const isValid = checkValidParams(bounding, 0);
+    if (!isValid) return;
+
+    return bounding;
   };
 }

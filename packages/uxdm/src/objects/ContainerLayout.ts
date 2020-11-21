@@ -32,7 +32,7 @@ export class ContainerLayout extends Layout implements IContainerLayout {
       this.flexbox = { ...this.flexbox, ...flexbox };
       this.horizontalPadding = horizontalPadding || 0;
       this.verticalPadding = verticalPadding || 0;
-      this.layoutMode = layoutMode || ('FREE' as LayoutModeEnum.FREE);
+      this.layoutMode = layoutMode || 'FREE';
       this.grid = grid;
     }
   }

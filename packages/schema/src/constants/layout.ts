@@ -72,7 +72,7 @@ export const enum SelfLayoutMode {
   /**
    * 采用父级的布局模式
    */
-  Auto = 'Auto',
+  AUTO = 'AUTO',
   /**
    * 使用自由模式
    * @description
@@ -82,7 +82,7 @@ export const enum SelfLayoutMode {
    * 该模式主要适用场景: 个别元素不跟随容器自动布局.
    * 例如角标 说明文本等等
    */
-  Free = 'Free',
+  FREE = 'FREE',
 }
 /**
  * @category 布局

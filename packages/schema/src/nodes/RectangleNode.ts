@@ -1,7 +1,5 @@
-import { Assign } from 'utility-types';
-import { IAbstractNode, AbstractNodeType } from '../abstract';
-import { OmitFunction } from '../utils';
-import { BoundingParams } from '../objects';
+import { IAbstractNode } from '../abstract';
+import { NodeParamsUtils, NodeTypeUtils } from '../utils';
 
 /**
  * 抽象分组节点的接口
@@ -13,11 +11,6 @@ export interface IRectangleNode extends IAbstractNode {
   cornerRadius: number;
 }
 
-export type RectangleNodeType = Assign<
-  OmitFunction<IRectangleNode>,
-  AbstractNodeType
->;
+export type RectangleNodeType = NodeTypeUtils<IRectangleNode>;
 
-export type RectangleNodeParams = Partial<
-  Assign<Omit<RectangleNodeType, 'type' | 'bounding'>, BoundingParams>
->;
+export type RectangleNodeParams = NodeParamsUtils<RectangleNodeType>;
