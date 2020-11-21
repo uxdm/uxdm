@@ -28,7 +28,7 @@ export class Color implements IColor {
     }
     // 处理 object 类型的对象
     else if (typeof color === 'object') {
-      const { r = 0, b = 0, g = 0, a } = color;
+      const { r = 0, b = 0, g = 0, a } = color as Partial<ColorType>;
       if (typeof a === 'number') {
         this.method = ColorCls({ r, g, b }).alpha(a);
       } else {

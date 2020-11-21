@@ -11,12 +11,12 @@ import {
   StyleParams,
 } from '@uxdm/schema';
 import { AbstractObject } from '../abstract';
-
 import { Fill } from './Fill';
-
 import { Shadow } from './Shadow';
-
 import { Border } from './Border';
+import { Color } from './Color';
+import { Gradient } from './Gradient';
+import { Image } from '../objects';
 
 /**
  * 样式
@@ -132,7 +132,7 @@ export class Style extends AbstractObject implements IStyle {
   /**
    * 添加颜色填充
    * */
-  addColorFill(color: ColorParams) {
+  addColorFill(color: ColorParams | Color) {
     const fill = new Fill({
       type: 'SOLID',
       color,
@@ -143,7 +143,7 @@ export class Style extends AbstractObject implements IStyle {
   /**
    * 添加渐变填充
    * */
-  addGradientFill(params: GradientParams) {
+  addGradientFill(params: GradientParams | Gradient) {
     const fill = new Fill({
       type: 'GRADIENT',
       gradient: params,
@@ -155,7 +155,7 @@ export class Style extends AbstractObject implements IStyle {
   /**
    * 添加图片填充
    * */
-  addImageFill(image: string) {
+  addImageFill(image: string | Image) {
     const fill = new Fill({
       type: 'IMAGE',
       image,

@@ -1,4 +1,4 @@
-import { IAbstractObject } from '../abstract/AbstractObject';
+import { IAbstractObject } from '../abstract';
 import { OmitFunction } from '../utils';
 
 export interface IImage extends IAbstractObject {
@@ -29,3 +29,5 @@ export interface IImage extends IAbstractObject {
 }
 
 export type ImageType = Omit<OmitFunction<IImage>, 'initialized'>;
+
+export type ImageParams = string;

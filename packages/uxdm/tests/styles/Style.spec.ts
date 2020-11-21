@@ -1,4 +1,4 @@
-import { Style } from 'uxdm';
+import { Style, Color, Gradient, Image } from 'uxdm';
 import { defaultColorStops } from './defaultValue';
 
 describe('Style 类', () => {
@@ -253,28 +253,68 @@ describe('Style 类', () => {
           r: 225,
         });
       });
-      it('添加颜色填充', () => {
-        const style = new Style();
-        expect(style.fills).toHaveLength(0);
-        style.addColorFill('red');
-        expect(style.fills).toHaveLength(1);
-        expect(style.fills[0].type).toEqual('SOLID');
+      describe('添加颜色填充', () => {
+        it('添加参数', () => {
+          const style = new Style();
+          expect(style.fills).toHaveLength(0);
+          style.addColorFill('red');
+          expect(style.fills).toHaveLength(1);
+          expect(style.fills[0].type).toEqual('SOLID');
+        });
+        it('添加 color 对象', () => {
+          const style = new Style();
+          expect(style.fills).toHaveLength(0);
+          const color = new Color('#ff0000');
+          style.addColorFill(color);
+          expect(style.fills).toHaveLength(1);
+          expect(style.fills[0].type).toEqual('SOLID');
+          expect(style.fills[0].color.hex).toEqual('#FF0000');
+        });
       });
-      it('添加渐变填充', () => {
-        const style = new Style();
-        expect(style.fills).toHaveLength(0);
-        style.addGradientFill({ type: 'RADIAL' });
-        expect(style.fills).toHaveLength(1);
-        expect(style.fills[0].type).toEqual('GRADIENT');
+      describe('添加渐变填充', () => {
+        it('添加参数', () => {
+          const style = new Style();
+          expect(style.fills).toHaveLength(0);
+          style.addGradientFill({ type: 'RADIAL' });
+          expect(style.fills).toHaveLength(1);
+          expect(style.fills[0].type).toEqual('GRADIENT');
+        });
+        it('添加渐变对象', () => {
+          const style = new Style();
+          expect(style.fills).toHaveLength(0);
+          const gradient = new Gradient({
+            type: 'ANGULAR',
+            from: { x: 1, y: 1 },
+            to: { x: 0, y: 1 },
+          });
+          style.addGradientFill(gradient);
+          expect(style.fills).toHaveLength(1);
+          expect(style.fills[0].type).toEqual('GRADIENT');
+          expect(style.fills[0].gradient.type).toEqual('ANGULAR');
+          expect(style.fills[0].gradient.to).toEqual({ x: 0, y: 1 });
+          expect(style.fills[0].gradient.from).toEqual({ x: 1, y: 1 });
+        });
       });
-      it('添加图片填充', () => {
-        const style = new Style();
-        expect(style.fills).toHaveLength(0);
-        style.addImageFill(
-          'https://gw.alipayobjects.com/zos/antfincdn/yQkRq3OIYO/b85f8741-a187-4f97-be93-9356dc28dc0f.png',
-        );
-        expect(style.fills).toHaveLength(1);
-        expect(style.fills[0].type).toEqual('IMAGE');
+      describe('添加图片填充', () => {
+        it('参数形式添加', () => {
+          const style = new Style();
+          expect(style.fills).toHaveLength(0);
+          style.addImageFill(
+            'https://gw.alipayobjects.com/zos/antfincdn/yQkRq3OIYO/b85f8741-a187-4f97-be93-9356dc28dc0f.png',
+          );
+          expect(style.fills).toHaveLength(1);
+          expect(style.fills[0].type).toEqual('IMAGE');
+        });
+        it('添加图片对象', () => {
+          const style = new Style();
+          expect(style.fills).toHaveLength(0);
+          const image = new Image(
+            'https://gw.alipayobjects.com/zos/antfincdn/yQkRq3OIYO/b85f8741-a187-4f97-be93-9356dc28dc0f.png',
+          );
+          style.addImageFill(image);
+          expect(style.fills).toHaveLength(1);
+          expect(style.fills[0].type).toEqual('IMAGE');
+        });
       });
     });
     it('添加描边', () => {

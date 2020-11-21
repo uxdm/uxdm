@@ -1,5 +1,5 @@
 import { Overwrite } from 'utility-types';
-import { IAbstractObject } from '../abstract/AbstractObject';
+import { IAbstractObject } from '../abstract';
 import { ColorParams, ColorType, IColor } from './Color';
 import { GradientParams, GradientType, IGradient } from './Gradient';
 import { IImage, ImageType } from './Image';
@@ -50,9 +50,9 @@ export type PaintParams = Partial<
   Overwrite<
     PaintType,
     {
-      color?: ColorParams;
-      gradient?: GradientParams;
-      image?: string;
+      color?: ColorParams | IColor;
+      gradient?: GradientParams | IGradient;
+      image?: string | IImage;
     }
   >
 >;

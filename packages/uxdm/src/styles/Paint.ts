@@ -5,6 +5,9 @@ import {
   PaintType,
   BlendModeType,
   PaintParams,
+  ColorParams,
+  GradientParams,
+  ImageParams,
 } from '@uxdm/schema';
 import { AbstractObject } from '../abstract';
 import { Color } from './Color';
@@ -29,17 +32,22 @@ export class Paint extends AbstractObject implements IPaint {
       switch (type) {
         case 'SOLID':
         default:
-          this.color = new Color(color);
+          this.color =
+            color instanceof Color ? color : new Color(color as ColorParams);
           defaultName = this.color.hex;
           break;
         case 'GRADIENT':
-          this.gradient = new Gradient(gradient);
+          this.gradient =
+            gradient instanceof Gradient
+              ? gradient
+              : new Gradient(gradient as GradientParams);
           defaultName = 'Gradient';
 
           break;
         case 'IMAGE':
           if (image) {
-            this.image = new Image(image);
+            this.image =
+              image instanceof Image ? image : new Image(image as ImageParams);
           }
           defaultName = 'Image';
       }

@@ -2,11 +2,7 @@ import { IImage, ImageType } from '@uxdm/schema';
 import axios from 'axios';
 
 import { AbstractObject } from '../abstract';
-import {
-  blobToBase64,
-  initImageURL,
-  getBase64ImageString,
-} from '../utils/image';
+import { blobToBase64, initImageURL, getBase64ImageString } from '../utils';
 
 /**
  * 图片资产
