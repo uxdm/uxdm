@@ -1,4 +1,4 @@
-import { Shadow } from 'uxdm';
+import { Shadow, ShadowType } from 'uxdm';
 
 describe('Shadow 类', () => {
   it('无参数', () => {
@@ -109,6 +109,75 @@ describe('Shadow 类', () => {
       spread: 10,
       type: 'INNER_SHADOW',
       visible: false,
+    });
+  });
+  describe('fromJSON', () => {
+    it('单个阴影', () => {
+      const json: ShadowType = {
+        blendMode: 'DARKEN',
+        color: {
+          a: 1,
+          b: 0,
+          g: 0,
+          r: 255,
+        },
+        id: '123',
+        offset: {
+          x: 8,
+          y: 2,
+        },
+        blur: 5,
+        spread: 10,
+        type: 'INNER_SHADOW',
+        visible: false,
+      };
+
+      const shadow = Shadow.fromJSON(json);
+      expect(shadow).toBeInstanceOf(Shadow);
+      expect((shadow as Shadow).toJSON()).toEqual(json);
+    });
+
+    it('多个阴影 ', () => {
+      const json: ShadowType[] = [
+        {
+          blendMode: 'DARKEN',
+          color: {
+            a: 1,
+            b: 0,
+            g: 0,
+            r: 255,
+          },
+          id: '123',
+          offset: {
+            x: 8,
+            y: 2,
+          },
+          blur: 5,
+          spread: 10,
+          type: 'INNER_SHADOW',
+          visible: false,
+        },
+        {
+          blendMode: 'DARKEN',
+          color: {
+            a: 1,
+            b: 0,
+            g: 0,
+            r: 255,
+          },
+          id: '123',
+          offset: {
+            x: 8,
+            y: 2,
+          },
+          blur: 40,
+          spread: 10,
+          type: 'INNER_SHADOW',
+          visible: false,
+        },
+      ];
+      const shadow = Shadow.fromJSON(json);
+      expect(shadow).toBeInstanceOf(Array);
     });
   });
 });

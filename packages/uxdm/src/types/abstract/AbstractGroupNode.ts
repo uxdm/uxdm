@@ -1,7 +1,7 @@
 import { IAbstractNode } from './AbstractNode';
 import { NodeParamsUtils, NodeTypeUtils } from '../utils';
 import { IContainerLayout } from '../objects';
-import { ChildNode } from '../constants';
+// import { ChildNode } from '../constants';
 
 /**
  * 抽象分组节点的接口
@@ -15,7 +15,7 @@ export interface IAbstractGroupNode extends IAbstractNode<IAbstractGroupNode> {
    *
    * 即数组的第一个子元素是屏幕的最下面一层，数组的最后一个子元素是最顶层。
    */
-  children: ChildNode[];
+  children: unknown[];
 
   /**
    * 分组节点的布局接口

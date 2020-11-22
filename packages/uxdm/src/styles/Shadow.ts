@@ -4,6 +4,7 @@ import {
   Point,
   Shadow_Type,
   ShadowParams,
+  ShadowType,
 } from '../types';
 import { AbstractObject } from '../abstract/AbstractObject';
 import { Color } from './Color';
@@ -137,5 +138,18 @@ export class Shadow extends AbstractObject implements IShadow {
       spread: this.spread,
       blur: this.blur,
     };
+  }
+
+  static fromJSON(params: ShadowType | ShadowType[]): Shadow | Shadow[] {
+    const fromShadowParams = (shadow: ShadowType) => {
+      const { offset, ...res } = shadow;
+      return new Shadow({ ...res, offsetY: offset.y, offsetX: offset.x });
+    };
+
+    if (params instanceof Array) {
+      return params.map(fromShadowParams);
+    }
+
+    return fromShadowParams(params);
   }
 }

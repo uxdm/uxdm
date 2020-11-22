@@ -1,5 +1,13 @@
-import { EllipseNodeParams, IEllipseNode, NodeType } from '../types';
+import {
+  EllipseNodeParams,
+  EllipseNodeType,
+  IEllipseNode,
+  NodeType,
+  ShapeNodeType,
+} from '../types';
 import { AbstractNode } from '../abstract';
+import { Bounding, Layout } from '../objects';
+import { Style } from '../styles';
 
 /**
  * 椭圆图形
@@ -18,10 +26,10 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
         this.ry = ry;
       }
       if (cx) {
-        this.cx = cx;
+        this.centerX = cx;
       }
       if (cy) {
-        this.cy = cy;
+        this.centerY = cy;
       }
 
       this.name = name || 'ellipse';
@@ -34,27 +42,25 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
   readonly type: NodeType = 'Ellipse';
 
   /**
-   * 获取 x 中点值
+   * x 轴半径
    */
   get cx() {
-    return (this.left + this.right) / 2;
+    return this.centerX;
   }
 
   set cx(cx) {
-    this.left = cx - this.width / 2;
-    this.right = cx + this.width / 2;
+    this.centerX = cx;
   }
 
   /**
    * 获取 y 中点值
    */
   get cy() {
-    return (this.top + this.bottom) / 2;
+    return this.centerY;
   }
 
   set cy(cy) {
-    this.top = cy - this.height / 2;
-    this.bottom = cy + this.height / 2;
+    this.centerY = cy;
   }
 
   get rx() {
@@ -66,6 +72,9 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
     this.width = rx * 2;
   }
 
+  /**
+   * Y 轴半径
+   */
   get ry() {
     return this.height / 2;
   }
@@ -77,5 +86,31 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
 
   clone() {
     return this;
+  }
+
+  toJSON(): EllipseNodeType {
+    const json = super.toJSON();
+    return {
+      ...json,
+      rx: this.rx,
+      ry: this.ry,
+    };
+  }
+
+  /**
+   * 从符合 Shape 的
+   * @param json
+   */
+  static fromJSON(json: ShapeNodeType): EllipseNode {
+    const { style, layout, bounding, visible, locked, id, name } = json;
+    return new EllipseNode({
+      layout: Layout.fromJSON(layout),
+      style: Style.fromJSON(style),
+      bounding: Bounding.fromJSON(bounding),
+      visible,
+      locked,
+      id,
+      name,
+    });
   }
 }

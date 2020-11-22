@@ -21,11 +21,14 @@ export enum NodeEnum {
   'Page' = 'Page',
   Frame = 'Frame',
   Ellipse = 'Ellipse',
+  Circle = 'Circle',
 }
 
 export type NodeType = keyof typeof NodeEnum;
 
 export type ChildNode = RectangleNode | GroupNode | EllipseNode;
+
+export type ShapeNode = RectangleNode | EllipseNode;
 
 export type ShapeNodeType = RectangleNodeType | EllipseNodeType;
 

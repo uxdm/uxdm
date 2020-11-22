@@ -126,4 +126,8 @@ export class Layout extends AbstractObject implements ILayout {
 
     return layoutParams;
   }
+
+  static fromJSON(layout: LayoutType): Layout {
+    return new Layout(layout);
+  }
 }

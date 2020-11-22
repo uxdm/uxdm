@@ -1,5 +1,5 @@
 import { AbstractRectType } from '../abstract';
-import { Matrix } from '../constants';
+import { Matrix, Point } from '../constants';
 
 export interface IBounding extends AbstractRectType {
   /**
@@ -41,3 +41,7 @@ export interface BoundingType extends AbstractRectType {
  * 定界框入参类型
  */
 export type BoundingParams = Partial<BoundingType>;
+
+export type PositionType = Point;
+
+export type PositionParams = Partial<Point>;

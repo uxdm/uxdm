@@ -1,4 +1,4 @@
-import { Color } from 'uxdm';
+import { Color, ColorType } from 'uxdm';
 
 describe('Color 类', () => {
   describe('正常创建', () => {
@@ -143,27 +143,37 @@ describe('Color 类', () => {
       color.alpha = 1;
     });
   });
-  describe('toJSON', () => {
-    it('正常解析', () => {
-      const color = new Color('rgb(50,50,10)');
-      expect(color.toJSON()).toStrictEqual({
+  describe('方法类', () => {
+    describe('toJSON', () => {
+      it('正常解析', () => {
+        const color = new Color('rgb(50,50,10)');
+        expect(color.toJSON()).toStrictEqual({
+          r: 50,
+          g: 50,
+          b: 10,
+          a: 1,
+        });
+      });
+    });
+    it('toParams', () => {
+      const color = new Color('rgba(24,78,34,0.2)');
+      expect(color.toParams()).toEqual({
+        a: 0.2,
+        b: 34,
+        g: 78,
+        r: 24,
+      });
+      const params = color.toParams();
+      expect(new Color(params).rgba).toEqual('rgba(24,78,34,0.2)');
+    });
+    it('fromJSON', () => {
+      const json: ColorType = {
         r: 50,
         g: 50,
         b: 10,
         a: 1,
-      });
+      };
+      expect(Color.fromJSON(json).toJSON()).toEqual(json);
     });
-  });
-
-  it('toParams', () => {
-    const color = new Color('rgba(24,78,34,0.2)');
-    expect(color.toParams()).toEqual({
-      a: 0.2,
-      b: 34,
-      g: 78,
-      r: 24,
-    });
-    const params = color.toParams();
-    expect(new Color(params).rgba).toEqual('rgba(24,78,34,0.2)');
   });
 });

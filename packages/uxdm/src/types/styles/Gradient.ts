@@ -1,6 +1,7 @@
 import { Overwrite } from 'utility-types';
 import { IColor, ColorParams, ColorType } from './Color';
 import { Point } from '../constants';
+import { OmitFunction } from '../utils';
 
 export enum GradientEnum {
   LINEAR = 'LINEAR',
@@ -21,7 +22,7 @@ export interface IGradient {
 }
 
 export type GradientType = Overwrite<
-  Partial<IGradient>,
+  Partial<OmitFunction<IGradient>>,
   { stops: { color: ColorType; position: number }[] }
 >;
 

@@ -5,6 +5,7 @@ import {
   ColorStop,
   GradientParams,
   ColorStopParams,
+  GradientType,
 } from '../types';
 import { Color } from './Color';
 
@@ -121,5 +122,9 @@ export class Gradient implements IGradient {
         position: index / (stops.length - 1),
       };
     });
+  }
+
+  static fromJSON(params: GradientType): Gradient {
+    return new Gradient(params);
   }
 }

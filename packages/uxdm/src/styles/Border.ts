@@ -8,6 +8,9 @@ import {
   IBorder,
 } from '../types';
 import { Paint } from './Paint';
+import { Image } from '../objects';
+import { Color } from './Color';
+import { Gradient } from './Gradient';
 
 /**
  * 描边
@@ -101,5 +104,22 @@ export class Border extends Paint implements IBorder {
       position: this.position,
       visible: this.visible,
     };
+  }
+
+  static fromJSON(params: BorderType | BorderType[]): Border | Border[] {
+    const fromBorderParams = (border: BorderType) => {
+      const { image, color, gradient, ...res } = border;
+      return new Border({
+        image: Image.fromJSON(image),
+        color: Color.fromJSON(color),
+        gradient: Gradient.fromJSON(gradient),
+        ...res,
+      });
+    };
+    if (params instanceof Array) {
+      return params.map(fromBorderParams);
+    }
+
+    return fromBorderParams(params);
   }
 }

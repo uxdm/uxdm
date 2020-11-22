@@ -9,6 +9,7 @@ import {
   IStyle,
   ShadowParams,
   StyleParams,
+  StyleType,
 } from '../types';
 import { AbstractObject } from '../abstract/AbstractObject';
 import { Fill } from './Fill';
@@ -236,5 +237,32 @@ export class Style extends AbstractObject implements IStyle {
       opacity: this.opacity,
       borderOptions: this.borderOptions,
     };
+  }
+
+  static fromJSON(style: StyleType): Style {
+    const {
+      id,
+
+      opacity,
+      borderOptions,
+      blendMode,
+    } = style;
+
+    const shadows = Shadow.fromJSON(style.shadows);
+    const innerShadows = Shadow.fromJSON(style.innerShadows);
+    const borders = Border.fromJSON(style.borders);
+    const fills = Fill.fromJSON(style.fills);
+
+    return new Style({
+      id,
+      borders: borders instanceof Array ? borders : [borders],
+      fills: fills instanceof Array ? fills : [fills],
+      shadows: shadows instanceof Array ? shadows : [shadows],
+      innerShadows:
+        innerShadows instanceof Array ? innerShadows : [innerShadows],
+      blendMode,
+      borderOptions,
+      opacity,
+    });
   }
 }

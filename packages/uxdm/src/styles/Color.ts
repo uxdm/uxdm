@@ -43,7 +43,15 @@ export class Color implements IColor {
     this.name = this.method.hex();
   }
 
+  /**
+   * 颜色名称
+   */
   name: string;
+
+  /**
+   * 颜色方法
+   */
+  method: ColorCls;
 
   get red() {
     return this.method.red();
@@ -76,8 +84,6 @@ export class Color implements IColor {
   set alpha(value) {
     this.method = this.method.alpha(value);
   }
-
-  method: ColorCls;
 
   /**
    * HEX值
@@ -188,5 +194,13 @@ export class Color implements IColor {
    */
   toParams(): ColorParams {
     return this.toJSON();
+  }
+
+  /**
+   * 从 json 还原对象
+   * @param colorType
+   */
+  static fromJSON(colorType): Color {
+    return new Color(colorType);
   }
 }

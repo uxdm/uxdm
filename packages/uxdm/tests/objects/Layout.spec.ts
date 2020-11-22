@@ -1,5 +1,4 @@
-import { Layout } from 'uxdm';
-import { LayoutParams } from '@uxdm/schema';
+import { Layout, LayoutParams, LayoutType } from 'uxdm';
 
 describe('Layout', () => {
   it('无参数', () => {
@@ -36,6 +35,22 @@ describe('Layout', () => {
         const layout = new Layout(params);
         expect(layout.toParams()).toEqual(params);
       });
+    });
+    describe('fromJSON', () => {
+      const json: LayoutType = {
+        constraints: {
+          horizontal: 'SCALE',
+          vertical: 'STRETCH',
+        },
+        id: '123',
+        selfFlexboxOrder: 2,
+        selfFlexboxShrink: 1,
+        selfFlexboxAlign: 'END',
+        selfFlexboxGrow: 3,
+        selfLayoutMode: 'FREE',
+      };
+      const layout = Layout.fromJSON(json);
+      expect(layout.toJSON()).toEqual(json);
     });
   });
 });

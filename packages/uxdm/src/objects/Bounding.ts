@@ -1,4 +1,9 @@
-import { BoundingParams, BoundingType, IBounding } from '../types';
+import {
+  BoundingParams,
+  BoundingType,
+  IBounding,
+  PositionParams,
+} from '../types';
 import { AbstractRect } from '../abstract/AbstractRect';
 import { checkValidParams } from '../utils';
 
@@ -122,14 +127,6 @@ export class Bounding extends AbstractRect implements IBounding {
     rotation: this.rotation,
   });
 
-  /**
-   * 从 JSON 初始化定界框
-   * @param json
-   */
-  static fromJSON = (json: BoundingParams) => {
-    return new Bounding(json);
-  };
-
   toParams = (): BoundingParams => {
     const { height, width, y, x, rotation } = this;
     const bounding = {
@@ -145,4 +142,26 @@ export class Bounding extends AbstractRect implements IBounding {
 
     return bounding;
   };
+
+  /**
+   * 设置定界框位置
+   * @param x
+   * @param y
+   */
+  setPosition({ x, y }: PositionParams) {
+    if (x) {
+      this.x = x;
+    }
+    if (y) {
+      this.y = y;
+    }
+  }
+
+  /**
+   * 从 JSON 初始化定界框
+   * @param json
+   */
+  static fromJSON(json: BoundingType): Bounding {
+    return new Bounding(json);
+  }
 }

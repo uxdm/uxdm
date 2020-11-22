@@ -54,7 +54,7 @@ export type PaddingValue = number | number[];
  * 任何一个容器支持的布局模式
  * @category 布局
  */
-export const enum LayoutModeEnum {
+export enum LayoutModeEnum {
   FLEXBOX = 'FLEXBOX',
   GRID = 'GRID',
   FREE = 'FREE',
@@ -68,7 +68,7 @@ export type LayoutModeType = keyof typeof LayoutModeEnum;
  * 自身在容器中的布局模式
  * @category 布局
  */
-export const enum SelfLayoutMode {
+export enum SelfLayoutMode {
   /**
    * 采用父级的布局模式
    */

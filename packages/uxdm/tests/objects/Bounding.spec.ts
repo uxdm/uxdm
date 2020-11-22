@@ -1,5 +1,4 @@
-import { Bounding } from 'uxdm';
-import { BoundingParams, BoundingType } from '@uxdm/schema';
+import { Bounding, BoundingParams, BoundingType } from 'uxdm';
 
 describe('Bounding', () => {
   it('无参数', () => {

@@ -1,4 +1,4 @@
-import { Gradient } from 'uxdm';
+import { Gradient, GradientType } from 'uxdm';
 
 describe('Gradient 类', () => {
   describe('初始化', () => {
@@ -175,5 +175,40 @@ describe('Gradient 类', () => {
       },
       type: 'LINEAR',
     });
+  });
+
+  it('fromJSON', () => {
+    const json: GradientType = {
+      from: {
+        x: 0.5,
+        y: 0,
+      },
+      stops: [
+        {
+          color: {
+            a: 1,
+            b: 0,
+            g: 0,
+            r: 0,
+          },
+          position: 0,
+        },
+        {
+          color: {
+            a: 1,
+            b: 255,
+            g: 255,
+            r: 255,
+          },
+          position: 1,
+        },
+      ],
+      to: {
+        x: 0.5,
+        y: 1,
+      },
+      type: 'LINEAR',
+    };
+    expect(Gradient.fromJSON(json).toJSON()).toEqual(json);
   });
 });

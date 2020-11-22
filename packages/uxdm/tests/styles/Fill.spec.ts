@@ -65,4 +65,5 @@ describe('Fill 类', () => {
       type: 'SOLID',
     });
   });
+  it('fromJSON', () => {});
 });

@@ -62,4 +62,8 @@ export class Image extends AbstractObject implements IImage {
   toParams(): string {
     return this.url;
   }
+
+  static fromJSON(params: ImageType): Image {
+    return new Image(params.url);
+  }
 }
