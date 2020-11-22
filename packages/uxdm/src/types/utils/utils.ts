@@ -7,11 +7,13 @@ import {
   LayoutType,
 } from '../objects';
 import {
+  AbstractGroupNodeType,
   AbstractNodeType,
   IAbstractGroupNode,
   IAbstractObject,
 } from '../abstract';
 import { StyleParams, StyleType } from '../styles';
+import { ChildNode, ChildNodeType } from '../constants';
 
 /**
  *
@@ -34,6 +36,8 @@ export type NodeTypeUtils<T extends IAbstractObject> = Overwrite<
     layout: T extends IAbstractGroupNode ? ContainerLayoutType : LayoutType;
     bounding: BoundingType;
     style: StyleType;
+    // 如果是 group 类型 重载成 ChildNodeType
+    children: T extends IAbstractGroupNode ? ChildNodeType[] : never;
   }
 >;
 
@@ -42,17 +46,25 @@ export type NodeTypeUtils<T extends IAbstractObject> = Overwrite<
  * 去掉不必要的 type 属性
  * 然后将 bounding 的参数能拉平到第一层级
  */
-export type NodeParamsUtils<T extends AbstractNodeType> = DeepPartial<
-  // 覆盖掉样式参数
-  Overwrite<
-    Assign<
-      // 移除 bounding 参数
-      // 将 width height 变成同一级
-      Assign<Omit<T, 'type' | 'bounding'>, BoundingParams>,
-      // 将 constraints 参数从 layout 中取出来
-      // 加到变量中
-      Pick<LayoutParams, 'constraints'>
-    >,
-    { style: StyleParams }
-  >
+export type NodeParamsUtils<T extends AbstractNodeType> = Assign<
+  DeepPartial<
+    // 覆盖掉样式参数
+    Overwrite<
+      Assign<
+        // 移除 bounding 参数
+        // 将 width height 变成同一级
+        Assign<Omit<T, 'type' | 'bounding'>, BoundingParams>,
+        // 将 constraints 参数从 layout 中取出来
+        // 加到变量中
+        Pick<LayoutParams, 'constraints'>
+      >,
+      {
+        style: StyleParams;
+      }
+    >
+  >,
+  {
+    // 如果是 Group 类型的Type 则让参数中有可以有 children
+    children?: T extends AbstractGroupNodeType ? ChildNode[] : never;
+  }
 >;

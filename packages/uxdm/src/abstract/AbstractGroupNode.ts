@@ -1,6 +1,9 @@
 import {
   AbstractGroupNodeParams,
   AbstractGroupNodeType,
+  AbstractNodeParams,
+  ChildNode,
+  ChildNodeType,
   IAbstractGroupNode,
 } from '../types';
 import { AbstractNode } from './AbstractNode';
@@ -17,15 +20,21 @@ export abstract class AbstractGroupNode
   extends AbstractNode
   implements IAbstractGroupNode {
   protected constructor(params?: AbstractGroupNodeParams) {
-    super(params);
+    super(params as AbstractNodeParams);
     if (params) {
       const { children, layout, constraints } = params;
-      this.children = children || [];
+
+      if (children) {
+        children.forEach((childNode) => {
+          this.children.push(childNode);
+        });
+      }
 
       // this.clipsContent = params.clipsContent || false;
       if (layout) {
         this.layout = new ContainerLayout(params.layout);
       }
+
       if (constraints) {
         this.setConstraints({
           horizontal: constraints.horizontal,
@@ -35,7 +44,7 @@ export abstract class AbstractGroupNode
     }
   }
 
-  children: Array<unknown> = [];
+  children: Array<ChildNode> = [];
 
   layout: ContainerLayout = new ContainerLayout();
 
@@ -45,7 +54,7 @@ export abstract class AbstractGroupNode
     const json = super.toJSON();
     return {
       ...json,
-      children: this.children,
+      children: this.children.map((node) => node.toJSON() as ChildNodeType),
       layout: this.layout.toJSON(),
     };
   }

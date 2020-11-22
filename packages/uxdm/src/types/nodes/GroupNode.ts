@@ -4,7 +4,9 @@ import { NodeParamsUtils, NodeTypeUtils } from '../utils';
 /**
  * 抽象分组节点的接口
  */
-export interface IGroupNode extends IAbstractGroupNode {}
+export interface IGroupNode extends IAbstractGroupNode {
+  toJSON(): GroupNodeType;
+}
 
 export type GroupNodeType = NodeTypeUtils<IGroupNode>;
 

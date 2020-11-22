@@ -21,6 +21,8 @@ export interface IEllipseNode extends IAbstractNode {
    * Y 轴半径
    */
   ry: number;
+
+  toJSON(): EllipseNodeType;
 }
 
 export type EllipseNodeType = NodeTypeUtils<IEllipseNode>;
