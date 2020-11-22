@@ -1,5 +1,4 @@
-import { RectangleNode } from 'uxdm';
-import { RectangleNodeType } from '@uxdm/schema';
+import { Fill, RectangleNode, RectangleNodeType } from 'uxdm';
 
 describe('Rectangle 类', () => {
   it('无参数', () => {
@@ -136,4 +135,15 @@ describe('Rectangle 类', () => {
   //     expect(json.hasClippingMask).toBeTruthy();
   //   });
   // });
+
+  describe('入参接口设计', () => {
+    const rect = new RectangleNode({ fill: '#123fa3' });
+    it('支持使用 fill 作为参数 初始化带某个颜色的矩形', () => {
+      expect(rect.style.fills).toHaveLength(1);
+      expect(rect.style.fills[0].color.hex).toBe('#123FA3');
+    });
+    it('允许直接使用 fill 参数获取当前参数', () => {
+      expect((rect.fill as Fill)?.color.hex).toBe('#123FA3');
+    });
+  });
 });

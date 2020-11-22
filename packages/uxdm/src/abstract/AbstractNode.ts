@@ -5,10 +5,11 @@ import {
   LayoutConstraint,
   StyleParams,
   BlendModeType,
+  PositionParams,
 } from '../types';
 import { AbstractObject } from './AbstractObject';
 import { Bounding, Layout } from '../objects';
-import { Style } from '../styles';
+import { Fill, Style } from '../styles';
 
 /**
  * 抽象节点
@@ -35,6 +36,7 @@ export abstract class AbstractNode
         y,
         rotation,
         style,
+        fill,
       } = params;
 
       this.visible = params.visible ?? true;
@@ -65,6 +67,10 @@ export abstract class AbstractNode
         this.style =
           style instanceof Style ? style : new Style(style as StyleParams);
       }
+
+      if (fill) {
+        this.style.addFill({ color: fill });
+      }
     }
   }
 
@@ -75,10 +81,18 @@ export abstract class AbstractNode
    */
   abstract clone();
 
+  /**
+   * 锁定
+   * @default false 默认不锁定
+   */
   locked: IAbstractNode['locked'] = false;
 
   name: IAbstractNode['name'] = 'node';
 
+  /**
+   * 节点可见性
+   * @default true 默认可见
+   */
   visible: IAbstractNode['visible'] = true;
 
   /**
@@ -130,6 +144,9 @@ export abstract class AbstractNode
     this.bounding.x = x;
   }
 
+  /**
+   * Y 坐标值
+   */
   get y() {
     return this.bounding.y;
   }
@@ -138,20 +155,26 @@ export abstract class AbstractNode
     this.bounding.y = y;
   }
 
+  /**
+   * X 中点坐标
+   */
   get centerX() {
-    return this.x + this.width / 2;
+    return this.bounding.centerX;
   }
 
   set centerX(centerX) {
-    this.x = centerX - this.width / 2;
+    this.bounding.centerX = centerX;
   }
 
+  /**
+   * Y 中点坐标
+   */
   get centerY() {
-    return this.y + this.height / 2;
+    return this.bounding.centerY;
   }
 
   set centerY(centerY) {
-    this.y = centerY - this.height / 2;
+    this.bounding.centerY = centerY;
   }
 
   get width() {
@@ -228,7 +251,7 @@ export abstract class AbstractNode
   /**
    * 获取样式的混合模式
    */
-  get blendMode() {
+  get blendMode(): BlendModeType {
     return this.style.blendMode;
   }
 
@@ -238,6 +261,32 @@ export abstract class AbstractNode
    */
   set blendMode(blendMode: BlendModeType) {
     this.style.blendMode = blendMode;
+  }
+
+  /**
+   * 直接获取节点填充状态的方法
+   * @description
+   * 如果只有一个填充 直接返回该填充
+   * 如果包含多个填充 则返回数组
+   * 如果没有填充 则什么也不返回
+   */
+  get fill(): Fill[] | Fill | undefined {
+    const fillCount = this.style.fills.length;
+    if (fillCount > 1) {
+      return this.style.fills;
+    }
+    if (fillCount === 1) {
+      return this.style.fills[0];
+    }
+  }
+
+  /**
+   * 设置节点位置
+   * @description 透传 bounding 对象的 setPosition 方法
+   * @param params
+   */
+  setPosition(params: PositionParams) {
+    this.bounding.setPosition(params);
   }
 
   /**

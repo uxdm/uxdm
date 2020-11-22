@@ -26,6 +26,7 @@ export abstract class AbstractGroupNode
 
       if (children) {
         children.forEach((childNode) => {
+          // @ts-ignore
           this.children.push(childNode);
         });
       }
