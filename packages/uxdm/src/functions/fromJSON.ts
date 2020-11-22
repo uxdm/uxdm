@@ -1,4 +1,4 @@
-import { ShapeNodeType } from '../types';
+import { EllipseNodeType, RectangleNodeType, ShapeNodeType } from '../types';
 import { EllipseNode, RectangleNode } from '../nodes';
 
 /**
@@ -9,7 +9,7 @@ export const fromJSON = (json: ShapeNodeType) => {
     case 'Group':
       break;
     case 'Rectangle':
-      return RectangleNode.fromJSON(json);
+      return RectangleNode.fromJSON(json as RectangleNodeType);
     case 'Line':
       break;
     case 'Artboard':
@@ -19,7 +19,7 @@ export const fromJSON = (json: ShapeNodeType) => {
     case 'Frame':
       break;
     case 'Ellipse':
-      return EllipseNode.fromJSON(json);
+      return EllipseNode.fromJSON(json as EllipseNodeType);
     case 'Circle':
       break;
     default:
