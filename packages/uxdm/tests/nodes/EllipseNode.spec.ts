@@ -1,4 +1,4 @@
-import { EllipseNode } from 'uxdm';
+import { EllipseNode, EllipseNodeType } from 'uxdm';
 
 describe('EllipseNode', () => {
   it('正常创建', () => {
@@ -43,5 +43,99 @@ describe('EllipseNode', () => {
     expect(ellipse.rx).toBe(50);
     expect(ellipse.left).toBe(50);
     expect(ellipse.right).toBe(150);
+  });
+
+  it('fromJSON', () => {
+    const json: EllipseNodeType = {
+      id: 'khztUxWhU1',
+      type: 'Ellipse',
+      locked: false,
+      name: 'ellipse',
+      visible: true,
+      layout: {
+        id: 'ORkvGh32ot',
+        constraints: {
+          horizontal: 'MIN',
+          vertical: 'MIN',
+        },
+        selfFlexboxAlign: 'AUTO',
+        selfFlexboxGrow: 0,
+        selfFlexboxOrder: 0,
+        selfFlexboxShrink: 0,
+        selfLayoutMode: 'AUTO',
+      },
+      bounding: {
+        height: 100,
+        width: 200,
+        x: 104,
+        y: 252,
+        rotation: 0,
+      },
+      style: {
+        id: 'c9C44ZdDnZ',
+        fills: [
+          {
+            id: 'zt6B8BZs3X',
+            type: 'SOLID',
+            name: '#0000FF',
+            color: {
+              r: 0,
+              g: 0,
+              b: 255,
+              a: 1,
+            },
+            gradient: {
+              type: 'LINEAR',
+              from: {
+                x: 0.5,
+                y: 0,
+              },
+              to: {
+                x: 0.5,
+                y: 1,
+              },
+              stops: [
+                {
+                  position: 0,
+                  color: {
+                    r: 0,
+                    g: 0,
+                    b: 0,
+                    a: 1,
+                  },
+                },
+                {
+                  position: 1,
+                  color: {
+                    r: 255,
+                    g: 255,
+                    b: 255,
+                    a: 1,
+                  },
+                },
+              ],
+            },
+            opacity: 1,
+            blendMode: 'NORMAL',
+            visible: true,
+          },
+        ],
+        borderOptions: {
+          align: 'INSIDE',
+          lineJoin: 'MITER',
+          lineCap: 'NONE',
+          dashPattern: [],
+          enabled: true,
+        },
+        innerShadows: [],
+        shadows: [],
+        borders: [],
+        opacity: 1,
+        blendMode: 'NORMAL',
+      },
+      rx: 100,
+      ry: 50,
+    };
+    expect(EllipseNode.fromJSON(json).toJSON()).toEqual(json);
   });
 });

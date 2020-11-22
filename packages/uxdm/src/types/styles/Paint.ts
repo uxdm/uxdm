@@ -62,5 +62,5 @@ export type PaintParams = Partial<
 export type BasePaintType = {
   color: ColorType;
   gradient: GradientType;
-  image: ImageType;
+  image?: ImageType;
 };

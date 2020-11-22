@@ -50,21 +50,14 @@ export class Fill extends Paint implements IFill {
     };
   }
 
-  static fromJSON(params: FillType | FillType[]): Fill | Fill[] {
-    const fromFillParams = (fill: FillType) => {
-      const { image, color, gradient, ...res } = fill;
+  static fromJSON(fill: FillType): Fill {
+    const { image, color, gradient, ...res } = fill;
 
-      return new Fill({
-        image: Image.fromJSON(image),
-        color: Color.fromJSON(color),
-        gradient: Gradient.fromJSON(gradient),
-        ...res,
-      });
-    };
-
-    if (params instanceof Array) {
-      return params.map(fromFillParams);
-    }
-    return fromFillParams(params);
+    return new Fill({
+      image: image ? Image.fromJSON(image) : undefined,
+      color: Color.fromJSON(color),
+      gradient: Gradient.fromJSON(gradient),
+      ...res,
+    });
   }
 }

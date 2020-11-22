@@ -6,6 +6,7 @@ import {
   StyleParams,
   BlendModeType,
   PositionParams,
+  PositionType,
 } from '../types';
 import { AbstractObject } from './AbstractObject';
 import { Bounding, Layout } from '../objects';
@@ -37,6 +38,7 @@ export abstract class AbstractNode
         rotation,
         style,
         fill,
+        bounding,
       } = params;
 
       this.visible = params.visible ?? true;
@@ -56,11 +58,16 @@ export abstract class AbstractNode
       }
 
       // ===== 定界框参数 ===== //
-      this.x = x || 0;
-      this.y = y || 0;
-      this.width = width || 0;
-      this.height = height || 0;
-      this.rotation = rotation || 0;
+      if (bounding) {
+        this.bounding =
+          bounding instanceof Bounding ? bounding : new Bounding(bounding);
+      } else {
+        this.x = x || 0;
+        this.y = y || 0;
+        this.width = width || 0;
+        this.height = height || 0;
+        this.rotation = rotation || 0;
+      }
 
       // ===== 样式参数 ===== //
       if (style) {
@@ -278,6 +285,13 @@ export abstract class AbstractNode
     if (fillCount === 1) {
       return this.style.fills[0];
     }
+  }
+
+  /**
+   * 获取节点位置
+   */
+  get position(): PositionType {
+    return this.bounding.position;
   }
 
   /**

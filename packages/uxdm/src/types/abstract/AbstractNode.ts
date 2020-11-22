@@ -1,7 +1,7 @@
 import { NodeParamsUtils, NodeTypeUtils } from '../utils';
 import { LayoutConstraint, NodeType } from '../constants';
 import { IAbstractObject } from './AbstractObject';
-import { IBounding, ILayout } from '../objects';
+import { IBounding, ILayout, PositionParams } from '../objects';
 import { IStyle } from '../styles';
 
 /**
@@ -56,6 +56,21 @@ export interface IAbstractNode<T = unknown> extends IAbstractObject {
    * 克隆自身的方法
    */
   clone(): T;
+
+  /**
+   * 设置节点位置
+   * @description 也可以传入 x y 的对象
+   * @param x
+   * @param y
+   */
+  // setPosition(x: number, y: number): void;
+
+  /**
+   * 设置节点位置
+   * @description  透传 bounding 对象的 setPosition 方法
+   * @param params
+   */
+  setPosition(params: PositionParams): void;
 }
 
 /**

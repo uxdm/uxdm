@@ -43,6 +43,13 @@ export class Bounding extends AbstractRect implements IBounding {
    */
   constrainProportions: boolean = false;
 
+  /**
+   * 获取坐标
+   */
+  get position() {
+    return { x: this.x, y: this.y };
+  }
+
   get centerX() {
     return this.x + this.width / 2;
   }

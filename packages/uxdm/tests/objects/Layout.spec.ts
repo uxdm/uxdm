@@ -9,6 +9,11 @@ describe('Layout', () => {
         vertical: 'MIN',
       },
       id: 'id',
+      selfFlexboxAlign: 'AUTO',
+      selfFlexboxGrow: 0,
+      selfFlexboxOrder: 0,
+      selfFlexboxShrink: 0,
+      selfLayoutMode: 'AUTO',
     });
   });
 

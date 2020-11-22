@@ -1,4 +1,4 @@
-import { Style, Color, Gradient, Image } from 'uxdm';
+import { Style, Color, Gradient, Image, StyleType } from 'uxdm';
 import { defaultColorStops } from './defaultValue';
 
 describe('Style 类', () => {
@@ -566,5 +566,144 @@ describe('Style 类', () => {
       ],
       opacity: 0.3,
     });
+  });
+
+  it('fromJSON', () => {
+    const json: StyleType = {
+      blendMode: 'NORMAL',
+      borderOptions: {
+        lineJoin: 'ROUND',
+        dashPattern: [3, 4],
+        align: 'CENTER',
+        lineCap: 'ROUND',
+        enabled: true,
+      },
+      borders: [
+        {
+          visible: true,
+          align: 'INSIDE',
+          blendMode: 'NORMAL',
+          color: {
+            a: 1,
+            b: 0,
+            g: 255,
+            r: 255,
+          },
+          dashPattern: [],
+          gradient: {
+            from: {
+              x: 0.5,
+              y: 0,
+            },
+            stops: defaultColorStops,
+            to: {
+              x: 0.5,
+              y: 1,
+            },
+            type: 'LINEAR',
+          },
+          id: 'id',
+          lineCap: 'NONE',
+          lineJoin: 'MITER',
+          name: '#FFFF00',
+          opacity: 1,
+          position: 'FULL',
+          thickness: 1,
+          type: 'SOLID',
+        },
+      ],
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          visible: true,
+          color: {
+            a: 1,
+            b: 0,
+            g: 0,
+            r: 0,
+          },
+          gradient: {
+            from: {
+              x: 0.3,
+              y: 1,
+            },
+            stops: [
+              {
+                color: {
+                  a: 1,
+                  b: 0,
+                  g: 0,
+                  r: 255,
+                },
+                position: 0,
+              },
+              {
+                color: {
+                  a: 1,
+                  b: 0,
+                  g: 128,
+                  r: 0,
+                },
+                position: 1,
+              },
+            ],
+            to: {
+              x: 0.5,
+              y: 1,
+            },
+            type: 'LINEAR',
+          },
+          id: 'id',
+          name: 'Gradient',
+          opacity: 0.4,
+          type: 'GRADIENT',
+        },
+      ],
+      id: '12344',
+      innerShadows: [
+        {
+          blendMode: 'COLOR_BURN',
+          blur: 8,
+          color: {
+            a: 0.5,
+            b: 26,
+            g: 68,
+            r: 18,
+          },
+          id: 'id',
+          offset: {
+            x: 2,
+            y: 6,
+          },
+          spread: 0,
+          type: 'INNER_SHADOW',
+          visible: false,
+        },
+      ],
+      shadows: [
+        {
+          blendMode: 'NORMAL',
+          blur: 4,
+          color: {
+            a: 0.7,
+            b: 91,
+            g: 98,
+            r: 2,
+          },
+          id: 'id',
+          offset: {
+            x: 4,
+            y: 34,
+          },
+          spread: 13,
+          type: 'SHADOW',
+          visible: true,
+        },
+      ],
+      opacity: 0.5,
+    };
+
+    const style = Style.fromJSON(json);
+    expect(JSON.parse(JSON.stringify(style.toJSON()))).toEqual(json);
   });
 });

@@ -1,5 +1,4 @@
-import { GroupNode, Style } from 'uxdm';
-import { GroupNodeParams, GroupNodeType } from '@uxdm/schema';
+import { GroupNode, Style, GroupNodeParams, GroupNodeType } from 'uxdm';
 
 describe('GroupNode 类', () => {
   it('无参数', () => {
@@ -70,6 +69,11 @@ describe('GroupNode 类', () => {
           itemSpacing: 0,
           layoutMode: 'FREE',
           verticalPadding: 0,
+          selfFlexboxAlign: 'AUTO',
+          selfFlexboxGrow: 0,
+          selfFlexboxOrder: 0,
+          selfFlexboxShrink: 0,
+          selfLayoutMode: 'AUTO',
         },
         locked: false,
         name: 'group',

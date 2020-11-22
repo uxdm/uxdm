@@ -45,4 +45,8 @@ export class RectangleNode extends AbstractNode implements IRectangleNode {
     const { id, ...params } = this.toJSON();
     return new RectangleNode(params);
   }
+
+  static fromJSON(params: RectangleNodeType): RectangleNode {
+    return new RectangleNode(params);
+  }
 }

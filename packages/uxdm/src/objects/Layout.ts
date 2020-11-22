@@ -53,20 +53,20 @@ export class Layout extends AbstractObject implements ILayout {
    *
    * @default 默认值 Auto
    */
-  selfLayoutMode: SelfLayoutModeType;
+  selfLayoutMode: SelfLayoutModeType = 'AUTO';
 
   /**
    * 自身采用的 flexbox align 属性
    * @description 如果自己是 flexbox 的子级 这个配置项会生效
    * @default 默认值 Auto
    */
-  selfFlexboxAlign: SelfFlexboxAlignType;
+  selfFlexboxAlign: SelfFlexboxAlignType = 'AUTO';
 
-  selfFlexboxOrder: number;
+  selfFlexboxOrder: number = 0;
 
-  selfFlexboxGrow: number;
+  selfFlexboxGrow: number = 0;
 
-  selfFlexboxShrink: number;
+  selfFlexboxShrink: number = 0;
 
   constraints: LayoutConstraint = {
     horizontal: 'MIN',

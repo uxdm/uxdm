@@ -1,15 +1,15 @@
+import { ShapeNodeType } from '../types';
+import { EllipseNode, RectangleNode } from '../nodes';
+
 /**
  * 从 JSON 重新生成节点
  */
-import { ShapeNodeType } from '../types';
-import { EllipseNode } from '../nodes';
-
 export const fromJSON = (json: ShapeNodeType) => {
   switch (json.type) {
     case 'Group':
       break;
     case 'Rectangle':
-      break;
+      return RectangleNode.fromJSON(json);
     case 'Line':
       break;
     case 'Artboard':
@@ -20,7 +20,6 @@ export const fromJSON = (json: ShapeNodeType) => {
       break;
     case 'Ellipse':
       return EllipseNode.fromJSON(json);
-      break;
     case 'Circle':
       break;
     default:

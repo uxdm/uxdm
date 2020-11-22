@@ -112,7 +112,7 @@ describe('Shadow 类', () => {
     });
   });
   describe('fromJSON', () => {
-    it('单个阴影', () => {
+    it('case1', () => {
       const json: ShadowType = {
         blendMode: 'DARKEN',
         color: {
@@ -134,50 +134,53 @@ describe('Shadow 类', () => {
 
       const shadow = Shadow.fromJSON(json);
       expect(shadow).toBeInstanceOf(Shadow);
-      expect((shadow as Shadow).toJSON()).toEqual(json);
+      expect(shadow.toJSON()).toEqual(json);
     });
-
-    it('多个阴影 ', () => {
-      const json: ShadowType[] = [
-        {
-          blendMode: 'DARKEN',
-          color: {
-            a: 1,
-            b: 0,
-            g: 0,
-            r: 255,
-          },
-          id: '123',
-          offset: {
-            x: 8,
-            y: 2,
-          },
-          blur: 5,
-          spread: 10,
-          type: 'INNER_SHADOW',
-          visible: false,
+    it('case2', () => {
+      const json: ShadowType = {
+        blendMode: 'COLOR_BURN',
+        blur: 8,
+        color: {
+          a: 1,
+          b: 26,
+          g: 63,
+          r: 18,
         },
-        {
-          blendMode: 'DARKEN',
-          color: {
-            a: 1,
-            b: 0,
-            g: 0,
-            r: 255,
-          },
-          id: '123',
-          offset: {
-            x: 8,
-            y: 2,
-          },
-          blur: 40,
-          spread: 10,
-          type: 'INNER_SHADOW',
-          visible: false,
+        id: 'id',
+        offset: {
+          x: 2,
+          y: 4,
         },
-      ];
+        spread: 0,
+        type: 'INNER_SHADOW',
+        visible: false,
+      };
       const shadow = Shadow.fromJSON(json);
-      expect(shadow).toBeInstanceOf(Array);
+      expect(shadow).toBeInstanceOf(Shadow);
+      expect(shadow.toJSON()).toEqual(json);
+    });
+    it('case3', () => {
+      const json: ShadowType = {
+        blendMode: 'NORMAL',
+        blur: 4,
+        color: {
+          a: 1,
+          b: 91,
+          g: 4,
+          r: 2,
+        },
+        id: 'id',
+        offset: {
+          x: 4,
+          y: 34,
+        },
+        spread: 13,
+        type: 'SHADOW',
+        visible: true,
+      };
+      const shadow = Shadow.fromJSON(json);
+      expect(shadow).toBeInstanceOf(Shadow);
+      expect(shadow.toJSON()).toEqual(json);
     });
   });
 });

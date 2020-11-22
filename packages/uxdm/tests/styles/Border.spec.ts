@@ -1,4 +1,4 @@
-import { Border } from 'uxdm';
+import { Border, BorderType } from 'uxdm';
 import { defaultColorStops } from './defaultValue';
 
 describe('Border 类', () => {
@@ -160,5 +160,42 @@ describe('Border 类', () => {
       thickness: 24,
       type: 'SOLID',
     });
+  });
+
+  it('fromJSON', () => {
+    const json: BorderType = {
+      blendMode: 'NORMAL',
+      visible: true,
+      align: 'OUTSIDE',
+      color: {
+        a: 0.3,
+        b: 68,
+        g: 36,
+        r: 34,
+      },
+      dashPattern: [2, 4],
+      gradient: {
+        from: {
+          x: 0.5,
+          y: 0,
+        },
+        stops: defaultColorStops,
+        to: {
+          x: 0.5,
+          y: 1,
+        },
+        type: 'LINEAR',
+      },
+      id: '4224323',
+      lineJoin: 'ROUND',
+      lineCap: 'SQUARE',
+      name: '#222444',
+      opacity: 0.3,
+      position: 'BOTTOM',
+      thickness: 24,
+      type: 'SOLID',
+    };
+
+    expect(Border.fromJSON(json).toJSON()).toEqual(json);
   });
 });

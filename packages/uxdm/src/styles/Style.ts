@@ -40,24 +40,35 @@ export class Style extends AbstractObject implements IStyle {
       if (borders) {
         this.borders = borders
           .filter((b) => b)
-          .map((border) => new Border(border));
+          .map((border) =>
+            border instanceof Border ? border : new Border(border),
+          );
       }
+
       if (shadows) {
         this.shadows = shadows
           .filter((b) => b)
-          .map((shadow) => new Shadow(shadow));
+          .map((shadow) =>
+            shadow instanceof Shadow ? shadow : new Shadow(shadow),
+          );
       }
+
       if (innerShadows) {
         this.innerShadows = innerShadows
           .filter((b) => b)
-          .map(
-            (innerShadow) =>
-              new Shadow({ ...innerShadow, type: 'INNER_SHADOW' }),
+          .map((innerShadow) =>
+            innerShadow instanceof Shadow
+              ? innerShadow
+              : new Shadow({ ...innerShadow, type: 'INNER_SHADOW' }),
           );
       }
+
       if (fills) {
-        this.fills = fills.filter((b) => b).map((fill) => new Fill(fill));
+        this.fills = fills
+          .filter((b) => b)
+          .map((fill) => (fill instanceof Fill ? fill : new Fill(fill)));
       }
+
       if (borderOptions) {
         this.borderOptions = { ...this.borderOptions, ...borderOptions };
       }
@@ -219,7 +230,7 @@ export class Style extends AbstractObject implements IStyle {
       ...json,
       fills: this.fills.map((f) => f.toJSON()),
       borderOptions: this.borderOptions,
-      innerShadows: this.innerShadows.map((s) => s.toJSON()),
+      innerShadows: this.innerShadows.map((i) => i.toJSON()),
       shadows: this.shadows.map((s) => s.toJSON()),
       borders: this.borders.map((b) => b.toJSON()),
       opacity: this.opacity,
@@ -242,24 +253,21 @@ export class Style extends AbstractObject implements IStyle {
   static fromJSON(style: StyleType): Style {
     const {
       id,
-
+      borders,
       opacity,
       borderOptions,
       blendMode,
+      shadows,
+      innerShadows,
+      fills,
     } = style;
-
-    const shadows = Shadow.fromJSON(style.shadows);
-    const innerShadows = Shadow.fromJSON(style.innerShadows);
-    const borders = Border.fromJSON(style.borders);
-    const fills = Fill.fromJSON(style.fills);
 
     return new Style({
       id,
-      borders: borders instanceof Array ? borders : [borders],
-      fills: fills instanceof Array ? fills : [fills],
-      shadows: shadows instanceof Array ? shadows : [shadows],
-      innerShadows:
-        innerShadows instanceof Array ? innerShadows : [innerShadows],
+      borders: borders.map(Border.fromJSON),
+      fills: fills.map(Fill.fromJSON),
+      shadows: shadows.map(Shadow.fromJSON),
+      innerShadows: innerShadows.map(Shadow.fromJSON),
       blendMode,
       borderOptions,
       opacity,

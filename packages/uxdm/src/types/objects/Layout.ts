@@ -29,13 +29,13 @@ export interface ILayout extends IAbstractObject {
    *
    * @default {SelfLayoutMode.Auto} 默认是 auto
    */
-  selfLayoutMode?: SelfLayoutModeType;
+  selfLayoutMode: SelfLayoutModeType;
   /**
    * 元素本身采用的 flexbox align 属性
    * @description 如果自己是 flexbox 的子级 这个配置项会生效
    *
    */
-  selfFlexboxAlign?: SelfFlexboxAlignType;
+  selfFlexboxAlign: SelfFlexboxAlignType;
   /**
    * 元素在容器内部的排序
    *
@@ -49,21 +49,21 @@ export interface ILayout extends IAbstractObject {
    * @see https://cssreference.io/flexbox/#order
    * @see https://css-tricks.com/almanac/properties/o/order/
    */
-  selfFlexboxOrder?: number;
+  selfFlexboxOrder: number;
   /**
    * 元素应扩展的量
    * @description 定义如果有可用空间，定义了 grow 的元素就可以进行缩放
    *
    * @see https://cssreference.io/flexbox/#flex-grow
    */
-  selfFlexboxGrow?: number;
+  selfFlexboxGrow: number;
   /**
    * 元素应该收缩的量
    * @description 如果没有足够的可用空间，应收缩多少
    *
    * @see https://cssreference.io/flexbox/#flex-shrink
    */
-  selfFlexboxShrink?: number;
+  selfFlexboxShrink: number;
 
   toJSON(): LayoutType;
 }

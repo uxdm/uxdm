@@ -140,16 +140,8 @@ export class Shadow extends AbstractObject implements IShadow {
     };
   }
 
-  static fromJSON(params: ShadowType | ShadowType[]): Shadow | Shadow[] {
-    const fromShadowParams = (shadow: ShadowType) => {
-      const { offset, ...res } = shadow;
-      return new Shadow({ ...res, offsetY: offset.y, offsetX: offset.x });
-    };
-
-    if (params instanceof Array) {
-      return params.map(fromShadowParams);
-    }
-
-    return fromShadowParams(params);
+  static fromJSON(shadow: ShadowType): Shadow {
+    const { offset, ...res } = shadow;
+    return new Shadow({ ...res, offsetY: offset.y, offsetX: offset.x });
   }
 }
