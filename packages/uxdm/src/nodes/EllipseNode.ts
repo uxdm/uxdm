@@ -3,7 +3,6 @@ import {
   EllipseNodeType,
   IEllipseNode,
   NodeType,
-  ShapeNodeType,
 } from '../types';
 import { AbstractNode } from '../abstract';
 import { Bounding, Layout } from '../objects';
@@ -19,17 +18,22 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
 
     if (params) {
       const { cx, cy, rx, ry, name } = params;
+
+      // 从圆心创建
       if (rx) {
-        this.rx = rx;
+        this.width = rx * 2;
       }
       if (ry) {
-        this.ry = ry;
+        this.height = ry * 2;
       }
-      if (cx) {
-        this.centerX = cx;
-      }
-      if (cy) {
-        this.centerY = cy;
+
+      if (typeof cx === 'number' && typeof cy === 'number') {
+        if (cx) {
+          this.centerX = cx;
+        }
+        if (cy) {
+          this.centerY = cy;
+        }
       }
 
       this.name = name || 'ellipse';
@@ -101,7 +105,7 @@ export class EllipseNode extends AbstractNode implements IEllipseNode {
    * 从符合 Shape 的
    * @param json
    */
-  static fromJSON(json: ShapeNodeType): EllipseNode {
+  static fromJSON(json: EllipseNodeType): EllipseNode {
     const { style, layout, bounding, visible, locked, id, name } = json;
     return new EllipseNode({
       layout: Layout.fromJSON(layout),

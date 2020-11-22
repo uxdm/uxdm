@@ -19,6 +19,18 @@ describe('EllipseNode', () => {
     expect(ellipse.ry).toBe(50);
   });
 
+  it('以 x y rx ry 创建', () => {
+    const ellipse = new EllipseNode({
+      x: 100,
+      y: 100,
+      rx: 100,
+      ry: 50,
+    });
+    expect(ellipse.x).toBe(100);
+    expect(ellipse.y).toBe(100);
+    expect(ellipse.rx).toBe(100);
+    expect(ellipse.ry).toBe(50);
+  });
   it('以 rx ry cx cy 创建', () => {
     const ellipse = new EllipseNode({
       cx: 100,
