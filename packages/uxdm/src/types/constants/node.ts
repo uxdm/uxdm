@@ -1,6 +1,7 @@
-import { EllipseNode, GroupNode, RectangleNode } from '../../nodes';
+import { CircleNode, EllipseNode, GroupNode, RectangleNode } from '../../nodes';
 
 import {
+  CircleNodeType,
   EllipseNodeParams,
   EllipseNodeType,
   GroupNodeParams,
@@ -26,13 +27,16 @@ export enum NodeEnum {
 
 export type NodeType = keyof typeof NodeEnum;
 
-export type ChildNode = RectangleNode | GroupNode | EllipseNode;
+export type ChildNode = ShapeNode | GroupNode;
 
-export type ShapeNode = RectangleNode | EllipseNode;
+export type ShapeNode = RectangleNode | EllipseNode | CircleNode;
 
-export type ShapeNodeType = RectangleNodeType | EllipseNodeType;
+export type ShapeNodeType =
+  | RectangleNodeType
+  | EllipseNodeType
+  | CircleNodeType;
 
-export type ChildNodeType = RectangleNodeType | GroupNodeType | EllipseNodeType;
+export type ChildNodeType = ShapeNodeType | GroupNodeType;
 
 export type ChildrenHelper<T> = T extends ShapeNodeType ? never : GroupNodeType;
 
