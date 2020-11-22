@@ -1,7 +1,7 @@
 import React from 'react';
-import Editor from 'uxdm-editor';
+import UXDMEditor from 'uxdm-editor';
 
 const App = () => {
-  return <Editor />;
+  return <UXDMEditor />;
 };
 export default App;

@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src"],
+  "include": ["src", "typings.d.ts"],
   "exclude": ["tests"],
   "compilerOptions": {
     "declaration": true,
@@ -10,7 +10,8 @@
     "baseUrl": "../..",
     "jsx": "react",
     "paths": {
-      "@uxdm/model-konva": ["./packages/model-konva/src"]
+      "@uxdm/model-konva": ["./packages/model-konva/src"],
+      "uxdm": ["./packages/uxdm/src"]
     }
   }
 }
