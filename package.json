@@ -65,7 +65,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
-    "@ant-design/pro-skeleton": "^1.0.0-beta.2",
+    "@ant-design/pro-skeleton": "^1.0.0-beta.10",
     "@babel/core": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
@@ -114,6 +114,7 @@
     "onchange": "^7.1.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^2.1.2",
+    "react-konva": "^17.0.0-0",
     "serve": "^11.3.2",
     "stylelint": "^13.0.0",
     "terser-webpack-plugin": "^3.0.2",

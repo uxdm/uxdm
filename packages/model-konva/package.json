@@ -1,0 +1,32 @@
+{
+  "name": "@uxdm/model-konva",
+  "version": "0.0.1",
+  "description": "an uxdm adaptor for konva model",
+  "keywords": [
+    "uxdm"
+  ],
+  "author": "arvinxx <arvinx@foxmail.com>",
+  "homepage": "https://github.com/uxdm/uxdm/tree/master/packages/model-konva#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npm.taobao.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uxdm/uxdm.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/uxdm/uxdm/issues"
+  }
+}

@@ -10,12 +10,17 @@
     "esModuleInterop": true,
     "target": "es5",
     "baseUrl": ".",
+    "jsx": "react",
     "paths": {
       "@uxdm/schema": ["./packages/schema/src"],
       "@uxdm/model-sketch": ["./packages/model-sketch/src"],
       "@uxdm/model-sketch/*": ["./packages/model-sketch/src/*"],
+      "@uxdm/model-konva": ["./packages/model-konva/src"],
+      "@uxdm/model-konva/*": ["./packages/model-konva/src/*"],
       "uxdm/*": ["./packages/uxdm/src/*"],
-      "uxdm": ["./packages/uxdm/src"]
+      "uxdm": ["./packages/uxdm/src"],
+      "uxdm-editor": ["./packages/uxdm-editor/src"],
+      "uxdm-editor/*": ["./packages/uxdm-editor/src/*"]
     }
   },
   "exclude": ["config", "scripts"]

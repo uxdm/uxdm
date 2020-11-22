@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["src"],
+  "exclude": ["tests"],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "declaration": true,
+    "sourceMap": true,
+    "baseUrl": "../..",
+    "paths": {
+      "uxdm/*": ["./packages/uxdm/src/*"],
+      "uxdm": ["./packages/uxdm/src"]
+    },
+    "target": "ES5"
+  }
+}
