@@ -24,6 +24,9 @@
     "type": "git",
     "url": "git+https://github.com/uxdm/uxdm.git"
   },
+  "sideEffects": [
+    "*.less"
+  ],
   "scripts": {
     "tsc": "tsc",
     "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache",
