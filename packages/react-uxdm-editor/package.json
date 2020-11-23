@@ -13,7 +13,8 @@
   "module": "es/index.js",
   "files": [
     "lib",
-    "es"
+    "es",
+    "dist"
   ],
   "publishConfig": {
     "access": "public",

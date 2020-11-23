@@ -14,7 +14,8 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently \"yarn api:dev\" \"yarn site:dev\"",
-    "build": "father-build",
+    "build": "father-build && yarn build:webpack",
+    "build:webpack": "lerna run webpack",
     "---------": "",
     "release": "yarn build && yarn release:only",
     "release:only": "lerna publish",
