@@ -30,7 +30,7 @@ const App: FC<UXDMEditorProps> = ({ state, onChange }) => {
       messages={messages || {}}
     >
       <Toolbar />
-      <Row>
+      <Row wrap={false}>
         <Col>
           <LayerPanel nodeTree={nodeList} />
         </Col>

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UXDMEditor from 'react-uxdm-editor';
 
 const App = () => {
+  const [tree, setState] = useState({});
+
   return (
     <UXDMEditor
+      state={tree}
       onChange={(state) => {
-        console.log(state);
+        setState(state);
       }}
     />
   );

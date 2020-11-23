@@ -26,7 +26,6 @@ export const useNodeTree = (props?: {
 
   useEffect(() => {
     if (props?.onChange) {
-      console.log(nodeTree);
       props?.onChange(nodeTree);
     }
   }, [nodeTree, props?.onChange]);
