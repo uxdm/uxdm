@@ -23,7 +23,12 @@
     "url": "git+https://github.com/uxdm/uxdm.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "tsc": "tsc",
+    "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache",
+    "build": "father-build && webpack",
+    "release": "yarn publish",
+    "webpack": "webpack",
+    "webpack:analyze": "ANALYZE=1 webpack"
   },
   "bugs": {
     "url": "https://github.com/uxdm/uxdm/issues"
@@ -39,9 +44,11 @@
     "use-merge-value": "^1.0.2"
   },
   "peerDependencies": {
-    "react": "^16.14.0"
+    "react": "^16.14.0",
+    "uxdm": "latest"
   },
   "devDependencies": {
+    "@types/node": "^14.14.9",
     "@types/lodash": "^4.14.165",
     "stook-devtools": "^0.4.0"
   }

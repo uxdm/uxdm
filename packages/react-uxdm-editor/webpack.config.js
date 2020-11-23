@@ -1,14 +1,13 @@
-import { resolve } from 'path';
-
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-module.exports = {
+const config = {
   entry: {
-    'react-uxdm-editor': './src/index.ts',
-    'react-uxdm-editor.min': './src/index.ts',
+    'react-uxdm-editor': './src/index.tsx',
+    'react-uxdm-editor.min': './src/index.tsx',
   },
   output: {
     filename: '[name].js',
@@ -19,9 +18,9 @@ module.exports = {
   },
   mode: 'production',
   resolve: {
-    alias: {
-      '@rue': resolve(__dirname, './src'),
-    },
+    // alias: {
+    //   '@rue': path.resolve(__dirname, './src'),
+    // },
     extensions: ['.ts', '.tsx', '.json', '.css', '.js', '.less'],
   },
   optimization: {
@@ -126,6 +125,8 @@ module.exports = {
   externals: [
     {
       react: 'React',
+      uxdm: 'uxdm',
+      lodash: 'lodash',
       'react-dom': 'ReactDOM',
       'react-konva': 'reactKonva',
       konva: 'konva',
@@ -143,3 +144,9 @@ module.exports = {
     }),
   ],
 };
+
+if (process.env.ANALYZE === '1') {
+  config.plugins.push(new BundleAnalyzerPlugin());
+}
+
+module.exports = config;

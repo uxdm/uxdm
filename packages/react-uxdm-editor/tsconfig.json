@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "typings.d.ts"],
+  "include": ["src", "typings"],
   "exclude": ["tests"],
   "compilerOptions": {
     "declaration": true,
@@ -8,10 +8,12 @@
     "sourceMap": true,
     "target": "ES5",
     "baseUrl": "../..",
+    "lib": ["ESNext", "DOM"],
     "jsx": "react",
+    "typeRoots": ["node_modules/@types", "./typings"],
     "paths": {
       "@uxdm/model-konva": ["./packages/model-konva/src"],
-      "@rue/*": ["./packages/react-uxdm-editor/src/*"],
+      //      "@rue/*": ["./packages/react-uxdm-editor/src/*"],
       "uxdm": ["./packages/uxdm/src"]
     }
   }

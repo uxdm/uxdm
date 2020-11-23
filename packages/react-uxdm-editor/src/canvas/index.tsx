@@ -1,7 +1,7 @@
 import React, { FC, useRef } from 'react';
 import { Layer, Stage } from 'react-konva';
 import { useSize } from 'ahooks';
-import { shapesMap } from '@rue/constants';
+import { shapesMap } from '../constants';
 import { NodeList } from '../store';
 import { useCanvasAction } from '../hooks';
 

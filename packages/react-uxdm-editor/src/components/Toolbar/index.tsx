@@ -1,8 +1,8 @@
 import React from 'react';
 import { EllipseNode, RectangleNode, CircleNode } from 'uxdm';
 import { Button, Col, Row, Space } from 'antd';
-import { ShapeTypes } from '@rue/utils';
-import { useNodeTree } from '@rue/store';
+import { ShapeTypes } from '../../utils';
+import { useNodeTree } from '../../store';
 import styles from './style.less';
 
 const availableShapes = {

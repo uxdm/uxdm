@@ -1,5 +1,5 @@
-import { ShapeTypes } from '@rue/utils';
-import { Circle, Ellipse, Rectangle } from '@rue/canvas/shapes';
+import { ShapeTypes } from '../utils';
+import { Circle, Ellipse, Rectangle } from '../canvas/shapes';
 
 export const shapesMap = {
   [ShapeTypes.Ellipse]: Ellipse,
