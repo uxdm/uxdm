@@ -1,6 +1,6 @@
 {
   "name": "react-uxdm-editor",
-  "version": "0.0.1-beta.10",
+  "version": "0.0.1-beta.12",
   "description": "",
   "keywords": [
     "uxdm"
@@ -28,10 +28,11 @@
   "scripts": {
     "tsc": "tsc",
     "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache",
-    "build": "father-build && webpack",
-    "release": "yarn publish",
+    "build": "yarn clean && father-build && webpack",
     "webpack": "webpack",
-    "webpack:analyze": "ANALYZE=1 webpack"
+    "webpack:analyze": "ANALYZE=1 webpack",
+    "release": "yarn build&& yarn release:only",
+    "release:only": "yarn publish"
   },
   "bugs": {
     "url": "https://github.com/uxdm/uxdm/issues"
