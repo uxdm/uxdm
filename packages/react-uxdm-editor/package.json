@@ -1,6 +1,6 @@
 {
   "name": "react-uxdm-editor",
-  "version": "0.0.1-beta.7",
+  "version": "0.0.1-beta.10",
   "description": "",
   "keywords": [
     "uxdm"
@@ -24,9 +24,7 @@
     "type": "git",
     "url": "git+https://github.com/uxdm/uxdm.git"
   },
-  "sideEffects": [
-    "*.less"
-  ],
+  "sideEffects": [],
   "scripts": {
     "tsc": "tsc",
     "clean": "rm -rf es lib dist build coverage src/.umi* .eslintcache",
