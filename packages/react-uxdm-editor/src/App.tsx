@@ -1,10 +1,10 @@
 import React, { CSSProperties, FC, useEffect } from 'react';
 import { Col, Row } from 'antd';
+import classnames from 'classnames';
 import { useI18n } from './hooks';
 import { NodeTree, useNodeTree } from './store';
 import { LayerPanel, Toolbar, IntlProvider } from './components';
 import Canvas from './canvas';
-import classnames from 'classnames';
 import { prefix } from './theme/prefix';
 
 export interface UXDMEditorProps {

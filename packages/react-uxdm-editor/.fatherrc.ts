@@ -1,7 +1,7 @@
 const base = require('../../.fatherrc');
 export default {
   ...base,
-  entry: 'src/index.tsx',
+  entry: 'src/index.ts',
   pkgs: ['uxdm'],
   extraBabelPlugins: [
     [

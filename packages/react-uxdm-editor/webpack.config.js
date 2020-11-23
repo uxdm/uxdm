@@ -7,8 +7,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const config = {
   entry: {
-    'react-uxdm-editor': './src/index.tsx',
-    'react-uxdm-editor.min': './src/index.tsx',
+    'react-uxdm-editor': './src/index.ts',
+    'react-uxdm-editor.min': './src/index.ts',
   },
   output: {
     filename: '[name].js',
