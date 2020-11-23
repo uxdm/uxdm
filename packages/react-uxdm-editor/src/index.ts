@@ -1,7 +1,6 @@
 import App from './App';
 
-export { UXDMEditorProps } from './App';
-export { NodeTree } from './store';
+export * from './store';
+export * from './App';
 
 export default App;
-export const UXDMEditor = App;

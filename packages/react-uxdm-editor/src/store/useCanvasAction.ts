@@ -1,8 +1,8 @@
 import { ShapeNode } from 'uxdm';
-import { useActive, useNodeTree } from '../store';
+import { useActive, useEditorState } from './index';
 
 export const useCanvasAction = () => {
-  const { updateNodePosition } = useNodeTree();
+  const { updateNodePosition } = useEditorState();
   const { activeNode } = useActive();
 
   return {

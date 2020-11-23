@@ -1,13 +1,12 @@
 import React, { FC, useRef } from 'react';
 import { Layer, Stage } from 'react-konva';
 import { useSize } from 'ahooks';
-import { shapesMap } from '../constants';
-import { NodeList } from '../store';
-import { useCanvasAction } from '../hooks';
+import classNames from 'classnames';
+import { shapesMap } from '../../constants';
+import { NodeList, useCanvasAction } from '../../store';
 
 import './style.less';
-import { prefix } from '../theme/prefix';
-import classNames from 'classnames';
+import { prefix } from '../../theme/prefix';
 
 const componentPrefix = `${prefix}-canvas`;
 

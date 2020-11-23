@@ -1,0 +1,22 @@
+@import '../../theme/token';
+
+@inspector-prefix: ~'@{prefix}-inspector';
+
+.@{inspector-prefix} {
+  &-container {
+    width: 200px;
+    height: 100%;
+    border-left: @base-border;
+  }
+  &-header {
+    padding: @space-default;
+    color: @text-color;
+    font-weight: bold;
+    border-bottom: @base-border;
+  }
+
+  &-content {
+    padding: @space-default;
+    color: @text-color-secondary;
+  }
+}

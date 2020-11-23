@@ -3,7 +3,12 @@
 @component-prefix: ~'@{prefix}-toolbar';
 
 .@{component-prefix} {
-  .nodes {
+  &-container {
+    padding: @space-default;
+    border-bottom: @base-border;
+  }
+
+  &-nodes {
     display: flex;
   }
 }

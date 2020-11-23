@@ -1,1 +1,1 @@
-export * from './shapeMap';
+export * from './shape';

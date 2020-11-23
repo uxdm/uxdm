@@ -1,45 +1,26 @@
-import React from 'react';
-import { EllipseNode, RectangleNode, CircleNode } from 'uxdm';
+import React, { CSSProperties, FC } from 'react';
 import { Button, Col, Row, Space } from 'antd';
-import { ShapeTypes } from '../../utils';
-import { useNodeTree } from '../../store';
-import './style.less';
+import cls from 'classnames';
+import { useEditorState } from '../../store';
 import { prefix } from '../../theme/prefix';
-
-const availableShapes = {
-  [ShapeTypes.Ellipse]: () =>
-    new EllipseNode({
-      x: 100,
-      y: 100,
-      rx: 100,
-      ry: 50,
-      fill: 'blue',
-    }),
-  [ShapeTypes.Circle]: () =>
-    new CircleNode({
-      x: 100,
-      y: 100,
-      radius: 50,
-      fill: 'red',
-    }),
-  [ShapeTypes.Rectangle]: () =>
-    new RectangleNode({
-      x: 50,
-      y: 50,
-      height: 100,
-      width: 200,
-      fill: 'black',
-    }),
-};
+import { availableShapes } from '../../constants';
+import './style.less';
 
 const componentPrefix = `${prefix}-toolbar`;
 
-const Toolbar = () => {
-  const { addNode, saveToLocalStorage, resetNodeTree } = useNodeTree();
+interface ToolbarProps {
+  className?: string;
+  style?: CSSProperties;
+}
+const Toolbar: FC<ToolbarProps> = ({ className }) => {
+  const { addNode, saveToLocalStorage, resetNodeTree } = useEditorState();
 
   const availableNodeList = Object.entries(availableShapes);
   return (
-    <Row justify="space-between">
+    <Row
+      justify="space-between"
+      className={cls(`${componentPrefix}-container`, className)}
+    >
       <Col className={`${componentPrefix}-nodes`}>
         <Space>
           {availableNodeList.map((node) => {
@@ -52,7 +33,7 @@ const Toolbar = () => {
                   addNode(initNode());
                 }}
               >
-                添加{key}
+                {key}
               </Button>
             );
           })}
@@ -60,7 +41,8 @@ const Toolbar = () => {
       </Col>
       <Col>
         <Space>
-          <Button>导入 JSON</Button>
+          <Button>导入/导出</Button>
+          <Button>显示元数据</Button>
           <Button
             onClick={() => {
               saveToLocalStorage();

@@ -52,9 +52,7 @@
     "uxdm": "latest"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.165",
-    "@types/node": "^14.14.9",
-    "stook-devtools": "^0.4.0"
+    "@types/lodash": "^4.14.165"
   },
   "gitHead": "6bfe4c55a8238e6f3cdafb367f6423c85e1025bd"
 }

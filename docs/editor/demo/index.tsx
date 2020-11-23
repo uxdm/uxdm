@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import UXDMEditor from 'react-uxdm-editor';
-// import UXDMEditor from '../../../packages/react-uxdm-editor/lib';
+import React, { useEffect, useState } from 'react';
+import UXDMEditor, { useEditorState } from 'react-uxdm-editor';
+
 import { devtools } from 'stook-devtools';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -8,15 +8,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const App = () => {
-  const [tree, setState] = useState({});
+  // const [tree, setState] = useState({});
+  const { loadFromLocalStorage, nodeTree } = useEditorState();
 
-  return (
-    <UXDMEditor
-      state={tree}
-      onChange={(state) => {
-        setState(state);
-      }}
-    />
-  );
+  useEffect(() => {
+    loadFromLocalStorage();
+  }, []);
+  return <UXDMEditor />;
 };
 export default App;
