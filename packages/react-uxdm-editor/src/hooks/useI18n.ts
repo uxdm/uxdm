@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PrimitiveType } from 'intl-messageformat';
 import { useIntl } from 'react-intl';
-import { LocaleKey, LocaleMessages } from '../framework';
+import { LocaleKey, LocaleMessages } from '../components';
 
 export type SupportedLocales = 'en-US' | 'zh-CN';
 
