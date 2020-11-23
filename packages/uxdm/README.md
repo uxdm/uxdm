@@ -1,3 +1,3 @@
-UXDM
+# UXDM
 
-核心方法
+User Experience Description Model —— 用户体验描述模型
