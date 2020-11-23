@@ -1,7 +1,13 @@
 import React from 'react';
-import UXDMEditor from 'uxdm-editor';
+import UXDMEditor from 'react-uxdm-editor';
 
 const App = () => {
-  return <UXDMEditor />;
+  return (
+    <UXDMEditor
+      onChange={(state) => {
+        console.log(state);
+      }}
+    />
+  );
 };
 export default App;

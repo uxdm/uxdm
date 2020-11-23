@@ -19,8 +19,8 @@
       "@uxdm/model-konva/*": ["./packages/model-konva/src/*"],
       "uxdm/*": ["./packages/uxdm/src/*"],
       "uxdm": ["./packages/uxdm/src"],
-      "uxdm-editor": ["./packages/uxdm-editor/src"],
-      "uxdm-editor/*": ["./packages/uxdm-editor/src/*"]
+      "react-uxdm-editor": ["./packages/react-uxdm-editor/src"],
+      "react-uxdm-editor/*": ["./packages/react-uxdm-editor/src/*"]
     }
   },
   "exclude": ["config", "scripts"]

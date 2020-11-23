@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Circle as KonvaCircle } from 'react-konva';
 
-interface CircleProps {
+export interface CircleProps {
   id: string;
   radius: number;
 }

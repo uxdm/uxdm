@@ -1,4 +1,4 @@
-# `uxdm-editor`
+# React UXDM Editor
 
 > TODO: description
 

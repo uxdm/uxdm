@@ -1,5 +1,6 @@
 import { defineConfig } from 'umi';
 import slash from 'slash2';
+import { resolve } from 'path';
 
 const isProdSite =
   // 不是预览模式 同时是生产环境
@@ -64,5 +65,8 @@ export default defineConfig({
         return localName;
       },
     },
+  },
+  alias: {
+    '@rue': resolve(__dirname, '../packages/react-uxdm-editor/src'),
   },
 });

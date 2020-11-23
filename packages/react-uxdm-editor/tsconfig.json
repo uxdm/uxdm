@@ -11,6 +11,7 @@
     "jsx": "react",
     "paths": {
       "@uxdm/model-konva": ["./packages/model-konva/src"],
+      "@rue/*": ["./packages/react-uxdm-editor/src/*"],
       "uxdm": ["./packages/uxdm/src"]
     }
   }

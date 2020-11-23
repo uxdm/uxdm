@@ -23802,6 +23802,11 @@ use-media-antd-query@^1.0.3:
   dependencies:
     react-responsive "^8.0.1"
 
+use-merge-value@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npm.taobao.org/use-merge-value/download/use-merge-value-1.0.2.tgz#6da9de949a1ec9d08cbc2b43832fe2a214f502dc"
+  integrity sha1-banelJoeydCMvCtDgy/iohT1Atw=
+
 use-subscription@1.4.1:
   version "1.4.1"
   resolved "https://registry.npm.taobao.org/use-subscription/download/use-subscription-1.4.1.tgz?cache=0&sync_timestamp=1603366965584&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fuse-subscription%2Fdownload%2Fuse-subscription-1.4.1.tgz#edcbcc220f1adb2dd4fa0b2f61b6cc308e620069"

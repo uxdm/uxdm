@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -5,8 +7,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: {
-    'uxdm-editor': './src/index.ts',
-    'uxdm-editor.min': './src/index.ts',
+    'react-uxdm-editor': './src/index.ts',
+    'react-uxdm-editor.min': './src/index.ts',
   },
   output: {
     filename: '[name].js',
@@ -17,9 +19,9 @@ module.exports = {
   },
   mode: 'production',
   resolve: {
-    // alias: {
-    //   '': [''],
-    // },
+    alias: {
+      '@rue': resolve(__dirname, './src'),
+    },
     extensions: ['.ts', '.tsx', '.json', '.css', '.js', '.less'],
   },
   optimization: {

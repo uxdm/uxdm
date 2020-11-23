@@ -38,6 +38,7 @@
     "check:typings": "tsc -p tsconfig-check.json",
     "---------    ": "",
     "clean": "lerna run clean && rm -rf es lib dist build coverage .umi .eslintcache apis",
+    "reinstall": "yarn clean && rm -rf node_modules && yarn",
     "lint-eslint": "eslint --cache --ext .ts,.tsx --format=pretty ./packages",
     "lint-staged": "lint-staged",
     "lint-staged:ts": "eslint --cache --ext .ts,.tsx --format=pretty",

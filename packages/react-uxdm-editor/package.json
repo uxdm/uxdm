@@ -1,5 +1,5 @@
 {
-  "name": "uxdm-editor",
+  "name": "react-uxdm-editor",
   "version": "0.0.1",
   "description": "",
   "keywords": [
@@ -30,12 +30,13 @@
   },
   "dependencies": {
     "ahooks": "^2.9.1",
+    "antd": "^4.8.4",
     "konva": "^7.1.9",
     "lodash": "^4.17.20",
     "nanoid": "^3.1.18",
-    "antd": "^4.8.4",
     "react-konva": "^16.13.0-6",
-    "stook": "^0.4.0"
+    "stook": "^0.4.0",
+    "use-merge-value": "^1.0.2"
   },
   "peerDependencies": {
     "react": "^16.14.0"

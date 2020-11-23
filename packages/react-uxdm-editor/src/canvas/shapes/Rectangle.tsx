@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Rect } from 'react-konva';
 
-interface RectangleProps {
+export interface RectangleProps {
   id: string;
 }
 

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Ellipse as KonvaEllipse } from 'react-konva';
 
-interface EllipseProps {
+export interface EllipseProps {
   id: string;
   rx: number;
   ry: number;
