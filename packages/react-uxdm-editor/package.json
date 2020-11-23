@@ -51,5 +51,6 @@
     "@types/lodash": "^4.14.165",
     "@types/node": "^14.14.9",
     "stook-devtools": "^0.4.0"
-  }
+  },
+  "gitHead": "dd17e9bf23f803980e745df24308b2e7aefecce9"
 }
