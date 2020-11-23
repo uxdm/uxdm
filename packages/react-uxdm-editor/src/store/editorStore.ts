@@ -7,11 +7,6 @@ import { EditorStateKey } from './storeKey';
  * @param state 初始化状态
  */
 export const useEditorStore = (state?: Partial<EditorStore>) => {
-  const [activeNode, setActiveNode] = useStore<string>(
-    EditorStateKey.activeNode,
-    state?.activeNode || '',
-  );
-
   const [nodeTree, setNodeTree] = useStore<NodeTree>(
     EditorStateKey.nodeTree,
     state?.nodeTree || {},
@@ -32,11 +27,5 @@ export const useEditorStore = (state?: Partial<EditorStore>) => {
      */
     layerTree,
     setLayerTree,
-
-    /**
-     * 激活的节点 id
-     */
-    activeNode,
-    setActiveNode,
   };
 };

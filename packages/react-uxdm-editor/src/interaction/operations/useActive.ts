@@ -1,24 +1,22 @@
-import { useEditorStore } from '../../store';
+import { useActiveNode } from '../../store';
 
 export const useActive = () => {
-  const { activeNode: id, setActiveNode, nodeTree } = useEditorStore();
+  const { activeNode, setActiveNode } = useActiveNode();
 
   return {
-    activeNode: nodeTree[id],
+    activeNode,
     /**
      * 激活节点
      * @param nodeId
      */
     activateNode: (nodeId) => {
-      console.time('active');
       setActiveNode(nodeId);
-      console.timeEnd('active');
     },
     /**
      * 取消激活
      */
     deactivate: () => {
-      setActiveNode('');
+      setActiveNode(null);
     },
   };
 };

@@ -1,2 +1,3 @@
 export * from './storeKey';
-export * from './EditorStore';
+export * from './editorStore';
+export * from './activeNode';
