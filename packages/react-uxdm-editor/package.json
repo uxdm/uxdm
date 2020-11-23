@@ -1,6 +1,6 @@
 {
   "name": "react-uxdm-editor",
-  "version": "0.0.1",
+  "version": "0.0.2-0.0.1-beta.0.0",
   "description": "",
   "keywords": [
     "uxdm"
@@ -48,8 +48,8 @@
     "uxdm": "latest"
   },
   "devDependencies": {
-    "@types/node": "^14.14.9",
     "@types/lodash": "^4.14.165",
+    "@types/node": "^14.14.9",
     "stook-devtools": "^0.4.0"
   }
 }

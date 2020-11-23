@@ -1,6 +1,6 @@
 {
   "name": "@uxdm/model-konva",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.0",
   "description": "an uxdm adaptor for konva model",
   "keywords": [
     "uxdm"
