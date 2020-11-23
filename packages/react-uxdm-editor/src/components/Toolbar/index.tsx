@@ -3,7 +3,8 @@ import { EllipseNode, RectangleNode, CircleNode } from 'uxdm';
 import { Button, Col, Row, Space } from 'antd';
 import { ShapeTypes } from '../../utils';
 import { useNodeTree } from '../../store';
-import styles from './style.less';
+import './style.less';
+import { prefix } from '../../theme/prefix';
 
 const availableShapes = {
   [ShapeTypes.Ellipse]: () =>
@@ -31,13 +32,15 @@ const availableShapes = {
     }),
 };
 
+const componentPrefix = `${prefix}-toolbar`;
+
 const Toolbar = () => {
   const { addNode, saveToLocalStorage, resetNodeTree } = useNodeTree();
 
   const availableNodeList = Object.entries(availableShapes);
   return (
     <Row justify="space-between">
-      <Col className={styles.nodes}>
+      <Col className={`${componentPrefix}-nodes`}>
         <Space>
           {availableNodeList.map((node) => {
             const [key, initNode] = node;

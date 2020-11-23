@@ -1,17 +1,20 @@
-import React, { FC, useEffect } from 'react';
+import React, { CSSProperties, FC, useEffect } from 'react';
 import { Col, Row } from 'antd';
 import { useI18n } from './hooks';
 import { NodeTree, useNodeTree } from './store';
 import { LayerPanel, Toolbar, IntlProvider } from './components';
 import Canvas from './canvas';
+import classnames from 'classnames';
+import { prefix } from './theme/prefix';
 
-import './global';
-
-interface UXDMEditorProps {
+export interface UXDMEditorProps {
   state?: NodeTree;
   onChange?: (state: NodeTree) => void;
+  className?: string;
+  style?: CSSProperties;
 }
-const App: FC<UXDMEditorProps> = ({ state, onChange }) => {
+
+const App: FC<UXDMEditorProps> = ({ state, onChange, className, style }) => {
   const { nodeList, loadFromLocalStorage } = useNodeTree({
     state,
     onChange,
@@ -29,15 +32,17 @@ const App: FC<UXDMEditorProps> = ({ state, onChange }) => {
       // @ts-ignore
       messages={messages || {}}
     >
-      <Toolbar />
-      <Row wrap={false}>
-        <Col>
-          <LayerPanel nodeTree={nodeList} />
-        </Col>
-        <Col flex={1}>
-          <Canvas nodeList={nodeList} />
-        </Col>
-      </Row>
+      <div className={classnames(`${prefix}`, className)} style={style}>
+        <Toolbar />
+        <Row wrap={false}>
+          <Col>
+            <LayerPanel nodeTree={nodeList} />
+          </Col>
+          <Col flex={1}>
+            <Canvas nodeList={nodeList} />
+          </Col>
+        </Row>
+      </div>
     </IntlProvider>
   );
 };

@@ -1,18 +1,23 @@
 import React, { FC } from 'react';
+import classNames from 'classnames';
 import { NodeList, useActive } from '../../store';
-import style from './style.less';
+import { prefix } from '../../theme/prefix';
+
+import './style.less';
 
 interface LayPanelProps {
   nodeTree: NodeList;
 }
 
+const componentPrefix = `${prefix}-layer-panel`;
+
 const LayPanel: FC<LayPanelProps> = ({ nodeTree }) => {
   const { activeNode } = useActive();
 
   return (
-    <div className={style.container}>
-      <div className={style.header}>Layers</div>
-      <div className={style.content}>
+    <div className={classNames(`${componentPrefix}-container`)}>
+      <div className={`${componentPrefix}-header`}>Layers</div>
+      <div className={`${componentPrefix}-content`}>
         {nodeTree?.map((node) => (
           <div key={node.id} onClick={() => activeNode(node.id)}>
             {node.name}

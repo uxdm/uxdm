@@ -5,7 +5,11 @@ import { shapesMap } from '../constants';
 import { NodeList } from '../store';
 import { useCanvasAction } from '../hooks';
 
-import styles from './style.less';
+import './style.less';
+import { prefix } from '../theme/prefix';
+import classNames from 'classnames';
+
+const componentPrefix = `${prefix}-canvas`;
 
 interface CanvasProps {
   nodeList: NodeList;
@@ -17,11 +21,14 @@ const Canvas: FC<CanvasProps> = ({ nodeList }) => {
   const { nodePropsWrapper } = useCanvasAction();
 
   return (
-    <div ref={canvasContainerRef} className={styles.container}>
+    <div
+      ref={canvasContainerRef}
+      className={classNames(`${componentPrefix}-container`)}
+    >
       <Stage
         height={canvas.height}
         width={canvas.width}
-        className={styles.canvas}
+        className={`${componentPrefix}-canvas`}
       >
         <Layer>
           {nodeList?.map((shape) => {

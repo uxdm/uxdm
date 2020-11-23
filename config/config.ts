@@ -34,38 +34,6 @@ export default defineConfig({
     loading: '@ant-design/pro-skeleton',
   },
   hash: true,
-  cssLoader: {
-    modules: {
-      getLocalIdent: (
-        context: {
-          resourcePath: string;
-        },
-        _: string,
-        localName: string,
-      ) => {
-        if (
-          context.resourcePath.includes('node_modules') ||
-          context.resourcePath.includes('ant.design.pro.less') ||
-          context.resourcePath.includes('global.less')
-        ) {
-          return localName;
-        }
-
-        const match = context.resourcePath.match(/src(.*)/);
-
-        if (match && match[1]) {
-          const path = match[1].replace('.less', '');
-          const arr = slash(path)
-            .split('/')
-            .map((a: string) => a.replace(/([A-Z])/g, '-$1'))
-            .map((a: string) => a.toLowerCase());
-          return `uxdm-${arr.join('-')}-${localName}`.replace(/--/g, '-');
-        }
-
-        return localName;
-      },
-    },
-  },
   alias: {
     '@rue': resolve(__dirname, '../packages/react-uxdm-editor/src'),
   },

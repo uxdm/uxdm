@@ -1,8 +1,13 @@
-@import '~antd/dist/antd';
+@import '../theme/token';
 
-.container {
-  height: calc(100vh - 32px);
-}
-.canvas {
-  background: @background-color-light;
+@canvas-prefix: ~'@{prefix}-canvas';
+
+.@{canvas-prefix} {
+  &-container {
+    height: calc(100vh - 32px);
+  }
+
+  &-canvas {
+    background: @background-color-light;
+  }
 }
