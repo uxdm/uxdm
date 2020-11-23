@@ -1,16 +1,22 @@
-import React, { CSSProperties, FC, useEffect } from 'react';
+import React, { CSSProperties, FC } from 'react';
 import { Col, Row } from 'antd';
 import classnames from 'classnames';
-import { useI18n } from './hooks';
-import { NodeTree, useEditorState } from './store';
-import { LayerPanel, Toolbar, Canvas, Inspector } from './framework';
-import { IntlProvider } from './components';
 
-import { prefix } from './theme/prefix';
+import { EditorState } from './types';
+import { useEditorUtils, useEditorState } from './interaction';
+import {
+  LayerPanel,
+  Toolbar,
+  Canvas,
+  Inspector,
+  IntlProvider,
+  useI18n,
+  prefix,
+} from './view';
 
 export interface UXDMEditorProps {
-  state?: NodeTree;
-  onChange?: (state: NodeTree) => void;
+  state?: EditorState;
+  onChange?: (state: EditorState) => void;
   toolbarClassName?: string;
   layerPanelClassName?: string;
   inspectorClassName?: string;
@@ -27,13 +33,10 @@ const App: FC<UXDMEditorProps> = ({
   toolbarClassName,
   inspectorClassName,
 }) => {
-  const { nodeList, nodeTree } = useEditorState({
-    state,
-    onChange,
-  });
-  const { locale, messages } = useI18n();
+  useEditorState({ state, onChange });
 
-  useEffect(() => {}, []);
+  const { nodeList } = useEditorUtils();
+  const { locale, messages } = useI18n();
 
   return (
     <IntlProvider
@@ -52,7 +55,7 @@ const App: FC<UXDMEditorProps> = ({
             <Canvas nodeList={nodeList} />
           </Col>
           <Col flex={1}>
-            <Inspector nodeTree={nodeTree} className={inspectorClassName} />
+            <Inspector className={inspectorClassName} />
           </Col>
         </Row>
       </div>

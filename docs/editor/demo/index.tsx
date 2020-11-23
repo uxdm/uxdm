@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import UXDMEditor, { useEditorState } from 'react-uxdm-editor';
+import React, { useEffect } from 'react';
+import UXDMEditor, { useEditorOperation } from 'react-uxdm-editor';
 
 import { devtools } from 'stook-devtools';
 
@@ -8,8 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const App = () => {
-  // const [tree, setState] = useState({});
-  const { loadFromLocalStorage, nodeTree } = useEditorState();
+  const { loadFromLocalStorage } = useEditorOperation();
 
   useEffect(() => {
     loadFromLocalStorage();

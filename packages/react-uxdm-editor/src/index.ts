@@ -1,6 +1,11 @@
 import App from './App';
 
-export * from './store';
+export {
+  useEditorOperation,
+  useUXDMEditor,
+  useEditorState,
+} from './interaction';
+
 export * from './App';
 
 export default App;
