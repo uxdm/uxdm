@@ -1,6 +1,6 @@
 {
   "name": "react-uxdm-editor",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.0",
   "description": "",
   "keywords": [
     "uxdm"
@@ -16,6 +16,7 @@
     "es"
   ],
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npm.taobao.org/"
   },
   "repository": {
@@ -52,5 +53,5 @@
     "@types/node": "^14.14.9",
     "stook-devtools": "^0.4.0"
   },
-  "gitHead": "dd17e9bf23f803980e745df24308b2e7aefecce9"
+  "gitHead": "4076fef4d2466ed57b927ad1a7018af04621f59f"
 }
