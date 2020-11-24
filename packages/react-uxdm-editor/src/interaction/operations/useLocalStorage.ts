@@ -1,6 +1,7 @@
 import { mutate } from 'stook';
 import { mapValues } from 'lodash';
 import { fromJSON } from 'uxdm';
+
 import { EditorStateKey, useEditorStore } from '../../store';
 import { EditorState } from '../../types';
 
@@ -18,7 +19,7 @@ export const useLocalStorage = () => {
       localStorage.setItem(
         key,
         JSON.stringify({
-          [EditorStateKey.layerTree]: layerTree,
+          [EditorStateKey.layerTree]: layerTree.map((e) => e.toString()),
           [EditorStateKey.nodeTree]: mapValues(nodeTree, (node) => {
             return node.toJSON();
           }),

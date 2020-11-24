@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
-import { ShapeNode } from 'uxdm';
+import { GroupNode, LayerNode } from 'uxdm';
 import { useEditorOperation } from './index';
 import { useEditorStore } from '../store';
 
@@ -15,25 +15,21 @@ export const useEditorUtils = () => {
     /**
      * 给每个 node 都包裹一层 props
      */
-    nodePropsWrapper: useCallback((node: ShapeNode) => {
-      const { fill } = node;
-      return {
+    nodePropsWrapper: useCallback((layerNode: LayerNode) => {
+      const baseProps = (node: LayerNode) => ({
+        /**
+         * 将 bounding 参数透传给 konva shape
+         */
+        ...node.bounding.toJSON?.(),
         /**
          * key
          */
         key: node.id,
-        /**
-         * 将节点所有参数都透传给 konva shape
-         */
-        ...node.toJSON(),
-        /**
-         * 将 bounding 参数透传给 konva shape
-         */
-        ...node.bounding.toJSON(),
+
         /**
          * 填色
          */
-        fill: fill instanceof Array ? undefined : fill?.hex,
+        fill: node.fill instanceof Array ? undefined : node.fill?.hex,
         /**
          * 允许拖拽
          */
@@ -51,6 +47,23 @@ export const useEditorUtils = () => {
         onMouseDown: () => {
           activateNode(node.id);
         },
+      });
+
+      if (layerNode instanceof GroupNode) {
+        const { children, ...layerProps } = layerNode.toJSON();
+        return {
+          ...baseProps(layerNode),
+          ...layerProps,
+          children: layerNode.children,
+        };
+      }
+
+      return {
+        ...baseProps(layerNode),
+        /**
+         * 将节点所有参数都透传给 konva shape
+         */
+        ...layerNode?.toJSON(),
       };
     }, []),
     /**

@@ -13,6 +13,7 @@ import {
   useI18n,
   prefix,
 } from './view';
+import { CustomToolbar } from './view/framework/Toolbar';
 
 export interface UXDMEditorProps {
   state?: EditorState;
@@ -22,6 +23,10 @@ export interface UXDMEditorProps {
   inspectorClassName?: string;
   className?: string;
   style?: CSSProperties;
+  /**
+   * 自定义 Toolbar
+   */
+  customToolbar: CustomToolbar;
 }
 
 const App: FC<UXDMEditorProps> = ({
@@ -32,6 +37,7 @@ const App: FC<UXDMEditorProps> = ({
   layerPanelClassName,
   toolbarClassName,
   inspectorClassName,
+  customToolbar,
 }) => {
   useEditorState({ state, onChange });
 
@@ -46,7 +52,7 @@ const App: FC<UXDMEditorProps> = ({
       messages={messages || {}}
     >
       <div className={classnames(`${prefix}`, className)} style={style}>
-        <Toolbar className={toolbarClassName} />
+        <Toolbar className={toolbarClassName} customToolbar={customToolbar} />
         <Row wrap={false}>
           <Col flex={1}>
             <LayerPanel nodeList={nodeList} className={layerPanelClassName} />

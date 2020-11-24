@@ -27,6 +27,11 @@ export enum NodeEnum {
 
 export type NodeType = keyof typeof NodeEnum;
 
+/**
+ * 所有可以作为图层的节点
+ */
+export type LayerNode = ChildNode;
+
 export type ChildNode = ShapeNode | GroupNode;
 
 export type ShapeNode = RectangleNode | EllipseNode | CircleNode;

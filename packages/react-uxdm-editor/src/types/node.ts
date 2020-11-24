@@ -1,10 +1,10 @@
-import { ShapeNode } from 'uxdm';
+import { LayerNode } from 'uxdm';
 
 /**
  *
  */
-export type NodeTree = Record<string, ShapeNode>;
+export type NodeTree = Record<string, LayerNode>;
 
-export type NodeList = Array<ShapeNode>;
+export type NodeList = Array<LayerNode>;
 
 export type LayerTree = string[];

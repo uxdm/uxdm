@@ -1,12 +1,14 @@
 import { CircleNode, EllipseNode, RectangleNode, NodeEnum } from 'uxdm';
 import { Circle, Ellipse, Rectangle } from './shapes';
+import { Group } from './index';
 
 export const ShapeTypes = NodeEnum;
 
-export const shapesMap = {
+export const nodesMap = {
   [ShapeTypes.Ellipse]: Ellipse,
   [ShapeTypes.Circle]: Circle,
   [ShapeTypes.Rectangle]: Rectangle,
+  [ShapeTypes.Group]: Group,
 };
 
 export const availableShapes = {
