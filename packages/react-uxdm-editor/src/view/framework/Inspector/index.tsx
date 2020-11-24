@@ -14,7 +14,7 @@ export interface InspectorProps {
 const componentPrefix = `${prefix}-inspector`;
 
 const Inspector: FC<InspectorProps> = () => {
-  const { activeNode } = useEditorOperation();
+  const { activeNode, updateNode } = useEditorOperation();
 
   return (
     <div className={classNames(`${componentPrefix}-container`)}>
@@ -25,8 +25,7 @@ const Inspector: FC<InspectorProps> = () => {
             value={activeNode?.name}
             onChange={(e) => {
               const newName = e.target.value;
-              console.log(newName);
-              activeNode.name = newName;
+              updateNode(activeNode.id, { name: newName });
             }}
           />
         )}

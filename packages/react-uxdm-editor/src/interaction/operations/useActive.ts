@@ -16,7 +16,7 @@ export const useActive = () => {
      * 取消激活
      */
     deactivate: () => {
-      setActiveNode(null);
+      setActiveNode('');
     },
   };
 };

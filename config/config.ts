@@ -1,5 +1,4 @@
 import { defineConfig } from 'umi';
-import slash from 'slash2';
 import { resolve } from 'path';
 
 const isProdSite =

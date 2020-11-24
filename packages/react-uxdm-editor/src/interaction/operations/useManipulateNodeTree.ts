@@ -1,4 +1,4 @@
-import { PositionParams, ShapeNode } from 'uxdm';
+import { PositionParams, ShapeNode, ShapeNodeType } from 'uxdm';
 
 import { useEditorStore } from '../../store';
 
@@ -17,6 +17,27 @@ export const useManipulateNodeTree = () => {
 
       setLayerTree((state) => {
         state.push(newNode.id);
+      });
+    },
+    /**
+     * 更新节点信息
+     * @param id
+     * @param payload 入参是一个对象 包含了待修改的参数
+     */
+    updateNode: (id: string, payload: Partial<ShapeNodeType>) => {
+      Object.entries(payload).forEach((entry) => {
+        if (!entry) return;
+
+        const [key, value] = entry;
+        console.log('更新', key);
+        setNodeTree((nodeTree) => {
+          const node = nodeTree[id];
+
+          // TODO 需要添加值校验
+          if (key in node) {
+            node[key] = value;
+          }
+        });
       });
     },
     /**
