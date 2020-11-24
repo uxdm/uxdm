@@ -5,6 +5,7 @@ import { prefix } from '../../theme/prefix';
 import { availableShapes } from '../../nodes';
 import { useEditorOperation } from '../../../interaction';
 import './style.less';
+import { useFormatMessage } from '../../components';
 
 const componentPrefix = `${prefix}-toolbar`;
 
@@ -41,6 +42,7 @@ const availableNodeList = Object.entries(availableShapes);
 
 const Toolbar: FC<ToolbarProps> = ({ className, customToolbar }) => {
   const { saveToLocalStorage, resetNodeTree, addNode } = useEditorOperation();
+  const f = useFormatMessage();
 
   const addFn = (node) => () => {
     addNode(node);
@@ -62,15 +64,16 @@ const Toolbar: FC<ToolbarProps> = ({ className, customToolbar }) => {
   );
   const RightToolbar = () => (
     <Space>
-      <Button>导入/导出</Button>
-      <Button>显示元数据</Button>
-      <Button onClick={save}>保存</Button>
-      <Button onClick={resetNodeTree}>清空</Button>
+      <Button>{f('toolbar.right.import')}</Button>
+      <Button>{f('toolbar.right.export')}</Button>
+      <Button>{f('toolbar.right.meta')}</Button>
+      <Button onClick={save}>{f('toolbar.right.save')}</Button>
+      <Button onClick={resetNodeTree}>{f('toolbar.right.clear')}</Button>
     </Space>
   );
-  const CenterToolbar = () => <div>UXDM Editor</div>;
+  const CenterToolbar = () => <div>{f('toolbar.center.title')}</div>;
 
-  const CustomToolbar = customToolbar({
+  const CustomToolbar = customToolbar?.({
     left: <LeftToolbar />,
     right: <RightToolbar />,
     center: <CenterToolbar />,

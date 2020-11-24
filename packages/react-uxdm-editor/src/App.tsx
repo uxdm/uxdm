@@ -1,6 +1,7 @@
 import React, { CSSProperties, FC } from 'react';
 import { Col, Row } from 'antd';
 import classnames from 'classnames';
+import Skeleton from '@ant-design/pro-skeleton';
 
 import { EditorState } from './types';
 import { useEditorUtils, useEditorState } from './interaction';
@@ -26,7 +27,7 @@ export interface UXDMEditorProps {
   /**
    * 自定义 Toolbar
    */
-  customToolbar: CustomToolbar;
+  customToolbar?: CustomToolbar;
 }
 
 const App: FC<UXDMEditorProps> = ({
@@ -44,13 +45,10 @@ const App: FC<UXDMEditorProps> = ({
   const { nodeList } = useEditorUtils();
   const { locale, messages } = useI18n();
 
-  return (
-    <IntlProvider
-      locale={locale}
-      defaultLocale="en-US"
-      // @ts-ignore
-      messages={messages || {}}
-    >
+  return !messages ? (
+    <Skeleton />
+  ) : (
+    <IntlProvider locale={locale} defaultLocale="en-US" messages={messages}>
       <div className={classnames(`${prefix}`, className)} style={style}>
         <Toolbar className={toolbarClassName} customToolbar={customToolbar} />
         <Row wrap={false}>

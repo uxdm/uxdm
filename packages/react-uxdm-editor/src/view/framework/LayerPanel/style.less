@@ -16,7 +16,30 @@
   }
 
   &-content {
-    padding: @space-default;
     color: @text-color-secondary;
+  }
+  &-layer {
+    padding: @space-default;
+
+    &:hover {
+      outline: 2px solid @blue-3;
+    }
+    &-text {
+      margin-left: @space-default;
+      line-height: 24px;
+      cursor: default;
+      user-select: none;
+    }
+    &-active {
+      background: @blue-1;
+      &:hover {
+        outline: none;
+      }
+    }
+
+    &-input {
+      border-color: @blue-6 !important;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
   }
 }

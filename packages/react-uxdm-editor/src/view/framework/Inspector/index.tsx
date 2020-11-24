@@ -1,10 +1,10 @@
 import React, { CSSProperties, FC } from 'react';
 import classNames from 'classnames';
-import { Input } from 'antd';
 import { useEditorOperation } from '../../../interaction';
 import { prefix } from '../../theme/prefix';
 
 import './style.less';
+import { useFormatMessage } from '../../components';
 
 export interface InspectorProps {
   className?: string;
@@ -14,21 +14,15 @@ export interface InspectorProps {
 const componentPrefix = `${prefix}-inspector`;
 
 const Inspector: FC<InspectorProps> = () => {
-  const { activeNode, updateNode } = useEditorOperation();
+  const { activeNode } = useEditorOperation();
+  const f = useFormatMessage();
 
   return (
     <div className={classNames(`${componentPrefix}-container`)}>
-      <div className={`${componentPrefix}-header`}>编辑器</div>
+      <div className={`${componentPrefix}-header`}>
+        {f('inspector.header.edit')}
+      </div>
       <div className={`${componentPrefix}-content`}>
-        {activeNode && (
-          <Input
-            value={activeNode?.name}
-            onChange={(e) => {
-              const newName = e.target.value;
-              updateNode(activeNode.id, { name: newName });
-            }}
-          />
-        )}
         {activeNode && (
           <div>
             <div>X:{activeNode.x}</div>

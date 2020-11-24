@@ -9,7 +9,10 @@ export type LocaleKey = keyof LocaleMessages;
 export type SupportedLocales = 'en-US' | 'zh-CN';
 
 export const IntlProvider: React.FC<
-  Omit<React.ComponentProps<typeof BaseIntlProvider>, 'messages'> & {
+  Omit<
+    React.ComponentProps<typeof BaseIntlProvider>,
+    'messages' | 'defaultFormats'
+  > & {
     messages: LocaleMessages;
   }
 > = (props) => <BaseIntlProvider {...props} />;

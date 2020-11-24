@@ -1,9 +1,9 @@
 import React, { CSSProperties, FC } from 'react';
-
 import classNames from 'classnames';
-import { NodeList } from '../../../types';
-import { useEditorOperation } from '../../../interaction';
+import LayerItem from './LayerItem';
 import { prefix } from '../../theme/prefix';
+import { useFormatMessage } from '../../components';
+import { NodeList } from '../../../types';
 
 import './style.less';
 
@@ -13,19 +13,19 @@ export interface LayPanelProps {
   style?: CSSProperties;
 }
 
-const componentPrefix = `${prefix}-layer-panel`;
+export const componentPrefix = `${prefix}-layer-panel`;
 
 const LayerPanel: FC<LayPanelProps> = ({ nodeList }) => {
-  const { activateNode } = useEditorOperation();
+  const f = useFormatMessage();
 
   return (
     <div className={classNames(`${componentPrefix}-container`)}>
-      <div className={`${componentPrefix}-header`}>Layers</div>
+      <div className={`${componentPrefix}-header`}>
+        {f('layer-panel.header.layer')}
+      </div>
       <div className={`${componentPrefix}-content`}>
         {nodeList?.map((node) => (
-          <div key={node.id} onClick={() => activateNode(node.id)}>
-            {node.name}
-          </div>
+          <LayerItem node={node} key={node.id} />
         ))}
       </div>
     </div>
