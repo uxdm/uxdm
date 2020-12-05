@@ -35,6 +35,8 @@ const App = () => {
             </Space>
           ),
         })}
+        layerPanel={false}
+        inspectorPanel={false}
       />
     </div>
   );
