@@ -9,7 +9,7 @@ import { useEditorStore } from '../store';
  */
 export const useEditorUtils = () => {
   const { updateNodePosition, activateNode } = useEditorOperation();
-  const { nodeTree, layerTree } = useEditorStore();
+  const { nodes, layerTree } = useEditorStore();
 
   return {
     /**
@@ -29,11 +29,10 @@ export const useEditorUtils = () => {
         /**
          * 填色
          */
-        fill: node.fill instanceof Array ? undefined : node.fill?.hex,
+        fill: node.fill instanceof Array ? undefined : node.fill?.hex, // border: node.style.borders,
         /**
          * 描边
-         */ // border: node.style.borders,
-        /**
+         */ /**
          * 允许拖拽
          */
         draggable: true,
@@ -72,9 +71,9 @@ export const useEditorUtils = () => {
     /**
      * 生成给框架消费的 NodeList
      */
-    nodeList: useMemo(() => layerTree?.map((layer) => nodeTree[layer]), [
+    nodeList: useMemo(() => layerTree?.map((layer) => nodes[layer]), [
       layerTree,
-      nodeTree,
+      nodes,
     ]),
   };
 };

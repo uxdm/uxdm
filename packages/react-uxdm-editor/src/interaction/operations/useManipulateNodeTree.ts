@@ -3,7 +3,7 @@ import { LayerNode, PositionParams, ShapeNodeType } from 'uxdm';
 import { useEditorStore } from '../../store';
 
 export const useManipulateNodeTree = () => {
-  const { setLayerTree, setNodeTree } = useEditorStore();
+  const { setLayerTree, setNodes } = useEditorStore();
 
   return {
     /**
@@ -11,7 +11,7 @@ export const useManipulateNodeTree = () => {
      * @param newNode
      */
     addNode: (newNode: LayerNode) => {
-      setNodeTree((state) => {
+      setNodes((state) => {
         state[newNode.id] = newNode;
       });
 
@@ -30,7 +30,7 @@ export const useManipulateNodeTree = () => {
 
         const [key, value] = entry;
         console.log('更新', key);
-        setNodeTree((nodeTree) => {
+        setNodes((nodeTree) => {
           const node = nodeTree[id];
 
           // TODO 需要添加值校验
@@ -63,10 +63,10 @@ export const useManipulateNodeTree = () => {
         node.forEach((n) => {
           newNodeTree[n.id] = n;
         });
-        setNodeTree(newNodeTree);
+        setNodes(newNodeTree);
         setLayerTree(node.map((n) => n.id));
       } else {
-        setNodeTree({ [node.id]: node });
+        setNodes({ [node.id]: node });
         setLayerTree([node.id]);
       }
     },
@@ -76,7 +76,7 @@ export const useManipulateNodeTree = () => {
      * @param position
      */
     updateNodePosition: (nodeId: string, position: PositionParams) => {
-      setNodeTree((state) => {
+      setNodes((state) => {
         state[nodeId]?.setPosition(position);
       });
     },
@@ -84,7 +84,7 @@ export const useManipulateNodeTree = () => {
      * 重置节点
      */
     resetNodeTree: () => {
-      setNodeTree({});
+      setNodes({});
       setLayerTree([]);
     },
   };

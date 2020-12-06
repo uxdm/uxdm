@@ -29,7 +29,7 @@ export interface EditorState {
   /**
    * 节点树
    */
-  nodeTree: Record<string, ShapeNodeType>;
+  nodes: Record<string, ShapeNodeType>;
   /**
    * 图层树
    */

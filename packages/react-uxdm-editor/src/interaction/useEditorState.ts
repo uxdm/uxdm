@@ -12,13 +12,13 @@ export const useEditorState = (props?: {
   state: EditorState;
   onChange?: (state: EditorState) => void;
 }) => {
-  const { nodeTree, layerTree } = useEditorStore(props?.state);
+  const { nodes, layerTree } = useEditorStore(props?.state);
 
   useEffect(() => {
     if (props?.onChange) {
-      props?.onChange({ nodeTree, layerTree });
+      props?.onChange({ nodes, layerTree });
     }
-  }, [nodeTree, layerTree, props?.onChange]);
+  }, [nodes, layerTree, props?.onChange]);
 
-  return { nodeTree, layerTree };
+  return { nodes, layerTree };
 };

@@ -7,9 +7,9 @@ import { EditorStateKey } from './storeKey';
  * @param state 初始化状态
  */
 export const useEditorStore = (state?: Partial<EditorStore>) => {
-  const [nodeTree, setNodeTree] = useStore<NodeTree>(
-    EditorStateKey.nodeTree,
-    state?.nodeTree || {},
+  const [nodes, setNodes] = useStore<NodeTree>(
+    EditorStateKey.nodes,
+    state?.nodes || {},
   );
   const [layerTree, setLayerTree] = useStore<LayerTree>(
     EditorStateKey.layerTree,
@@ -18,12 +18,12 @@ export const useEditorStore = (state?: Partial<EditorStore>) => {
 
   return {
     /**
-     * 保存在节点中的
+     * 所有显示的节点
      */
-    nodeTree,
-    setNodeTree,
+    nodes,
+    setNodes,
     /**
-     * 节点排序
+     * 在图层面板中以树状显示的节点
      */
     layerTree,
     setLayerTree,

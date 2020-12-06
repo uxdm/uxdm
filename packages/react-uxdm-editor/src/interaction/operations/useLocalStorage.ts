@@ -8,7 +8,7 @@ import { EditorState } from '../../types';
 const localStorageKey = 'UXDM_EDITOR_LOCAL_STORAGE';
 
 export const useLocalStorage = () => {
-  const { nodeTree, layerTree } = useEditorStore();
+  const { nodes, layerTree } = useEditorStore();
 
   return {
     /**
@@ -20,7 +20,7 @@ export const useLocalStorage = () => {
         key,
         JSON.stringify({
           [EditorStateKey.layerTree]: layerTree.map((e) => e.toString()),
-          [EditorStateKey.nodeTree]: mapValues(nodeTree, (node) => {
+          [EditorStateKey.nodes]: mapValues(nodes, (node) => {
             return node.toJSON();
           }),
         }),
@@ -38,8 +38,8 @@ export const useLocalStorage = () => {
       if (!parsedSavedState) return;
 
       mutate(
-        EditorStateKey.nodeTree,
-        mapValues(parsedSavedState[EditorStateKey.nodeTree], fromJSON),
+        EditorStateKey.nodes,
+        mapValues(parsedSavedState[EditorStateKey.nodes], fromJSON),
       );
       mutate(
         EditorStateKey.layerTree,

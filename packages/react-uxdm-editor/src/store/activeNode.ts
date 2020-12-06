@@ -11,7 +11,7 @@ export const useActiveNode = (state: string = '') => {
     EditorStateKey.activeNode,
     state,
   );
-  const { nodeTree } = useEditorStore();
+  const { nodes } = useEditorStore();
 
   return {
     /**
@@ -19,6 +19,6 @@ export const useActiveNode = (state: string = '') => {
      */
     activeNodeId,
     setActiveNode,
-    activeNode: nodeTree[activeNodeId],
+    activeNode: nodes[activeNodeId],
   };
 };

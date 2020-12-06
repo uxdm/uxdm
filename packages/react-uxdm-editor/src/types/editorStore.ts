@@ -8,7 +8,7 @@ export interface EditorStore {
   /**
    * 节点树
    */
-  nodeTree: NodeTree;
+  nodes: NodeTree;
   /**
    * 图层树
    */
