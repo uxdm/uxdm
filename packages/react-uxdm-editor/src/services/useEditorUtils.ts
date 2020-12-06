@@ -16,40 +16,45 @@ export const useEditorUtils = () => {
      * 给每个 node 都包裹一层 props
      */
     nodePropsWrapper: useCallback((layerNode: LayerNode) => {
-      const baseProps = (node: LayerNode) => ({
-        /**
-         * 将 bounding 参数透传给 konva shape
-         */
-        ...node.bounding.toJSON?.(),
-        /**
-         * key
-         */
-        key: node.id,
+      const baseProps = (node: LayerNode) => {
+        const { style } = node;
+        return {
+          /**
+           * 将 bounding 参数透传给 konva shape
+           */
+          ...node.bounding.toJSON?.(),
+          /**
+           * key
+           */
+          key: node.id,
 
-        /**
-         * 填色
-         */
-        fill: node.fill instanceof Array ? undefined : node.fill?.hex, // border: node.style.borders,
-        /**
-         * 描边
-         */ /**
-         * 允许拖拽
-         */
-        draggable: true,
-        /**
-         * 拖拽响应方法
-         * @param target
-         */
-        onDragEnd: ({ target }) => {
-          updateNodePosition(node.id, {
-            x: target.attrs.x,
-            y: target.attrs.y,
-          });
-        },
-        onMouseDown: () => {
-          activateNode(node.id);
-        },
-      });
+          /**
+           * 填色
+           */
+          fill: style.fills.filter((i) => i.visible)[0].hex,
+          /**
+           * 描边
+           */
+          // border: node.style.borders,
+          /**
+           * 允许拖拽
+           */
+          draggable: true,
+          /**
+           * 拖拽响应方法
+           * @param target
+           */
+          onDragEnd: ({ target }) => {
+            updateNodePosition(node.id, {
+              x: target.attrs.x,
+              y: target.attrs.y,
+            });
+          },
+          onMouseDown: () => {
+            activateNode(node.id);
+          },
+        };
+      };
 
       if (layerNode instanceof GroupNode) {
         const { children, ...layerProps } = layerNode.toJSON();
@@ -68,6 +73,7 @@ export const useEditorUtils = () => {
         ...layerNode?.toJSON(),
       };
     }, []),
+
     /**
      * 生成给框架消费的 NodeList
      */
