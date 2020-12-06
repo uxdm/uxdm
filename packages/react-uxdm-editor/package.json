@@ -14,6 +14,7 @@
   "files": [
     "lib",
     "es",
+    "src",
     "dist"
   ],
   "publishConfig": {

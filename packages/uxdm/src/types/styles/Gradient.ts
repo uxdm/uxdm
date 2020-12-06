@@ -46,9 +46,8 @@ export interface ColorStop {
 }
 
 export type ColorStopParams =
-  | IColor
   | ColorParams
   | {
       position?: number;
-      color: IColor | ColorParams;
+      color: ColorParams;
     };
