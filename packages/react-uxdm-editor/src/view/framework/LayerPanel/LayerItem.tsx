@@ -7,10 +7,13 @@ import { componentPrefix } from './index';
 import './style.less';
 
 const useEditNodeName = (targetDOM) => {
+  const { deactivateNode } = useEditorOperation();
+
   const [editNodeId, setEditKey] = useState('');
 
   useClickAway(() => {
     setEditKey('');
+    deactivateNode();
   }, targetDOM);
 
   return {

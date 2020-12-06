@@ -1,10 +1,21 @@
-import { StyleParams, WindingRuleType, Style as BaseStyle } from 'uxdm';
+import {
+  StyleParams,
+  WindingRuleType,
+  Style as BaseStyle,
+  BorderLineJoinType,
+  BorderLineCapType,
+} from 'uxdm';
 
 import Fill from './Fill';
 import Shadow from './Shadow';
 import Border from './Border';
 
-import { defaultColorControls, getContextSettings, uuid } from '../utils';
+import {
+  defaultColorControls,
+  fromSketchBlendMode,
+  getContextSettings,
+  uuid,
+} from '../utils';
 
 import { SketchFormat } from '../types';
 
@@ -15,14 +26,30 @@ class Style extends BaseStyle {
   constructor(params?: StyleParams) {
     super(params);
 
-    this.fills = this.fills.map((item) => new Fill(item.toParams()));
-    this.borders = this.borders.map((item) => new Border(item.toParams()));
-    this.shadows = this.shadows.map((item) => new Shadow(item.toParams()));
-    this.innerShadows = this.innerShadows.map(
-      (item) => new Shadow(item.toParams()),
-    );
-
-    this.id = uuid();
+    if (params) {
+      const { fills, borders, innerShadows, shadows } = params;
+      if (fills) {
+        this.fills = params.fills.map((item) =>
+          item instanceof Fill ? item : new Fill(item),
+        );
+      }
+      if (borders) {
+        this.borders = borders.map((item) =>
+          item instanceof Border ? item : new Border(item),
+        );
+      }
+      if (innerShadows) {
+        this.innerShadows = innerShadows.map((item) =>
+          item instanceof Shadow ? item : new Shadow(item),
+        );
+      }
+      if (shadows) {
+        this.shadows = shadows.map((item) =>
+          item instanceof Shadow ? item : new Shadow(item),
+        );
+      }
+    }
+    this.id = params.id || uuid();
   }
 
   get SketchBorderOptions(): SketchFormat.BorderOptions {
@@ -136,6 +163,72 @@ class Style extends BaseStyle {
       ),
       contextSettings: getContextSettings(this.blendMode, this.opacity),
     };
+  }
+
+  /**
+   * 从 SketchJSON 获取对象
+   */
+  static fromSketchJSON(json: SketchFormat.Style) {
+    const {
+      do_objectID,
+      fills,
+      innerShadows,
+      shadows,
+      borders,
+      borderOptions,
+      contextSettings,
+    } = json;
+
+    let lineJoin: BorderLineJoinType;
+    let lineCap: BorderLineCapType;
+
+    const {
+      dashPattern,
+      isEnabled,
+      lineCapStyle,
+      lineJoinStyle,
+    } = borderOptions;
+
+    switch (lineJoinStyle) {
+      default:
+      case SketchFormat.LineJoinStyle.Miter:
+        lineJoin = 'MITER';
+        break;
+      case SketchFormat.LineJoinStyle.Round:
+        lineJoin = 'ROUND';
+        break;
+      case SketchFormat.LineJoinStyle.Bevel:
+        lineJoin = 'BEVEL';
+    }
+
+    switch (lineCapStyle) {
+      default:
+      case SketchFormat.LineCapStyle.Butt:
+        lineCap = 'NONE';
+        break;
+      case SketchFormat.LineCapStyle.Round:
+        lineCap = 'ROUND';
+        break;
+      case SketchFormat.LineCapStyle.Projecting:
+        lineCap = 'SQUARE';
+        break;
+    }
+
+    return new Style({
+      id: do_objectID,
+      fills: fills?.map(Fill.fromSketchJSON),
+      borders: borders?.map(Border.fromSketchJSON),
+      borderOptions: {
+        enabled: isEnabled,
+        dashPattern,
+        lineJoin,
+        lineCap,
+      },
+      innerShadows: innerShadows?.map(Shadow.fromSketchJSON),
+      shadows: shadows?.map(Shadow.fromSketchJSON),
+      blendMode: fromSketchBlendMode(contextSettings.blendMode),
+      opacity: contextSettings.opacity,
+    });
   }
 }
 

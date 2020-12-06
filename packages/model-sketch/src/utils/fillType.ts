@@ -14,3 +14,23 @@ export const getFillType = (type: Paint_Type) => {
       return SketchFormat.FillType.Pattern;
   }
 };
+
+/**
+ * 从 Sketch 获取颜料类型
+ * @param fillType
+ */
+export const fromSketchFillType = (
+  fillType: SketchFormat.FillType,
+): Paint_Type => {
+  switch (fillType) {
+    default:
+    case SketchFormat.FillType.Color:
+      return 'SOLID';
+
+    case SketchFormat.FillType.Gradient:
+      return 'GRADIENT';
+
+    case SketchFormat.FillType.Pattern:
+      return 'IMAGE';
+  }
+};

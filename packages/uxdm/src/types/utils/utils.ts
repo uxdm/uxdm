@@ -48,27 +48,25 @@ export type NodeTypeUtils<T extends IAbstractObject> = Overwrite<
  */
 export type NodeParamsUtils<T extends AbstractNodeType> =
   // 允许使用 fill 的入参来添加单个颜色
-  Assign<
-    DeepPartial<
-      // 覆盖掉样式参数
-      Overwrite<
-        // 将 constraints 参数加到变量中
-        Assign<
-          // 移除 bounding 参数
-          // 将 width height 变成同一级
-          Assign<Omit<T, 'type'>, BoundingParams>,
+  DeepPartial<
+    // 覆盖掉样式参数
+    Overwrite<
+      // 将 constraints 参数加到变量中
+      Assign<
+        // 移除 bounding 参数
+        // 将 width height 变成同一级
+        Omit<T, 'type'>,
+        BoundingParams &
           // 从 layout 中取出来
-          Pick<LayoutParams, 'constraints'>
-        >,
-        {
-          style: StyleParams;
-        }
-      >
-    >,
-    {
-      fill?: ColorParams;
-      // border?
-      // 如果是 Group 类型的Type 则让参数中有可以有 children
-      // children?: T extends AbstractGroupNodeType ? ChildNode[] : never;
-    }
+          Pick<LayoutParams, 'constraints'> & {
+            fill?: ColorParams;
+            // border?
+            // 如果是 Group 类型的Type 则让参数中有可以有 children
+            // children?: T extends AbstractGroupNodeType ? ChildNode[] : never;
+          }
+      >,
+      {
+        style: StyleParams;
+      }
+    >
   >;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IImage, ImageType } from '../types';
+import { IImage, ImageParams, ImageType } from '../types';
 import { AbstractObject } from '../abstract/AbstractObject';
 import { blobToBase64, initImageURL, getBase64ImageString } from '../utils';
 
@@ -8,12 +8,18 @@ import { blobToBase64, initImageURL, getBase64ImageString } from '../utils';
  * @category 对象
  * */
 export class Image extends AbstractObject implements IImage {
-  constructor(url: string) {
+  constructor(params: ImageParams) {
     super();
-
-    const { url: safeURL, base64 } = initImageURL(url);
-    this.url = safeURL;
-    this.base64 = base64;
+    if (typeof params === 'string') {
+      const { url: safeURL, base64 } = initImageURL(params);
+      this.url = safeURL;
+      this.base64 = base64;
+    } else {
+      const { base64, id, url } = params;
+      this.base64 = base64;
+      this.id = id;
+      this.url = url;
+    }
   }
 
   /**

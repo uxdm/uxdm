@@ -77,7 +77,7 @@ export const useManipulateNodeTree = () => {
      */
     updateNodePosition: (nodeId: string, position: PositionParams) => {
       setNodeTree((state) => {
-        state[nodeId].setPosition(position);
+        state[nodeId]?.setPosition(position);
       });
     },
     /**

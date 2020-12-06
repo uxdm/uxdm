@@ -18,6 +18,20 @@ class Color extends BaseColor {
       alpha: this.alpha,
     };
   };
+
+  /**
+   * 从 Sketch JSON 获得 Sketch Color 对象
+   * @param json
+   */
+  static fromSketchJSON(json: SketchFormat.Color): Color {
+    const { alpha, blue, green, red } = json;
+    return new Color({
+      a: alpha,
+      b: Math.round(blue * 255),
+      g: Math.round(green * 255),
+      r: Math.round(red * 255),
+    });
+  }
 }
 
 export default Color;

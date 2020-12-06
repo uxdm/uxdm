@@ -9,10 +9,10 @@ export enum GradientEnum {
   ANGULAR = 'ANGULAR',
 }
 
-export type GradientTypes = keyof typeof GradientEnum;
+export type Gradient_Type = keyof typeof GradientEnum;
 
 export interface IGradient {
-  type: GradientTypes;
+  type: Gradient_Type;
   from: Point;
   to: Point;
   stops: ColorStop[];
@@ -30,7 +30,7 @@ export type GradientParams = {
   from?: Point;
   to?: Point;
   stops?: ColorStopParams[];
-  type?: GradientTypes;
+  type?: Gradient_Type;
   radius?: number;
 };
 
@@ -46,8 +46,9 @@ export interface ColorStop {
 }
 
 export type ColorStopParams =
+  | IColor
   | ColorParams
   | {
       position?: number;
-      color: ColorParams;
+      color: IColor | ColorParams;
     };

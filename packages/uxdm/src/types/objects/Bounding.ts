@@ -14,7 +14,7 @@ export interface IBounding extends AbstractRectType {
   /**
    * 是否维持比例
    */
-  constrainProportions: boolean;
+  keepAspectRatio: boolean;
 
   /**
    * 横轴中点
@@ -35,6 +35,10 @@ export interface BoundingType extends AbstractRectType {
    * 旋转参数
    */
   rotation: number;
+  /**
+   * 维持长宽比
+   */
+  keepAspectRatio: boolean;
 }
 
 /**

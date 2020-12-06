@@ -19,8 +19,9 @@ export class Bounding extends AbstractRect implements IBounding {
   constructor(params?: BoundingParams) {
     super(params);
     if (params) {
-      const { rotation = 0 } = params;
+      const { rotation = 0, keepAspectRatio } = params;
       this.rotation = rotation;
+      this.keepAspectRatio = keepAspectRatio || false;
     }
   }
 
@@ -35,13 +36,20 @@ export class Bounding extends AbstractRect implements IBounding {
   matrices: IBounding['matrices'] = [];
 
   /**
-   * 维持长宽比
+   * 维持高宽比
    * @description
    * 默认不固定保持长宽比
    *
    * @default false
    */
-  constrainProportions: boolean = false;
+  keepAspectRatio: boolean = false;
+
+  /**
+   * 屏幕长宽比
+   */
+  get aspectRatio() {
+    return this.width / this.height;
+  }
 
   /**
    * 获取坐标
@@ -132,18 +140,23 @@ export class Bounding extends AbstractRect implements IBounding {
     x: this.x,
     y: this.y,
     rotation: this.rotation,
+    keepAspectRatio: this.keepAspectRatio,
   });
 
   toParams = (): BoundingParams => {
-    const { height, width, y, x, rotation } = this;
-    const bounding = {
+    const { height, width, y, x, rotation, keepAspectRatio } = this;
+
+    const bounding: BoundingParams = {
       height: height === 0 ? undefined : height,
       width: width === 0 ? undefined : width,
       x: x === 0 ? undefined : x,
       y: y === 0 ? undefined : y,
       rotation: rotation === 0 ? undefined : rotation,
+      keepAspectRatio: keepAspectRatio || undefined,
     };
 
+    // 校验参数有效性
+    // 至少有 1 个才算有效参数 否则当成默认参数
     const isValid = checkValidParams(bounding, 0);
     if (!isValid) return;
 

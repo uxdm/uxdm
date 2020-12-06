@@ -1,17 +1,11 @@
 import { Image as BaseImage } from 'uxdm';
 import { SketchFormat } from '../types';
-import { uuid } from '../utils';
 
 /**
  * 图片资产
  * 用于添加到 Fill 和 Border 的内容
  */
 class Image extends BaseImage {
-  constructor(params) {
-    super(params);
-    this.id = uuid();
-  }
-
   toSketchJSON(): SketchFormat.DataRef {
     return {
       _class: 'MSJSONOriginalDataReference',
@@ -24,6 +18,26 @@ class Image extends BaseImage {
         _data: '',
       },
     };
+  }
+
+  /**
+   * 从 Sketch JSON 获得 Image 对象
+   * @param json
+   */
+  static fromSketchJSON(
+    json: SketchFormat.DataRef | SketchFormat.FileRef,
+  ): Image {
+    const { _ref } = json;
+
+    const image = new Image({ id: _ref });
+    // 说明是 DataRef
+    if ('data' in json) {
+      image.base64 = json.data._data;
+      return image;
+    }
+    // 否则是 FileRef
+    // 要去找相应的文件入参
+    return image;
   }
 }
 

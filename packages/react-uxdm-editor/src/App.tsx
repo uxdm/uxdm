@@ -1,9 +1,8 @@
-import React, { CSSProperties, FC } from 'react';
+import React, { FC } from 'react';
 import { Col, Row } from 'antd';
 import classnames from 'classnames';
-import Skeleton from '@ant-design/pro-skeleton';
 
-import { EditorState } from './types';
+import { BaseComponentProps, EditorState } from './types';
 import { useEditorUtils, useEditorState } from './interaction';
 import {
   LayerPanel,
@@ -15,15 +14,23 @@ import {
   prefix,
 } from './view';
 import { CustomToolbar } from './view/framework/Toolbar';
+import { isFalse } from './utils';
 
-export interface UXDMEditorProps {
+export interface UXDMEditorProps extends BaseComponentProps {
   state?: EditorState;
   onChange?: (state: EditorState) => void;
+  /**
+   * 工具条类名
+   */
   toolbarClassName?: string;
+  /**
+   * 图层面板类名
+   */
   layerPanelClassName?: string;
+  /**
+   * 视察器类名
+   */
   inspectorClassName?: string;
-  className?: string;
-  style?: CSSProperties;
   /**
    * 自定义 Toolbar
    */
@@ -36,6 +43,10 @@ export interface UXDMEditorProps {
    * 视察器面板
    */
   inspectorPanel?: boolean;
+  /**
+   * 编辑器标题
+   */
+  title?: string;
 }
 
 const App: FC<UXDMEditorProps> = ({
@@ -49,6 +60,7 @@ const App: FC<UXDMEditorProps> = ({
   customToolbar,
   layerPanel,
   inspectorPanel,
+  title,
 }) => {
   useEditorState({ state, onChange });
 
@@ -56,13 +68,17 @@ const App: FC<UXDMEditorProps> = ({
   const { locale, messages } = useI18n();
 
   return !messages ? (
-    <Skeleton />
+    <div />
   ) : (
     <IntlProvider locale={locale} defaultLocale="en-US" messages={messages}>
       <div className={classnames(`${prefix}`, className)} style={style}>
-        <Toolbar className={toolbarClassName} customToolbar={customToolbar} />
+        <Toolbar
+          title={title}
+          className={toolbarClassName}
+          customToolbar={customToolbar}
+        />
         <Row wrap={false}>
-          {!layerPanel ? null : (
+          {isFalse(layerPanel) ? null : (
             <Col flex={1}>
               <LayerPanel
                 nodeList={nodeList}
@@ -74,7 +90,7 @@ const App: FC<UXDMEditorProps> = ({
           <Col flex={1}>
             <Canvas nodeList={nodeList} />
           </Col>
-          {!inspectorPanel ? null : (
+          {isFalse(inspectorPanel) ? null : (
             <Col flex={1}>
               <Inspector className={inspectorClassName} />
             </Col>

@@ -31,6 +31,9 @@ export const useEditorUtils = () => {
          */
         fill: node.fill instanceof Array ? undefined : node.fill?.hex,
         /**
+         * 描边
+         */ // border: node.style.borders,
+        /**
          * 允许拖拽
          */
         draggable: true,

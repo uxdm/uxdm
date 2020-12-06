@@ -6,6 +6,7 @@ import { availableShapes } from '../../nodes';
 import { useEditorOperation } from '../../../interaction';
 import './style.less';
 import { useFormatMessage } from '../../components';
+import { BaseComponentProps } from '../../../types';
 
 const componentPrefix = `${prefix}-toolbar`;
 
@@ -32,15 +33,19 @@ export type TToolbar = {
   center: JSX.Element;
 };
 
-interface ToolbarProps {
+interface ToolbarProps extends BaseComponentProps {
   className?: string;
   style?: CSSProperties;
   customToolbar?: CustomToolbar;
+  /**
+   * 标题
+   */
+  title?: string;
 }
 
 const availableNodeList = Object.entries(availableShapes);
 
-const Toolbar: FC<ToolbarProps> = ({ className, customToolbar }) => {
+const Toolbar: FC<ToolbarProps> = ({ className, customToolbar, title }) => {
   const { saveToLocalStorage, resetNodeTree, addNode } = useEditorOperation();
   const f = useFormatMessage();
 
@@ -71,7 +76,7 @@ const Toolbar: FC<ToolbarProps> = ({ className, customToolbar }) => {
       <Button onClick={resetNodeTree}>{f('toolbar.right.clear')}</Button>
     </Space>
   );
-  const CenterToolbar = () => <div>{f('toolbar.center.title')}</div>;
+  const CenterToolbar = () => <div>{title || f('toolbar.center.title')}</div>;
 
   const CustomToolbar = customToolbar?.({
     left: <LeftToolbar />,

@@ -5,6 +5,7 @@ import { getGroupLayout } from '../utils';
 import { SketchFormat, GroupLayoutType, SketchGroupLayout } from '../types';
 import { AnyLayer } from '../types/anyLayer';
 import { SketchLayerParams } from '../types/layerType';
+import { fromSketchJSON } from '../functions';
 
 export type SketchGroupParams = Assign<
   SketchLayerParams,
@@ -122,4 +123,12 @@ export class Group extends AbstractSketchObject implements IAbstractGroupNode {
       layers: this.children.map((layer) => layer.toSketchJSON()),
     };
   };
+
+  static fromSketchJSON(json: SketchFormat.Group): Group {
+    const { layers } = json;
+    return new Group({
+      // @ts-ignore
+      children: fromSketchJSON(layers),
+    });
+  }
 }

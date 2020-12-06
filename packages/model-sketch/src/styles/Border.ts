@@ -1,5 +1,6 @@
 import {
   Border as BaseBorder,
+  BorderAlignType,
   BorderParams,
   ColorParams,
   GradientParams,
@@ -7,7 +8,12 @@ import {
 import Color from './Color';
 import Gradient from './Gradient';
 import { SketchFormat } from '../types';
-import { getContextSettings, getFillType } from '../utils';
+import {
+  fromSketchBlendMode,
+  fromSketchFillType,
+  getContextSettings,
+  getFillType,
+} from '../utils';
 
 /**
  * 描边对象
@@ -64,6 +70,45 @@ class Border extends BaseBorder {
       thickness: this.thickness,
     };
   };
+
+  static fromSketchJSON(json: SketchFormat.Border): Border {
+    const {
+      fillType,
+      color,
+      contextSettings,
+      gradient,
+      position: sketchPosition,
+      thickness,
+      isEnabled,
+    } = json;
+    const { opacity, blendMode } = contextSettings;
+
+    let align: BorderAlignType;
+
+    switch (sketchPosition) {
+      default:
+      case SketchFormat.BorderPosition.Inside:
+        align = 'INSIDE';
+        break;
+      case SketchFormat.BorderPosition.Center:
+        align = 'CENTER';
+        break;
+      case SketchFormat.BorderPosition.Outside:
+        align = 'OUTSIDE';
+        break;
+    }
+
+    return new Border({
+      type: fromSketchFillType(fillType),
+      color: Color.fromSketchJSON(color),
+      gradient: Gradient.fromSketchJSON(gradient),
+      visible: isEnabled,
+      blendMode: fromSketchBlendMode(blendMode),
+      opacity,
+      thickness,
+      align,
+    });
+  }
 }
 
 export default Border;

@@ -4,9 +4,12 @@ import {
   IRectangleNode,
   NodeType,
   RectangleNodeParams,
+  RectangleNodeType,
 } from 'uxdm';
 import { SketchFormat } from '../types';
 import { AbstractSketchObject } from '../abstract';
+import { Frame } from '../objects';
+import { Style } from '../styles';
 
 export type SketchRectangleParams = Assign<
   AbstractNodeParams,
@@ -115,4 +118,18 @@ export class Rectangle extends AbstractSketchObject implements IRectangleNode {
       },
     ];
   };
+
+  static fromSketchJSON(json: SketchFormat.Rectangle): Rectangle {
+    const { do_objectID, frame, style } = json;
+    return new Rectangle({
+      id: do_objectID,
+      bounding: Frame.fromSketchJSON(frame),
+      style: Style.fromSketchJSON(style),
+    });
+  }
+
+  toJSON(): RectangleNodeType {
+    const json = super.toJSON();
+    return { ...json, cornerRadius: this.cornerRadius };
+  }
 }

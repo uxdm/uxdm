@@ -39,11 +39,15 @@ export class Frame extends Bounding {
   toSketchJSON = (): SketchFormat.Rect => {
     return {
       _class: 'rect',
-      constrainProportions: this.constrainProportions ?? false,
+      constrainProportions: this.keepAspectRatio ?? false,
       height: this.height || 0,
       width: this.width || 0,
       x: this.x || 0,
       y: this.y || 0,
     };
   };
+
+  static fromSketchJSON(frame: SketchFormat.Rect) {
+    return new Frame({ ...frame, keepAspectRatio: frame.constrainProportions });
+  }
 }

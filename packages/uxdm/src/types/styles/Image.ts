@@ -30,4 +30,6 @@ export interface IImage extends IAbstractObject {
 
 export type ImageType = Omit<OmitFunction<IImage>, 'initialized'>;
 
-export type ImageParams = string;
+export type ImageParams =
+  | string
+  | { id?: string; base64?: string; url?: string };

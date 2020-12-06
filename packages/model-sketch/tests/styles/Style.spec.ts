@@ -1,3 +1,4 @@
+import { SketchFormat } from '@uxdm/model-sketch';
 import { Style } from '@uxdm/model-sketch/styles';
 
 describe('Style 类', () => {
@@ -364,5 +365,268 @@ describe('Style 类', () => {
     // @ts-ignore
     style.borderOptions.lineJoin = '';
     expect(style.SketchBorderOptions.lineJoinStyle).toEqual(0);
+  });
+
+  it('fromSketchJSON', () => {
+    const json: SketchFormat.Style = {
+      _class: 'style',
+      do_objectID: 'style',
+      endMarkerType: 0,
+      miterLimit: 10,
+      startMarkerType: 0,
+      windingRule: 1,
+      blur: {
+        _class: 'blur',
+        isEnabled: false,
+        center: '{0.5, 0.5}',
+        motionAngle: 0,
+        radius: 10,
+        saturation: 1,
+        type: 0,
+      },
+      borderOptions: {
+        _class: 'borderOptions',
+        isEnabled: true,
+        dashPattern: [],
+        lineCapStyle: 0,
+        lineJoinStyle: 0,
+      },
+      borders: [
+        {
+          _class: 'border',
+          isEnabled: false,
+          fillType: 0,
+          color: {
+            _class: 'color',
+            alpha: 1,
+            blue: 0.592,
+            green: 0.592,
+            red: 0.592,
+          },
+          contextSettings: {
+            _class: 'graphicsContextSettings',
+            blendMode: 0,
+            opacity: 1,
+          },
+          gradient: {
+            _class: 'gradient',
+            elipseLength: 0,
+            from: '{0.5, 0}',
+            gradientType: 0,
+            to: '{0.5, 1}',
+            stops: [
+              {
+                _class: 'gradientStop',
+                position: 0,
+                color: {
+                  _class: 'color',
+                  alpha: 1,
+                  blue: 1,
+                  green: 1,
+                  red: 1,
+                },
+              },
+              {
+                _class: 'gradientStop',
+                position: 1,
+                color: {
+                  _class: 'color',
+                  alpha: 1,
+                  blue: 0,
+                  green: 0,
+                  red: 0,
+                },
+              },
+            ],
+          },
+          position: 1,
+          thickness: 1,
+        },
+      ],
+      colorControls: {
+        _class: 'colorControls',
+        isEnabled: false,
+        brightness: 0,
+        contrast: 1,
+        hue: 0,
+        saturation: 1,
+      },
+      contextSettings: {
+        _class: 'graphicsContextSettings',
+        blendMode: 3,
+        opacity: 1,
+      },
+      fills: [
+        {
+          _class: 'fill',
+          isEnabled: true,
+          fillType: 0,
+          color: {
+            _class: 'color',
+            alpha: 1,
+            blue: 0.6528221187004988,
+            green: 0.6528221187004988,
+            red: 0.7786741394927537,
+          },
+          contextSettings: {
+            _class: 'graphicsContextSettings',
+            blendMode: 0,
+            opacity: 1,
+          },
+          gradient: {
+            _class: 'gradient',
+            elipseLength: 0,
+            from: '{0.5, 0}',
+            gradientType: 0,
+            to: '{0.5, 1}',
+            stops: [
+              {
+                _class: 'gradientStop',
+                position: 0,
+                color: {
+                  _class: 'color',
+                  alpha: 1,
+                  blue: 1,
+                  green: 1,
+                  red: 1,
+                },
+              },
+              {
+                _class: 'gradientStop',
+                position: 1,
+                color: {
+                  _class: 'color',
+                  alpha: 1,
+                  blue: 0,
+                  green: 0,
+                  red: 0,
+                },
+              },
+            ],
+          },
+          noiseIndex: 0,
+          noiseIntensity: 0,
+          patternFillType: 1,
+          patternTileScale: 1,
+        },
+      ],
+      innerShadows: [],
+      shadows: [],
+    };
+    const style = Style.fromSketchJSON(json);
+    expect(style.toJSON()).toEqual({
+      blendMode: 'COLOR_BURN',
+      borderOptions: {
+        align: 'INSIDE',
+        dashPattern: [],
+        enabled: true,
+        lineCap: 'NONE',
+        lineJoin: 'MITER',
+      },
+      borders: [
+        {
+          align: 'INSIDE',
+          blendMode: 'NORMAL',
+          color: {
+            a: 1,
+            b: 151,
+            g: 151,
+            r: 151,
+          },
+          dashPattern: [],
+          gradient: {
+            from: {
+              x: 0.5,
+              y: 0,
+            },
+            stops: [
+              {
+                color: {
+                  a: 1,
+                  b: 0,
+                  g: 0,
+                  r: 0,
+                },
+                position: 0,
+              },
+              {
+                color: {
+                  a: 1,
+                  b: 0,
+                  g: 0,
+                  r: 0,
+                },
+                position: 1,
+              },
+            ],
+            to: {
+              x: 0.5,
+              y: 1,
+            },
+            type: 'LINEAR',
+          },
+          id: 'nanoid',
+          lineCap: 'NONE',
+          lineJoin: 'MITER',
+          name: '#979797',
+          opacity: 1,
+          position: 'FULL',
+          thickness: 1,
+          type: 'SOLID',
+          visible: false,
+        },
+      ],
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          color: {
+            a: 1,
+            b: 166,
+            g: 166,
+            r: 199,
+          },
+          gradient: {
+            from: {
+              x: 0.5,
+              y: 0,
+            },
+            stops: [
+              {
+                color: {
+                  a: 1,
+                  b: 0,
+                  g: 0,
+                  r: 0,
+                },
+                position: 0,
+              },
+              {
+                color: {
+                  a: 1,
+                  b: 0,
+                  g: 0,
+                  r: 0,
+                },
+                position: 1,
+              },
+            ],
+            to: {
+              x: 0.5,
+              y: 1,
+            },
+            type: 'LINEAR',
+          },
+          id: 'nanoid',
+          name: '#C7A6A6',
+          opacity: 1,
+          type: 'SOLID',
+          visible: true,
+        },
+      ],
+      id: 'style',
+      innerShadows: [],
+      opacity: 1,
+      shadows: [],
+    });
   });
 });

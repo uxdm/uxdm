@@ -1,7 +1,7 @@
-import { Frame } from '@uxdm/model-sketch';
+import { Frame, SketchFormat } from '@uxdm/model-sketch';
 
 describe('Frame 类', () => {
-  describe('正常生成 Frame ', () => {
+  describe('正常生成 Frame', () => {
     it('传参', () => {
       const frame = new Frame({ height: 100, width: 100, x: 5, y: 5 });
       expect(frame).toMatchSnapshot();
@@ -103,6 +103,25 @@ describe('Frame 类', () => {
         x: 5,
         y: 5,
       });
+    });
+  });
+
+  describe('fromSketchJSON', () => {
+    it('从 Sketch JSON 生成 Frame 对象', () => {
+      const json: SketchFormat.Rect = {
+        _class: 'rect',
+        constrainProportions: true,
+        height: 296,
+        width: 440,
+        x: 153,
+        y: 300,
+      };
+      const frame = Frame.fromSketchJSON(json);
+      expect(frame.x).toBe(153);
+      expect(frame.y).toBe(300);
+      expect(frame.width).toBe(440);
+      expect(frame.height).toBe(296);
+      expect(frame.keepAspectRatio).toBe(true);
     });
   });
 });

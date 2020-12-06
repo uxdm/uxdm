@@ -8,7 +8,12 @@ import Color from './Color';
 import Gradient from './Gradient';
 import Image from './Image';
 import { SketchFormat } from '../types';
-import { getContextSettings, getFillType } from '../utils';
+import {
+  fromSketchBlendMode,
+  fromSketchFillType,
+  getContextSettings,
+  getFillType,
+} from '../utils';
 
 /**
  * Sketch 填充对象
@@ -78,6 +83,31 @@ class Fill extends BaseFill {
       image: this.image?.toSketchJSON(),
     };
   };
+
+  /**
+   * 从 SketchJSON 获取自身
+   */
+  static fromSketchJSON(json: SketchFormat.Fill): Fill {
+    const {
+      isEnabled,
+      contextSettings,
+      color,
+      fillType,
+      gradient,
+      image,
+    } = json;
+    const { blendMode, opacity } = contextSettings;
+
+    return new Fill({
+      type: fromSketchFillType(fillType),
+      color: Color.fromSketchJSON(color),
+      gradient: Gradient.fromSketchJSON(gradient),
+      image: image && Image.fromSketchJSON(image),
+      visible: isEnabled,
+      blendMode: fromSketchBlendMode(blendMode),
+      opacity,
+    });
+  }
 }
 
 export default Fill;

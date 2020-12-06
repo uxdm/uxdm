@@ -1,6 +1,6 @@
 import {
   Point,
-  GradientTypes,
+  Gradient_Type,
   IGradient,
   ColorStop,
   GradientParams,
@@ -63,7 +63,7 @@ export class Gradient implements IGradient {
   /**
    * 渐变类型
    * */
-  type: GradientTypes = 'LINEAR';
+  type: Gradient_Type = 'LINEAR';
 
   /**
    * 椭圆长轴

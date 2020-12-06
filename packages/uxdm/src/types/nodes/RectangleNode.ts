@@ -13,4 +13,5 @@ export interface IRectangleNode extends IAbstractNode {
 
 export type RectangleNodeType = NodeTypeUtils<IRectangleNode>;
 
+// @ts-ignore
 export type RectangleNodeParams = NodeParamsUtils<RectangleNodeType>;

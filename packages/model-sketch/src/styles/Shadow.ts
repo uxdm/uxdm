@@ -1,15 +1,15 @@
-import { ShadowParams, Shadow as BaseShadow } from 'uxdm';
+import { ShadowParams, Shadow as BaseShadow, Shadow_Type } from 'uxdm';
 
 import { SketchFormat } from '../types';
 import Color from './Color';
-import { getContextSettings } from '../utils';
+import { fromSketchBlendMode, getContextSettings } from '../utils';
 
 class Shadow extends BaseShadow {
   constructor(params?: ShadowParams) {
     super(params);
     if (params) {
       const { color } = params;
-      this.color = new Color(color);
+      this.color = color instanceof Color ? color : new Color(color);
     }
   }
 
@@ -39,6 +39,31 @@ class Shadow extends BaseShadow {
       case 'INNER_SHADOW':
         return SketchFormat.ClassValue.InnerShadow;
     }
+  }
+
+  static fromSketchJSON(
+    json: SketchFormat.Shadow | SketchFormat.InnerShadow,
+  ): Shadow {
+    const {
+      _class,
+      blurRadius,
+      color,
+      contextSettings,
+      isEnabled,
+      ...params
+    } = json;
+
+    const type: Shadow_Type =
+      _class === 'innerShadow' ? 'INNER_SHADOW' : 'SHADOW';
+
+    return new Shadow({
+      type,
+      visible: isEnabled,
+      blur: blurRadius,
+      blendMode: fromSketchBlendMode(contextSettings.blendMode),
+      color: Color.fromSketchJSON(color),
+      ...params,
+    });
   }
 }
 

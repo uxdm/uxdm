@@ -1,10 +1,12 @@
-import { LayerNode } from 'uxdm';
+import { CSSProperties } from 'react';
 
-/**
- *
- */
-export type NodeTree = Record<string, LayerNode>;
-
-export type NodeList = Array<LayerNode>;
-
-export type LayerTree = string[];
+export interface BaseComponentProps {
+  /**
+   * 类名
+   */
+  className?: string;
+  /**
+   * 样式
+   */
+  style?: CSSProperties;
+}

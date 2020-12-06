@@ -13,5 +13,6 @@ module.exports = {
   moduleNameMapper: {
     ...base.moduleNameMapper,
     '^uuid$': `${root}/tests/__mocks__/uuid.ts`,
+    '^nanoid$': `${root}/tests/__mocks__/nanoid$.ts`,
   },
 };

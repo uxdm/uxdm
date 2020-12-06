@@ -23,11 +23,17 @@ export abstract class AbstractSketchObject extends AbstractNode {
   protected constructor(params?: SketchLayerParams) {
     super(params);
 
-    this.id = uuid();
+    if (params) {
+      const { id, style, bounding } = params;
+      this.id = id || uuid();
 
-    this.style = new Style();
+      this.style = style instanceof Style ? style : new Style();
 
-    this.bounding = new Frame(params);
+      if (bounding) {
+        this.bounding =
+          bounding instanceof Frame ? bounding : new Frame(params);
+      }
+    }
   }
 
   /**
