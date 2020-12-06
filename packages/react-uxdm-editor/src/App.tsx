@@ -28,6 +28,14 @@ export interface UXDMEditorProps {
    * 自定义 Toolbar
    */
   customToolbar?: CustomToolbar;
+  /**
+   * 图层面板配置项
+   */
+  layerPanel?: boolean;
+  /**
+   * 视察器面板
+   */
+  inspectorPanel?: boolean;
 }
 
 const App: FC<UXDMEditorProps> = ({
@@ -39,6 +47,8 @@ const App: FC<UXDMEditorProps> = ({
   toolbarClassName,
   inspectorClassName,
   customToolbar,
+  layerPanel,
+  inspectorPanel,
 }) => {
   useEditorState({ state, onChange });
 
@@ -52,15 +62,23 @@ const App: FC<UXDMEditorProps> = ({
       <div className={classnames(`${prefix}`, className)} style={style}>
         <Toolbar className={toolbarClassName} customToolbar={customToolbar} />
         <Row wrap={false}>
-          <Col flex={1}>
-            <LayerPanel nodeList={nodeList} className={layerPanelClassName} />
-          </Col>
+          {!layerPanel ? null : (
+            <Col flex={1}>
+              <LayerPanel
+                nodeList={nodeList}
+                className={layerPanelClassName}
+                {...layerPanel}
+              />
+            </Col>
+          )}
           <Col flex={1}>
             <Canvas nodeList={nodeList} />
           </Col>
-          <Col flex={1}>
-            <Inspector className={inspectorClassName} />
-          </Col>
+          {!inspectorPanel ? null : (
+            <Col flex={1}>
+              <Inspector className={inspectorClassName} />
+            </Col>
+          )}
         </Row>
       </div>
     </IntlProvider>
