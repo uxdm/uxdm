@@ -49,3 +49,5 @@ export type BoundingParams = Partial<BoundingType>;
 export type PositionType = Point;
 
 export type PositionParams = Partial<Point>;
+
+export type SizeParams = Pick<BoundingParams, 'width' | 'height'>;

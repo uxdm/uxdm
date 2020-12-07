@@ -7,3 +7,9 @@ export const checkValidParams = (params: object, count: number) => {
   const layoutValues = Object.values(params).filter((p) => p);
   return layoutValues.length > count;
 };
+
+/**
+ * 判断参数是否是 number
+ * @param param
+ */
+export const isNumber = (param) => typeof param === 'number';

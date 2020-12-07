@@ -7,10 +7,13 @@ import {
   BlendModeType,
   PositionParams,
   PositionType,
+  SizeParams,
+  BoundingParams,
 } from '../types';
 import { AbstractObject } from './AbstractObject';
 import { Bounding, Layout } from '../objects';
 import { Fill, Style } from '../styles';
+import { isNumber } from '../utils';
 
 /**
  * 抽象节点
@@ -301,6 +304,35 @@ export abstract class AbstractNode
    */
   setPosition(params: PositionParams) {
     this.bounding.setPosition(params);
+  }
+
+  /**
+   * 更新节点尺寸
+   * @param params
+   */
+  setSize(params: SizeParams) {
+    this.bounding.setSize(params);
+  }
+
+  /**
+   * 设定定界框参数
+   * @param params
+   */
+  setBounding(params: BoundingParams) {
+    const { width, height, x, y, rotation, keepAspectRatio } = params;
+
+    if (isNumber(x) && isNumber(y)) {
+      this.setPosition({ y, x });
+    }
+    if (isNumber(width) && isNumber(height)) {
+      this.setSize({ width, height });
+    }
+    if (isNumber(rotation)) {
+      this.rotation = rotation;
+    }
+    if (typeof keepAspectRatio === 'boolean') {
+      this.bounding.keepAspectRatio = keepAspectRatio;
+    }
   }
 
   /**

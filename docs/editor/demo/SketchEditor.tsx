@@ -24,12 +24,12 @@ const App = () => {
       <UXDMEditor
         title={'Sketch Editor'}
         customToolbar={() => ({
-          // left: (
-          //   <Space>
-          //     <div>Sketch 数据集:</div>
-          //     <Button onClick={() => showDataset(example)}>输入</Button>
-          //   </Space>
-          // ),
+          left: (
+            <Space>
+              <div>Sketch 数据集:</div>
+              <Button onClick={() => showDataset(example)}>输入</Button>
+            </Space>
+          ),
         })}
       />
     </div>

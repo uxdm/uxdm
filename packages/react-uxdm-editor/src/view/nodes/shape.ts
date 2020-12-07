@@ -18,21 +18,21 @@ export const availableShapes = {
       y: 100,
       rx: 100,
       ry: 50,
-      fill: 'blue',
+      fill: '#C4C4C4',
     }),
   [ShapeTypes.Circle]: () =>
     new CircleNode({
       x: 100,
       y: 100,
       radius: 50,
-      fill: 'red',
+      fill: '#C4C4C4',
     }),
   [ShapeTypes.Rectangle]: () =>
     new RectangleNode({
       x: 50,
       y: 50,
       height: 100,
-      width: 200,
-      fill: 'black',
+      width: 100,
+      fill: '#C4C4C4',
     }),
 };

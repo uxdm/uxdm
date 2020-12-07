@@ -1,2 +1,2 @@
 export * from './Intl';
-export { default as NodeToKonvaLayer } from './NodeToKonvaLayer';
+export { default as NodeToKonvaWrapper } from './NodeToKonvaWrapper';

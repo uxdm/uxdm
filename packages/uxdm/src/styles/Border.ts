@@ -75,6 +75,16 @@ export class Border extends Paint implements IBorder {
 
   position: BorderPositionType = 'FULL';
 
+  /**
+   * 色值
+   * 如果是实色填充则返回 hex
+   */
+  get hex(): string | undefined {
+    if (this.type === 'SOLID') {
+      return this.color.hex;
+    }
+  }
+
   toJSON(): BorderType {
     const json = super.toJSON();
     return {

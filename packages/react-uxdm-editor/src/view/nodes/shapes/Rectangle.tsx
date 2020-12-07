@@ -3,10 +3,11 @@ import { Rect } from 'react-konva';
 
 export interface RectangleProps {
   id: string;
+  shapeRef: any;
 }
 
-const Rectangle: FC<RectangleProps> = ({ id, ...props }) => {
-  return <Rect key={id} {...props} />;
+const Rectangle: FC<RectangleProps> = ({ id, shapeRef, ...props }) => {
+  return <Rect key={id} ref={shapeRef} {...props} />;
 };
 
 export default Rectangle;

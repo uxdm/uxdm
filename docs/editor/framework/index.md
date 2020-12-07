@@ -1,21 +1,25 @@
-# React UXDM Editor
+---
+title: 概览
+order: 1
+group:
+  order: 2
+  title: 架构
+---
 
-## Usage
-
-## 架构说明
+# 架构说明
 
 - 视图层 (View): 用户所见的编辑器面板
-- 交互层 (Interaction): 用户与界面的交互操作, 用户与编辑器的交互模式, 支持与框架中的任何元素进行交互
+- 服务层 (Services): 用户与界面的交互操作, 用户与编辑器的交互模式, 支持与框架中的任何元素进行交互
 - 数据层 (Store): 存储编辑器状态的数据模型
 
 ### 视图层
 
-- 框架层: 包含画布的四个区域: 工具条(Toolbar) 图层面板(LayerNode) 元素视察器(Inspector) 和 画布(Canvas)
+- 框架层: 包含画布的四个区域: 工具条(Toolbar) 图层面板(LayerNode) 元素视察器(Inspector) 和画布(Canvas)
 - 图形层: 允许用户添加的图形, 接受外部传入的数据和交互,进而渲染到画布中
 
 ### 数据层
 
-提供底层的操作数据的能力 (low-level) 通过 hooks 对外暴露
+提供底层 (low-level) 的操作数据的能力, 通过 hooks 对外暴露
 
 #### 节点数据
 

@@ -3,6 +3,7 @@ import {
   BoundingType,
   IBounding,
   PositionParams,
+  SizeParams,
 } from '../types';
 import { AbstractRect } from '../abstract/AbstractRect';
 import { checkValidParams } from '../utils';
@@ -174,6 +175,19 @@ export class Bounding extends AbstractRect implements IBounding {
     }
     if (y) {
       this.y = y;
+    }
+  }
+
+  /**
+   * 更新节点尺寸
+   * @param params
+   */
+  setSize({ height, width }: SizeParams) {
+    if (height) {
+      this.height = height;
+    }
+    if (width) {
+      this.width = width;
     }
   }
 

@@ -1,6 +1,6 @@
 import React, { CSSProperties, FC } from 'react';
 import classNames from 'classnames';
-import { useEditorOperation } from '../../../interaction';
+import { useEditorOperation } from '../../../services';
 import { prefix } from '../../theme/prefix';
 
 import './style.less';

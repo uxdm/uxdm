@@ -3,7 +3,8 @@ import { Col, Row } from 'antd';
 import classnames from 'classnames';
 
 import { BaseComponentProps, EditorState } from './types';
-import { useEditorUtils, useEditorState } from './interaction';
+import { useEditorState } from './services';
+import { useNodeList } from './models';
 import {
   LayerPanel,
   Toolbar,
@@ -64,7 +65,7 @@ const App: FC<UXDMEditorProps> = ({
 }) => {
   useEditorState({ state, onChange });
 
-  const { nodeList } = useEditorUtils();
+  const { nodeList } = useNodeList();
   const { locale, messages } = useI18n();
 
   return !messages ? (

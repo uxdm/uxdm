@@ -1,9 +1,12 @@
 import React, { CSSProperties, FC, isValidElement, ReactNode } from 'react';
-import { Button, Col, Row, Space } from 'antd';
+import { Button, Col, Dropdown, Menu, Row, Space } from 'antd';
+import { NodeEnum } from 'uxdm';
 import cls from 'classnames';
+import { DownOutlined } from '@ant-design/icons';
+
 import { prefix } from '../../theme/prefix';
 import { availableShapes } from '../../nodes';
-import { useEditorOperation } from '../../../interaction';
+import { useEditorOperation } from '../../../services';
 import './style.less';
 import { useFormatMessage } from '../../components';
 import { BaseComponentProps } from '../../../types';
@@ -45,33 +48,43 @@ interface ToolbarProps extends BaseComponentProps {
 
 const availableNodeList = Object.entries(availableShapes);
 
+const { Item } = Menu;
+
 const Toolbar: FC<ToolbarProps> = ({ className, customToolbar, title }) => {
   const { saveToLocalStorage, resetNodeTree, addNode } = useEditorOperation();
   const f = useFormatMessage();
 
-  const addFn = (node) => () => {
-    addNode(node);
-  };
   const save = () => {
     saveToLocalStorage();
   };
+
   const LeftToolbar = () => (
     <Space>
-      {availableNodeList.map((node) => {
-        const [key, initNode] = node;
-        return (
-          <Button key={key} onClick={addFn(initNode())}>
-            {key}
-          </Button>
-        );
-      })}
+      <Dropdown.Button
+        onClick={() => {
+          const initRect = availableShapes[NodeEnum.Rectangle];
+          addNode(initRect());
+        }}
+        icon={<DownOutlined />}
+        overlay={
+          <Menu>
+            {availableNodeList.map((node) => {
+              const [key, initNode] = node;
+              return (
+                <Item key={key} onClick={() => addNode(initNode())}>
+                  {key}
+                </Item>
+              );
+            })}
+          </Menu>
+        }
+      >
+        Rect
+      </Dropdown.Button>
     </Space>
   );
   const RightToolbar = () => (
     <Space>
-      <Button>{f('toolbar.right.import')}</Button>
-      <Button>{f('toolbar.right.export')}</Button>
-      <Button>{f('toolbar.right.meta')}</Button>
       <Button onClick={save}>{f('toolbar.right.save')}</Button>
       <Button onClick={resetNodeTree}>{f('toolbar.right.clear')}</Button>
     </Space>

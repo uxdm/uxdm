@@ -1,20 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Input } from 'antd';
-import { useClickAway } from 'ahooks';
-import { useEditorOperation } from '../../../interaction';
+import { useActive, useManipulateNodeTree } from '../../../services';
 import { componentPrefix } from './index';
 import './style.less';
 
-const useEditNodeName = (targetDOM) => {
-  const { deactivateNode } = useEditorOperation();
-
+const useEditNodeName = () => {
   const [editNodeId, setEditKey] = useState('');
 
-  useClickAway(() => {
-    setEditKey('');
-    deactivateNode();
-  }, targetDOM);
+  // useClickAway(() => {
+  //   setEditKey('');
+  // }, targetDOM);
 
   return {
     editNodeId,
@@ -25,10 +21,10 @@ const useEditNodeName = (targetDOM) => {
 };
 
 const LayerItem = ({ node }) => {
-  const { updateNode, activateNode, isActiveNode } = useEditorOperation();
-  const containerRef = useRef();
+  const { activateNode, isActiveNode } = useActive();
+  const { updateNode } = useManipulateNodeTree();
 
-  const { setEditNode, isEditingNode } = useEditNodeName(containerRef);
+  const { setEditNode, isEditingNode } = useEditNodeName();
 
   const isActive = isEditingNode(node.id) || isActiveNode(node.id);
 
@@ -43,7 +39,7 @@ const LayerItem = ({ node }) => {
         isActive ? `${componentPrefix}-layer-active` : '',
       )}
     >
-      <div ref={containerRef}>
+      <div>
         {isEditingNode(node.id) ? (
           <Input
             className={`${componentPrefix}-layer-input`}

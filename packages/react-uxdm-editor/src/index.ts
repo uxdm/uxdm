@@ -1,10 +1,6 @@
 import App from './App';
 
-export {
-  useEditorOperation,
-  useUXDMEditor,
-  useEditorState,
-} from './interaction';
+export { useUXDMEditor, useEditorOperation, useEditorState } from './services';
 
 export * from './App';
 
